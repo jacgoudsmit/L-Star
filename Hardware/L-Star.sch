@@ -1,0 +1,340 @@
+EESchema Schematic File Version 2
+LIBS:jac
+LIBS:Propeddle-cache
+LIBS:ttl_ieee
+LIBS:power
+LIBS:propeller
+LIBS:crystal
+LIBS:conn
+EELAYER 27 0
+EELAYER END
+$Descr B 17000 11000
+encoding utf-8
+Sheet 1 6
+Title "Propeddle"
+Date "23 nov 2014"
+Rev "11"
+Comp "(C) 2014 Jac Goudsmit"
+Comment1 "Software-Defined 6502 Computer"
+Comment2 "http://www.propeddle.com"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L GND #PWR01
+U 1 1 53383060
+P 8100 8050
+F 0 "#PWR01" H 8100 8050 30  0001 C CNN
+F 1 "GND" H 8100 7980 30  0001 C CNN
+F 2 "" H 8100 8050 60  0000 C CNN
+F 3 "" H 8100 8050 60  0000 C CNN
+	1    8100 8050
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 6900 3850 900  2100
+U 53387CA7
+F0 "Propeller" 50
+F1 "Propeller.sch" 50
+F2 "P0" B L 6900 3950 60 
+F3 "P1" B L 6900 4050 60 
+F4 "P2" B L 6900 4150 60 
+F5 "P3" B L 6900 4250 60 
+F6 "P4" B L 6900 4350 60 
+F7 "P5" B L 6900 4450 60 
+F8 "P6" B L 6900 4550 60 
+F9 "P7" B L 6900 4650 60 
+F10 "P8" B L 6900 5150 60 
+F11 "P9" B L 6900 5250 60 
+F12 "P10" B L 6900 5350 60 
+F13 "P11" B L 6900 5450 60 
+F14 "P12" B L 6900 5550 60 
+F15 "P13" B L 6900 5650 60 
+F16 "P14" B L 6900 5750 60 
+F17 "P15" B L 6900 5850 60 
+F18 "P16" B R 7800 5850 60 
+F19 "P17" B R 7800 5750 60 
+F20 "P18" B R 7800 5650 60 
+F21 "P19" B R 7800 5550 60 
+F22 "P20" B R 7800 5450 60 
+F23 "P21" B R 7800 5350 60 
+F24 "P22" B R 7800 5250 60 
+F25 "P23" B R 7800 5150 60 
+F26 "P24" B R 7800 4650 60 
+F27 "P25" B R 7800 4550 60 
+F28 "P26" B R 7800 4450 60 
+F29 "P27" B R 7800 4350 60 
+F30 "~RES" I L 6900 4950 60 
+F31 "RXD" I R 7800 3950 60 
+F32 "TXD" O R 7800 4050 60 
+F33 "SCL" B R 7800 4250 60 
+F34 "SDA" B R 7800 4150 60 
+$EndSheet
+$Sheet
+S 6650 9400 950  350 
+U 5339C0F7
+F0 "Power Supply" 50
+F1 "PowerSupply.sch" 50
+$EndSheet
+$Sheet
+S 9300 3650 750  2550
+U 5339D827
+F0 "6502" 50
+F1 "6502.sch" 50
+F2 "D0" B L 9300 3750 60 
+F3 "D1" B L 9300 3850 60 
+F4 "D2" B L 9300 3950 60 
+F5 "D3" B L 9300 4050 60 
+F6 "D4" B L 9300 4150 60 
+F7 "D5" B L 9300 4250 60 
+F8 "D6" B L 9300 4350 60 
+F9 "D7" B L 9300 4450 60 
+F10 "A0" T L 9300 4600 60 
+F11 "A1" T L 9300 4700 60 
+F12 "A2" T L 9300 4800 60 
+F13 "A3" T L 9300 4900 60 
+F14 "A4" T L 9300 5000 60 
+F15 "A5" T L 9300 5100 60 
+F16 "A6" T L 9300 5200 60 
+F17 "A7" T L 9300 5300 60 
+F18 "A8" T L 9300 5400 60 
+F19 "A9" T L 9300 5500 60 
+F20 "A10" T L 9300 5600 60 
+F21 "A11" T L 9300 5700 60 
+F22 "A12" T L 9300 5800 60 
+F23 "A13" T L 9300 5900 60 
+F24 "A14" T L 9300 6000 60 
+F25 "A15" T L 9300 6100 60 
+F26 "CLK0" I R 10050 5900 60 
+F27 "~RESET" I R 10050 5100 60 
+F28 "R/~W" O R 10050 5400 60 
+$EndSheet
+Text GLabel 9300 3750 0    50   BiDi ~ 0
+D0
+Text GLabel 9300 3850 0    50   BiDi ~ 0
+D1
+Text GLabel 9300 3950 0    50   BiDi ~ 0
+D2
+Text GLabel 9300 4050 0    50   BiDi ~ 0
+D3
+Text GLabel 9300 4150 0    50   BiDi ~ 0
+D4
+Text GLabel 9300 4250 0    50   BiDi ~ 0
+D5
+Text GLabel 9300 4350 0    50   BiDi ~ 0
+D6
+Text GLabel 9300 4450 0    50   BiDi ~ 0
+D7
+Text GLabel 9300 4600 0    50   Output ~ 0
+A0
+Text GLabel 9300 4700 0    50   Output ~ 0
+A1
+Text GLabel 9300 4800 0    50   Output ~ 0
+A2
+Text GLabel 9300 4900 0    50   Output ~ 0
+A3
+Text GLabel 9300 5000 0    50   Output ~ 0
+A4
+Text GLabel 9300 5100 0    50   Output ~ 0
+A5
+Text GLabel 9300 5200 0    50   Output ~ 0
+A6
+Text GLabel 9300 5300 0    50   Output ~ 0
+A7
+Text GLabel 9300 5400 0    50   Output ~ 0
+A8
+Text GLabel 9300 5500 0    50   Output ~ 0
+A9
+Text GLabel 9300 5600 0    50   Output ~ 0
+A10
+Text GLabel 9300 5700 0    50   Output ~ 0
+A11
+Text GLabel 9300 5800 0    50   Output ~ 0
+A12
+Text GLabel 9300 5900 0    50   Output ~ 0
+A13
+Text GLabel 9300 6000 0    50   Output ~ 0
+A14
+Text GLabel 9300 6100 0    50   Output ~ 0
+A15
+Text GLabel 10050 5100 2    50   Input ~ 0
+~RES
+Text GLabel 7800 4150 2    50   BiDi ~ 0
+SDA
+Text GLabel 7800 4050 2    50   Output ~ 0
+TXD
+Text GLabel 7800 3950 2    50   Input ~ 0
+RXD
+Text GLabel 10050 5900 2    50   Input ~ 0
+CLK0
+Wire Wire Line
+	8100 7250 8100 7350
+Wire Wire Line
+	8100 8050 8100 7950
+$Sheet
+S 8350 9200 700  800 
+U 5342B49D
+F0 "PS2" 50
+F1 "PS2.sch" 50
+F2 "CLK" I L 8350 9450 60 
+F3 "DATA" I L 8350 9750 60 
+$EndSheet
+Text GLabel 8350 9450 0    50   Input ~ 0
+PS2CLK
+Text GLabel 8350 9750 0    50   Input ~ 0
+PS2DATA
+$Sheet
+S 9700 9300 650  600 
+U 5342ED53
+F0 "TV Out" 50
+F1 "TVOut.sch" 50
+F2 "TV0" I L 9700 9650 60 
+$EndSheet
+Text GLabel 9700 9650 0    50   Input ~ 0
+TV0
+Text GLabel 10050 5400 2    50   Output ~ 0
+R/~W
+$Comp
+L CONN_4 P101
+U 1 1 534901DB
+P 9550 7850
+F 0 "P101" V 9500 7850 50  0000 C CNN
+F 1 "PROP PLUG" V 9600 7850 50  0000 C CNN
+F 2 "~" H 9550 7850 60  0000 C CNN
+F 3 "~" H 9550 7850 60  0000 C CNN
+	1    9550 7850
+	1    0    0    1   
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 534906F9
+P 9150 8050
+F 0 "#PWR02" H 9150 8050 30  0001 C CNN
+F 1 "GND" H 9150 7980 30  0001 C CNN
+F 2 "" H 9150 8050 60  0000 C CNN
+F 3 "" H 9150 8050 60  0000 C CNN
+	1    9150 8050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 8050 9150 8000
+Wire Wire Line
+	9150 8000 9200 8000
+Wire Wire Line
+	9200 7900 9050 7900
+Wire Wire Line
+	9200 7800 9050 7800
+Wire Wire Line
+	9200 7700 9050 7700
+Text GLabel 6900 4950 0    50   Input ~ 0
+~RESET
+Text GLabel 8150 7250 2    50   3State ~ 0
+~RESET
+Wire Wire Line
+	8100 7250 8150 7250
+Text GLabel 9050 7900 0    50   3State ~ 0
+~RESET
+Text GLabel 9050 7800 0    50   Output ~ 0
+RXD
+Text GLabel 9050 7700 0    50   Input ~ 0
+TXD
+$Comp
+L SW_PUSH SW102
+U 1 1 534A34FA
+P 8100 7650
+F 0 "SW102" H 8250 7760 50  0000 C CNN
+F 1 "RESET" H 8100 7570 50  0000 C CNN
+F 2 "~" H 8100 7650 60  0000 C CNN
+F 3 "~" H 8100 7650 60  0000 C CNN
+	1    8100 7650
+	0    -1   -1   0   
+$EndComp
+Text GLabel 7800 4350 2    50   Input ~ 0
+PS2CLK
+Text GLabel 7800 4450 2    50   Input ~ 0
+PS2DATA
+Text GLabel 7800 4250 2    50   Output ~ 0
+CLK0
+Text GLabel 7800 4550 2    50   Output ~ 0
+TV0
+Text GLabel 6900 4650 0    50   BiDi ~ 0
+D7
+Text GLabel 6900 4550 0    50   BiDi ~ 0
+D6
+Text GLabel 6900 4450 0    50   BiDi ~ 0
+D5
+Text GLabel 6900 4350 0    50   BiDi ~ 0
+D4
+Text GLabel 6900 4250 0    50   BiDi ~ 0
+D3
+Text GLabel 6900 4150 0    50   BiDi ~ 0
+D2
+Text GLabel 6900 4050 0    50   BiDi ~ 0
+D1
+Text GLabel 6900 3950 0    50   BiDi ~ 0
+D0
+Text GLabel 6900 5150 0    50   Input ~ 0
+A0
+Text GLabel 6900 5250 0    50   Input ~ 0
+A1
+Text GLabel 6900 5350 0    50   Input ~ 0
+A2
+Text GLabel 6900 5450 0    50   Input ~ 0
+A3
+Text GLabel 6900 5550 0    50   Input ~ 0
+A4
+Text GLabel 6900 5650 0    50   Input ~ 0
+A5
+Text GLabel 6900 5750 0    50   Input ~ 0
+A6
+Text GLabel 6900 5850 0    50   Input ~ 0
+A7
+Text GLabel 7800 5150 2    50   Input ~ 0
+A15
+Text GLabel 7800 5250 2    50   Input ~ 0
+A14
+Text GLabel 7800 5350 2    50   Input ~ 0
+A13
+Text GLabel 7800 5450 2    50   Input ~ 0
+A12
+Text GLabel 7800 5550 2    50   Input ~ 0
+A11
+Text GLabel 7800 5650 2    50   Input ~ 0
+A10
+Text GLabel 7800 5750 2    50   Input ~ 0
+A9
+Text GLabel 7800 5850 2    50   Input ~ 0
+A8
+Text GLabel 7800 4650 2    50   Input ~ 0
+R/~W
+$Comp
+L GND #PWR03
+U 1 1 54764E08
+P 7300 8050
+F 0 "#PWR03" H 7300 8050 30  0001 C CNN
+F 1 "GND" H 7300 7980 30  0001 C CNN
+F 2 "" H 7300 8050 60  0000 C CNN
+F 3 "" H 7300 8050 60  0000 C CNN
+	1    7300 8050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7300 7250 7300 7350
+Wire Wire Line
+	7300 8050 7300 7950
+Text GLabel 7350 7250 2    50   3State ~ 0
+~RES
+Wire Wire Line
+	7300 7250 7350 7250
+$Comp
+L SW_PUSH SW101
+U 1 1 54764E12
+P 7300 7650
+F 0 "SW101" H 7450 7760 50  0000 C CNN
+F 1 "RESET6502" H 7300 7570 50  0000 C CNN
+F 2 "~" H 7300 7650 60  0000 C CNN
+F 3 "~" H 7300 7650 60  0000 C CNN
+	1    7300 7650
+	0    -1   -1   0   
+$EndComp
+$EndSCHEMATC

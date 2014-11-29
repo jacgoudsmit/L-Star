@@ -4,30 +4,30 @@
 '' Terms of use: MIT license, see bottom of file.
 ''
 '' This module combines input from the keyboard and serial port, and
-'' generates output to the serial port and a screen buffer viewport.
+'' generates output to the serial port and a 1-pin TV driver.
 ''***************************************************************************
 
 
 OBJ
   ser:          "FullDuplexSerial"
   kb:           "Keyboard"
-  vp:           "ScreenBufferText"
+  tv:           "Debug_1pinTV"
   
-PUB Start(rxpin, txpin, kbdatapin, kbclkpin, baudrate, screenbuf, screencols, screenrows, viewcols, viewrows, viewleft, viewtop)
+PUB Start(rxpin, txpin, kbdatapin, kbclkpin, tvpin, baudrate)
 
   ser.Start(rxpin, txpin, 0, baudrate)
-  kb.Start(kbdatapin, kbclkpin)
-  vp.Start(screenbuf, screencols, screenrows, viewcols, viewrows, viewleft, viewtop, vp#CRLF_CR_LF) 
-  
+  kb.StartX(kbdatapin, kbclkpin, %0_000_110, %01_00000) ' Caps Lock / Num Lock on, quickest repeat
+  tv.Start(tvpin) 
+
 PUB str(s)
 
   ser.str(s)
-  vp.str(s)
+  tv.str(s)
 
 PUB dec(v)
 
   ser.dec(v)
-  vp.dec(v)
+  tv.dec(v)
 
 
 PUB rxtime(ms) | t, rxbyte
@@ -50,7 +50,7 @@ PUB rxflush
 PUB tx(c)
 
   ser.tx(c)
-  vp.chr(c)
+  tv.chr(c)
 
 PUB rx | rxbyte
 
@@ -69,12 +69,12 @@ PUB stop
 PUB bin(v,n)
 
   ser.bin(v,n)
-  vp.bin(v,n)
+  tv.bin(v,n)
 
 PUB hex(v,n)
 
   ser.hex(v,n)
-  vp.hex(v,n)
+  tv.hex(v,n)
 
 PUB rxcheck | c
 
@@ -89,4 +89,8 @@ PUB rxcheck | c
 
 PUB cls
 
-  vp.cls
+  tv.clear
+
+PUB GotoXY(x, y)
+
+  tv.GotoXY(x, y)

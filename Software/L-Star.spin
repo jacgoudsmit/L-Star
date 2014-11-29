@@ -9,7 +9,7 @@
 ''* "Propeddle",      (C) 2011-2014 Jac Goudsmit
 ''* "Replica 1",      (C) 2004-2014 Vince Briel
 ''* "Superboard III", (C) 2013-2014 Vince Briel and Jac Goudsmit
-''* "1-Pin TV",       (C) 2009-2010 Eric Ball, Ray Rodrick
+''* "1-Pin TV",       (C) 2009-2014 Eric Ball, Ray Rodrick, Marko Lukat
 ''*
 ''* (*) Ken Wessen wrote his Krusader assembler/disassembler for the 6502
 ''* specifically for the Brielcomputers Replica-1, and it has been used in
@@ -32,10 +32,10 @@
 ''
 '' A PS/2 keyboard can be connected to the usual pins P26-P27, in the same
 '' way as on the Propeller Demo board. There aren't enough pins for a full
-'' TV output, but we can use Ray Rodrick's 1-pin TV driver to generate a
-'' monochrome video signal. The clock signal for the 65C02 is generated on
-'' the same pin as the SCL clock signal to the EEPROM; this won't harm the
-'' EEPROM as long as we keep SDA high.
+'' TV output, but we can use the 1-pin TV driver from the Parallax Forums
+'' to generate a monochrome video signal. The clock signal for the 65C02 is
+'' generated on the same pin as the SCL clock signal to the EEPROM; this
+'' won't harm the EEPROM as long as we keep SDA high.
 ''
 '' The code that runs on the Propeller emulates ROM and RAM in the hub. But
 '' because there's not enough space in the hub, the amount of ROM and RAM
@@ -51,37 +51,36 @@ CON
   
 OBJ
   hw:   "Hardware"              ' Constants for hardware
-  tv:   "1pinTV256"             ' TV text output
-  term: "SerKbdTerm"            ' Serial/Keyboard/TV terminal
-  font: "Font_ATARI"            ' Text font
+  term: "SerKbd1TV"             ' Serial/Keyboard/TV terminal
   pia:  "A1PIA"                 ' PIA hardware emulator  
 
 PUB main | i, screen_ptr
 
   ' Initialize the clock and SDA pins as output, and set them both high for now,
   ' so that the 6502 access cogs can ready themselves by waiting for CLK0 to go low.
-  dira[hw#pin_SDA]~~                                    ' The SDA pin must remain high so the EEPROM doesn't get activated.
   outa[hw#pin_SDA]~~                                    '
-  dira[hw#pin_CLK0]~~                                   ' Set CLK0 pin to output for Phase 0 clock
+  dira[hw#pin_SDA]~~                                    ' The SDA pin must remain high so the EEPROM doesn't get activated.
   outa[hw#pin_CLK0]~~                                   ' Override the clock with a high signal for now
+  dira[hw#pin_CLK0]~~                                   ' Set CLK0 pin to output for Phase 0 clock
 
-  ' Init video  
-  screen_ptr := tv.Start(hw#pin_TV, font.GetPtrToFontTable) ' Start video output and get pointer to emulated screen RAM
-
-  ' Init serial, keyboard and video viewport
-  term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_KBCLK, BAUDRATE, screen_ptr, 40, 24, 40, 24, 0, 0)
-  term.str(string(13,"L-STAR "))
+  ' Init serial, keyboard and TV
+  term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_KBCLK, hw#pin_TV, BAUDRATE)
+  term.str(string("L-STAR (C) 2014 JAC GOUDSMIT",13,13,"HUB RAM BYTES: "))
   term.dec(RAM_SIZE)
-  term.str(string(" BYTES HUB RAM, "))
+  term.str(string(13,"SIM.ROM BYTES: "))
   term.dec(@RomEnd-@RomFile)
-  term.str(string(" BYTES ROM.",13,"REMEMBER TO USE CAPS-LOCK AND RESET.",13))
+  term.str(string(13,13))
 
+  ' Patch the ROM
+  Patch($F009,$3C)                                      ' Krusader assumes 32K RAM, this changes a table location from 7C00 to 3C00
+  Patch($FF2E,$08)                                      ' Let Woz monitor use backspace instead of _ for correction                        
+  
   ' Start the PIA emulator
   pia.Start($D010)
     
   ' Start the memory cog
   cognew(@MemCog, @@0)
-
+  
   ' Start the clock at 1MHz
   ctra := %00100_000 << 23 + 1 << 9 + hw#pin_CLK0       ' Calculate frequency setting
   frqa := $333_0000                                     ' Set FRQA so PHSA[31]
@@ -90,7 +89,6 @@ PUB main | i, screen_ptr
   ' The following infinite loop emulates the terminal part of the machine.
   ' If a key has come in from the serial port or keyboard, it's made available to the PIA emulator;
   ' If the 6502 has written a character to the PIA, send it to the screen and the serial port.
-  ' An '@' symbol is shown as the cursor (TODO: blink the cursor)
   repeat
     i := term.rxcheck
     if i <> -1
@@ -101,8 +99,11 @@ PUB main | i, screen_ptr
       if (i < 32) or (i > 126)
         term.str(string(32,8))
       term.tx(i)
-      term.str(string(64,8))
 
+PRI Patch(addrval, dataval)
+
+  byte[addrval + @RomEnd - $1_0000] := dataval 
+  
 DAT
                         org     0
 MemCog
@@ -129,10 +130,75 @@ AdjustPtrTable
 
                         ' Convert hub address for start of ROM to offset
                         sub     pRomFile, romstart     
-                             
-WaitForPhi2
+
+                        ' Fake reset
+                        ' For the first few cycles that we control the 65C02,
+                        ' we force it to read bytes with value 0. Write
+                        ' cycles are ignored so the simulated RAM in the hub
+                        ' is not disturbed.
+                        ' The 65C02 interprets the 0 value as a BRK
+                        ' instruction, and retrieves the BRK/IRQ vector from
+                        ' locations $FFFE and $FFFF, When it does this, we
+                        ' pass it the bytes from the reset vector ($FFFC and
+                        ' FFFD) in the ROM area, and then continue in normal
+                        ' operation mode. 
+                        ' There is a small chance that this won't work, for
+                        ' example if the 65C02 was already reading from
+                        ' locations FFFE or FFFF. Also if an older (non-WDC)
+                        ' 6502 is used, it's possible that it might be stuck
+                        ' in an illegal instruction that it can't get out
+                        ' of. In that case, the user will really have to
+                        ' push the reset button. Oh well.
+                        ' The code is a partial duplicate of the main loop.
+                        ' Unfortunately it's not possible to implement the
+                        ' overlap in functionality by using a subroutine
+                        ' (not enough cycles). Using self-modifying code
+                        ' would also be possible but there's plenty of space
+                        ' and it would only make the code more difficult to
+                        ' read. So I apologize fot the copy-and-paste.   
+FakeResetWaitForPhi2
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0                 
+FakeResetWaitForPhi1
+                        ' Wait until clock goes low
+                        waitpeq zero, mask_CLK0
+' t=0
+                        ' Take any previous data off the bus while we wait
+                        ' for the address bus to settle (tADS < 40ns)
+                        andn    DIRA, #hw#con_mask_DATA
+' t=4
+                        ' Get the inputs
+                        mov     addr, INA
+                        test    addr, mask_RW wz        ' Z=1 when 6502 is writing
+                        shr     addr, #hw#pin_A0
+                        and     addr, mask_FFFF         ' addr now contains address
+                        
+        if_z            jmp     #FakeResetWaitForPhi2   ' Writing, ignore this cycle
+
+                        cmp     addr, mask_FFFE wz
+        if_z            jmp     #FakeResetVector1
+
+                        cmp     addr, mask_FFFF wz
+        if_z            jmp     #FakeResetVector2
+
+                        ' Feed a zero        
+                        mov     OUTA, #0
+                        or      DIRA, #hw#con_mask_DATA
+                        jmp     #FakeResetWaitForPhi2
+
+FakeResetVector1        rdbyte  OUTA, pFFFC
+                        or      DIRA, #hw#con_mask_DATA
+                        jmp     #FakeResetWaitForPhi2
+
+FakeResetVector2        rdbyte  OUTA, pFFFD
+                        or      DIRA, #hw#con_mask_DATA
+                        ' Fall through to the main loop...
+
+WaitForPhi2
+                        ' Wait until clock goes high
+                        waitpne zero, mask_CLK0
+
+                        ' MAIN LOOP
 WaitForPhi1
                         ' Wait until clock goes low
                         waitpeq zero, mask_CLK0
@@ -219,12 +285,14 @@ Write
                         ' However, it can be proven this is not a problem
                         ' because the bus states don't change significantly
                         ' when we probe the address bus and data bus a few
-                        ' cycles late, and because the 6502 clock cycle
-                        ' is an even multiple of 16 Propeller cycles, the
-                        ' longer duration of the execution of one 6502 cycle
-                        ' in the cog is guaranteed to execute the hub
-                        ' instruction faster on the next iteration. In other
-                        ' words, it catches up in the next 6502 clock cycle.                                                                                                   
+                        ' Propeller cycles late, and because the 6502 clock
+                        ' cycle is an even multiple of 16 Propeller cycles
+                        ' (which is the amount of time between hub access
+                        ' cycles, and which is what causes the lateness),
+                        ' the lateness won't escalate.
+                        ' I've proven this for the Propeddle project and
+                        ' for the Superboard III project, so I'll leave this
+                        ' as an "exercise for the reader" :-).
 
 '============================================================================
 ' Constants
@@ -233,7 +301,8 @@ zero                    long    0                       ' 0
 d1                      long    (|<9)                   ' 1 in destination field
 mask_CLK0               long    (|<hw#pin_CLK0)         ' Clock pin mask
 mask_RW                 long    (|<hw#pin_RW)           ' R/!W pin mask in INA
-mask_FFFF               long    $FFFF                   ' Mask for address after shifting
+mask_FFFE               long    $FFFE                   ' Low byte of BRK vector
+mask_FFFF               long    $FFFF                   ' Mask for address after shifting; high byte of BRK vector
 mask_10000              long    $10000                  ' Needed to calculate hub address
 
 ramsize                 long    RAM_SIZE                ' Size of RAM in bytes
@@ -245,7 +314,10 @@ romstart                long    $1_0000 - (@RomEnd - @RomFile) ' Start address o
 
 pointertable
 pRomFile                long    @RomFile
+pFFFC                   long    @RomEnd - 4
+pFFFD                   long    @RomEnd - 3 
 pointertable_len        long    (@pointertable_len - @pointertable) >> 2
+
 addr                    long    0
 data                    long    0
 
@@ -255,7 +327,6 @@ DAT
 
 RomFile
                         File    "65C02.rom.bin"         ' BASIC/Krusader/WOZ mon for 65C02
-                        'File    "6502.rom.bin"          ' BASIC/Krusader/WOZ mon for 6502
 RomEnd                        
                         ' The RAM must immediately follow the ROM
                         byte    $EA[RAM_SIZE]

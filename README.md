@@ -1,9 +1,9 @@
 L-Star: Minimal 6502/Propeller computer
 =======================================
 
-The <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle project</a> uses a RAM chip and a few glue logic chips to give the Propeller complete control over the 65C02. But if all you want is to emulate a simple computer such as the Apple-1 that doesn't need ~IRQ, ~NMI, ~RESET, ~SO, RDY or BE, and doesn't need a lot of memory, all of those aren't needed.
+My <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle project</a> uses a RAM chip and a few glue logic chips to give a Propeller complete control over a 65C02. But if all you want is to emulate a simple 6502 computer such as the Apple-1 that doesn't need ~IRQ, ~NMI, ~RESET, ~SO, RDY or BE, and doesn't need a lot of memory, all of those aren't needed.
 
-The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of Propeddle: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). The Propeller doesn't have any control over the signals (not even ~RESET, but keep reading). That doesn't leave enough Propeller pins for color video, but with the 1-pin TV driver it can generate black-and-white video, and the PS/2 keyboard is connected via the usual two wires.
+The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of Propeddle: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). The Propeller doesn't have any control over the signals (not even ~RESET, but keep reading). Using so many pins for the data bus and address bus doesn't leave enough Propeller pins for color video, but with the 1-pin TV driver it can still generate black-and-white video. I also kept the PS/2 keyboard connected via the usual two pins.
 
 Here's how the Propeller is connected:
 <table>
@@ -39,18 +39,18 @@ Other 65C02 pins:
 <tr><td>RESB</td><td>(Reset) pulled high via 3k3 resistor, connected to tact switch connected to GND for reset</td></tr>
 </table>
 
-The Github repository contains an emulator for the Apple-1 that works as described in the following sections.
+The Github repository contains an emulator for the Apple-1 that works as described in the following sections. I'll be working on emulators for other systems soon; you should see the result probably early 2015.
 
 Clock
 -----
-The Propeller generates the clock for the 65C02 on the same output as the SCL pin of the EEPROM that stores the Propeller firmware. In order to keep the EEPROM from activating, it keeps the SDA pin high. The main program sets up a hardware clock that generates a 1MHz clock pulse.
+The Propeller generates the clock for the 65C02 on the same output as the SCL pin of the EEPROM that stores the Propeller firmware. In order to keep the EEPROM from activating, the Propeller keeps the SDA pin high. The main program sets up a hardware clock that generates a 1MHz clock pulse, and the cogs that emulate the memory and I/O chips wait for the clock pin to go high and low, to synchronize with the 65C02.
 
 Memory Cog
 ----------
 The memory cog is in charge of emulating the ROM and RAM in the system. The main loop of the memory cog works roughly as follows:
 <ol>
 <li>Wait until the clock goes LOW. This is the start of a new cycle, the 65C02 puts the address on the address bus after a short time.</li>
-<li>While the 65C02 sets up the data bus, the Propeller switches the data bus pins to input mode. If it put something on the data bus during the previous clock cycle, it will be taken off now, and the required hold time after the clock goes low, will be satisfied.</li>
+<li>While the 65C02 sets up the address bus, the Propeller goes off the data bus by switching P0-P7 to input mode. If it put something on the data bus during the previous clock cycle, it will be taken off now, and the required data bus hold time, will be satisfied.</li>
 <li>The Propeller reads the pins and checks the R/~W pin to find out whether the 65C02 wants to read or write.</li>
 <li>The address is converted to a hub address, and the code checks to make sure that the 65C02 isn't trying to write into a ROM area.</li>
 <li>By now, the second half of the clock pulse has arrived. That means the 65C02 is either putting data on the data bus (write mode), or expects to see incoming data by the time the clock goes low again. The memory cog reads or writes the data bus from or to the hub. Then the main loop starts over again.</li>
@@ -61,6 +61,8 @@ Before the main loop starts, the memory cog performs a similar loop, except it d
 The ROM data that the 65C02 "sees", comes from a binary image file that's inserted into the code at compile time, using the "File" command a DAT area in Spin. The original Apple-1 emulator only had 256 bytes of ROM, containing the Woz monitor. To make the system a little more usable, I used an 8K ROM image file from Ken Wessen's Krusader project, which is an interactive assembler/disassembler that was specifically designed for Vince Briel's Replica 1 project. Besides the Krusader program (the 65C02 version to be precise), it also contains the Apple BASIC ROM image and the Woz Monitor of course.
 
 The RAM is simply an array of bytes in the hub, that follows the ROM data. The Propeller only has a total of 32KB of hub RAM, so the amount of RAM that's available to the 65C02 is limited. For the Apple-1 emulator, a little over 16KB is available. There is a slight problem with this, as the Krusader program assumes by default that the system has 32KB of RAM. So at startup time, the ROM code is patched by the main program to move the symbol table to a different location that falls inside the 16KB limit.
+
+If you would like to use more RAM, it's possible to attach a memory chip such as a 62256 to the address bus, data bus, R/~W and PHI2 pins. You will need a chip that supports 3.3V as power supply, e.g. the Alliance Memory AS6C62256, and some glue logic. You will also need to reconfigure the memory cog so that it doesn't decode the RAM to/from Propeller hub memory anymore. This is as simple as removing the line that declares the byte array that represents the RAM memory: the code is smart enough to determine that when the ram start address is equal to the ram end address, there's never anything to decode as RAM.
 
 PIA Emulator
 ------------

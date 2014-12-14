@@ -1,7 +1,7 @@
 L-Star: Minimal 6502/Propeller computer
 =======================================
 
-The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle</a>: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). This is the minimum set of pins on the 65C02 that the Propeller needs, in order to replicate a 6502 computer such as the Apple-1; however, with that many Propeller pins in use, there aren't enough enough other Propeller pins available to generate color video. I used the 1-pin TV driver to generate black-and-white NTSC video (PAL is also possible), this is good enough. A PS/2 keyboard can also be connected. Both keyboard and video are optional for the Apple-1 replica.
+The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle</a>: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). This is the minimum set of pins on the 65C02 that the Propeller needs, in order to replicate a 6502 computer such as the Apple-1; however, with that many Propeller pins in use, there aren't enough other Propeller pins available to generate color video, so I used the 1-pin TV driver to generate black-and-white NTSC video (PAL is also possible), this is good enough. A PS/2 keyboard can also be connected. Both keyboard and video are optional for the Apple-1 replica.
 
 Here's how the Propeller is connected:
 <table>

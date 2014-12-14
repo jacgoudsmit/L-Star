@@ -93,8 +93,15 @@ Future Plans
 ------------
 At the time of this writing, the L-Star software emulates the Apple-1, but there are probably many other computers that can be emulated with this simple hardware. Those will eventually appear in the Software directory. You will be able to download other future firmware by using the Propeller tool from Parallax.
 
-I created the schematic and a rudimentary PCB design. I may make a kit out of this, the cost of which should probably be less than $50, but I think I want to change the design so that it's possible to use the three Propeller pins that are currently used for PS/2 keyboard and TV, and use them for other purposes. For example, a KIM-1 emulator may be possible by using an I2C controlled 6-digit 7-segment display. A PET-2001 emulator may be possible by connecting a pin to the ~IRQ and generating a 60Hz pulse. It's possible to connect a PS/2 keyboard with just one pin instead of two (the disadvantage is that you have to hit the space bar to let the Propeller synchronize the clock, and the Caps Lock lights and other lights won't work), and for some purposes it may be interesting to use two or three pins instead of one for video.
+I created the schematic and a rudimentary PCB design in Kicad. I may make a kit out of this, the cost of which should probably be less than $50, but I think I want to change the design and make it possible to use the three Propeller pins that are currently used for PS/2 keyboard and TV, for other purposes. For example, a KIM-1 emulator may be possible by using an I2C controlled 6-digit 7-segment display. A PET-2001 emulator may be possible by connecting a pin to the ~IRQ and generating a 60Hz pulse. It's possible to connect a PS/2 keyboard with just one pin instead of two (the disadvantage is that you have to hit the space bar to let the Propeller synchronize the clock, and the Caps Lock lights and other lights won't work), and for some purposes it may be interesting to use two or three pins instead of one for video.
 
-I also want to put a step-by-step how-to guide on one of my websites, or in a place like Instructables.com, to make your own L-Star. I'm thinking I want to do this for three versions; the Parallax #32812 or #32212 proto boards, the #32810 USB proto board, and a solderless breadboard. Each of those should be very easy to do even for inexperienced electronics hobbyists.
+I also want to put a step-by-step how-to guide on one of my websites, or in a place like Instructables.com, to make your own L-Star. I'm thinking I want to do this for four versions:
+<ul>
+<li>The Parallax #32812 or #32212 proto boards (this is what I used for my own prototype)</li>
+<li>The #32810 USB proto board (this has more space and is more widely available)</li>
+<li>The #40000 QuickStart board with #40010 QuickStart Proto Board</li>
+<li>A solderless breadboard.</li>
+</ul>
+Each of those should be very easy to do even for inexperienced electronics hobbyists.
 
 Good luck, and have fun!

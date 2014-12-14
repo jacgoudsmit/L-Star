@@ -1,7 +1,7 @@
 L-Star: Minimal 6502/Propeller computer
 =======================================
 
-The <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle project</a> uses a RAM chip and three glue logic chips to give the Propeller complete control over the 65C02. But if all you want is to emulate a simple computer such as the Apple-1 that doesn't need ~IRQ, ~NMI, ~RESET, ~SO, RDY or BE, and doesn't need a lot of memory, all of those aren't needed.
+The <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle project</a> uses a RAM chip and a few glue logic chips to give the Propeller complete control over the 65C02. But if all you want is to emulate a simple computer such as the Apple-1 that doesn't need ~IRQ, ~NMI, ~RESET, ~SO, RDY or BE, and doesn't need a lot of memory, all of those aren't needed.
 
 The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of Propeddle: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). The Propeller doesn't have any control over the signals (not even ~RESET, but keep reading). That doesn't leave enough Propeller pins for color video, but with the 1-pin TV driver it can generate black-and-white video, and the PS/2 keyboard is connected via the usual two wires.
 

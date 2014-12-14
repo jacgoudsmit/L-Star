@@ -1,9 +1,7 @@
 L-Star: Minimal 6502/Propeller computer
 =======================================
 
-My <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle project</a> uses a RAM chip and a few glue logic chips to give a Propeller complete control over a 65C02. But if all you want is to emulate a simple 6502 computer such as the Apple-1 that doesn't need ~IRQ, ~NMI, ~RESET, ~SO, RDY or BE, and doesn't need a lot of memory, all of those aren't needed.
-
-The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of Propeddle: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). The Propeller doesn't have any control over the signals (not even ~RESET, but keep reading). Using so many pins for the data bus and address bus doesn't leave enough Propeller pins for color video, but with the 1-pin TV driver it can still generate black-and-white video. I also kept the PS/2 keyboard connected via the usual two pins.
+The L-Star project (named after the Elstar, which is a delicious apple from the Netherlands :-) is a minimalized version of <a href=http://github.com/JacGoudsmit/Propeddle>Propeddle</a>: the glue logic and RAM chip were left out, so the data bus and address bus of the WDC 65C02 are directly connected to the Propeller (as well as the R/~W and PHI2). This is the minimum set of pins on the 65C02 that the Propeller needs, in order to replicate a 6502 computer such as the Apple-1; however, with that many Propeller pins in use, there aren't enough enough other Propeller pins available to generate color video. I used the 1-pin TV driver to generate black-and-white NTSC video (PAL is also possible), this is good enough. A PS/2 keyboard can also be connected. Both keyboard and video are optional for the Apple-1 replica.
 
 Here's how the Propeller is connected:
 <table>

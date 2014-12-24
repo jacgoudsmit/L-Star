@@ -68,7 +68,7 @@ PUB main | i, screen_ptr
   term.str(string("L-STAR (C) 2014 JAC GOUDSMIT",13,13,"HUB RAM BYTES: "))
   term.dec(RAM_SIZE)
   term.str(string(13,"SIM.ROM BYTES: "))
-  term.dec(@RomEnd-@RomFile)
+  term.dec(@RomEndRamStart-@RomFile)
   term.str(string(13,13))
 
   ' Patch the ROM
@@ -102,7 +102,7 @@ PUB main | i, screen_ptr
 
 PRI Patch(addrval, dataval)
 
-  byte[addrval + @RomEnd - $1_0000] := dataval 
+  byte[addrval + @RomEndRamStart - $1_0000] := dataval 
   
 DAT
                         org     0
@@ -128,34 +128,42 @@ AdjustPtrTable
                         add     AdjustPtrTable, d1
                         djnz    pointertable_len, #AdjustPtrTable
 
-                        ' Convert hub address for start of ROM to offset
-                        sub     pRomFile, romstart     
-
                         ' Fake reset
+                        '
                         ' For the first few cycles that we control the 65C02,
                         ' we force it to read bytes with value 0. Write
                         ' cycles are ignored so the simulated RAM in the hub
                         ' is not disturbed.
+                        '
                         ' The 65C02 interprets the 0 value as a BRK
                         ' instruction, and retrieves the BRK/IRQ vector from
                         ' locations $FFFE and $FFFF, When it does this, we
                         ' pass it the bytes from the reset vector ($FFFC and
                         ' FFFD) in the ROM area, and then continue in normal
-                        ' operation mode. 
+                        ' operation mode.
+                        ' 
                         ' There is a small chance that this won't work, for
                         ' example if the 65C02 was already reading from
                         ' locations FFFE or FFFF. Also if an older (non-WDC)
                         ' 6502 is used, it's possible that it might be stuck
                         ' in an illegal instruction that it can't get out
-                        ' of. In that case, the user will really have to
-                        ' push the reset button. Oh well.
-                        ' The code is a partial duplicate of the main loop.
-                        ' Unfortunately it's not possible to implement the
-                        ' overlap in functionality by using a subroutine
-                        ' (not enough cycles). Using self-modifying code
-                        ' would also be possible but there's plenty of space
-                        ' and it would only make the code more difficult to
-                        ' read. So I apologize fot the copy-and-paste.   
+                        ' of. Also, the WDC 65C02 has the WAI and STP
+                        ' instructions that make it go into a state where it
+                        ' doesn't execute any instructions at all.
+                        ' In those cases, the user will really have to
+                        ' push the reset button after resetting the
+                        ' Propeller. Oh well.
+                        '
+                        ' The code to accomplish the fake reset is a partial
+                        ' duplicate of the main loop. Unfortunately it's not
+                        ' possible to implement the overlap in functionality
+                        ' by using a subroutine (there aren't enough unused
+                        ' cycles to insert extra JMPRET instructions). Using
+                        ' self-modifying code might be possible but it would
+                        ' make the code more difficult to read, and it's not
+                        ' really necessary because there's plenty of space in
+                        ' the cog to put the same code twice. Nevertheless,
+                        ' I apologize fot the copy-and-paste.   
 FakeResetWaitForPhi2
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0                 
@@ -210,89 +218,93 @@ WaitForPhi1
                         ' Get the inputs
                         mov     addr, INA
                         test    addr, mask_RW wz        ' Z=1 when 6502 is writing
-                        shr     addr, #hw#pin_A0
-                        and     addr, mask_FFFF         ' addr now contains address
-' t=24                
-                        ' Check if address is in ROM or RAM and calculate the
-                        ' hub address.
-                        ' We use a mathematical and logical trick here:
-                        ' the ROM image is in the hub in front of the RAM
-                        ' data, but in the 6502 the ROM is at the end of the
-                        ' memory map. The pRomFile value is set to the offset
-                        ' from the 6502 ROM start address to the hub start
-                        ' address, and romstart is the calculated address of
-                        ' the ROM in 6502 address space, given that the end
-                        ' of the ROM is at the end of the address space.
-                        ' If the address from the 6502 is in the ROM, it will
-                        ' be between romstart and $FFFF (inclusive) and if it
-                        ' is in RAM, it will be between 0 and ramsize
-                        ' (exclusive). So we first test if the address is in
-                        ' RAM, and if so, we add $1_0000 to the address so the
-                        ' result is a value of $1_0000 to ($1_0000+ramsize)
-                        ' (exclusive). That calculation maps the RAM behind
-                        ' the ROM.
-                        ' If the address is not in the RAM (and the addition
-                        ' wasn't done) but it's within the ROM, add the
-                        ' offset of the ROM hub address minus romstart
-                        ' (the offset was already calculated by subtracting
-                        ' the romstart value from pRomFile).
-                        ' This yields an actual address in the hub that's
-                        ' between @RomFile and @RomEnd (exclusive) for ROM
-                        ' addresses, and between @RomEnd (which is also the
-                        ' start of the RAM buffer) and @RomEnd+RAM_SIZE
-                        ' (exclusive) for RAM addresses.
-                        ' If the address is in ROM and the processor is
-                        ' writing, ignore the request.    
-                        cmp     ramsize, addr wc        ' C=0 if in RAM
-        if_nc           add     addr, mask_10000        ' Convert RAM address to hub offset                          
-        if_c_and_nz     cmp     addr, romstart wc       ' C=0 if in RAM, or reading from ROM
-                        add     addr, pRomFile          ' Convert RAM or ROM address to hub address
-        if_c            jmp     #WaitForPhi2            ' Writing to ROM or not accessing RAM or ROM, ignore
-' t=44
-        if_z            jmp     #Write                  ' Writing to RAM (the jump bridges the data setup time)
-        
+                        shr     addr, #hw#pin_A0        ' Shift address bus to bottom bits
+' t=12
+                        ' Calculate hub address
+                        ' We do this by adding the RAM start address and then
+                        ' masking the address with $FFFF (in that order).
+                        ' That way, ROM addresses will "wrap around" and
+                        ' their hub addresses end up just below the RAM.
+                        '
+                        ' For example, if the 6502 requests address $FFFF,
+                        ' the "addr" variable contains $????FFFF now (the top
+                        ' 16 bits are filled with unknown bits that don't
+                        ' matter). We add the hub location for the start of
+                        ' RAM, let's say $0123 (that's not the real address!)
+                        ' This results in a value that ends in $0122; which
+                        ' is one byte ahead of the RAM start location in the
+                        ' hub. All we need to do is mask the bottom bits.
+                        ' (This trick is only possible because we know that
+                        ' hub addresses are 16 bits too, by the way).
+                        add     addr, pRomEndRamStart
+                        and     addr, mask_FFFF
+' t=20
+                        ' Check if the address is in ROM or RAM
+                        cmp     pRamEnd, addr wc        ' C=0 if below end of RAM
+        if_nc           cmp     addr, pRomFile wc       ' C=0 if in ROM or RAM
+
+                        ' Don't do anything if the address is out of range
+        if_c            jmp     #WaitForPhi2        
+         
+' t=32
+        if_z            jmp     #Write                  ' Writing to RAM
+' t=36        
                         ' Get the byte from the hub
                         rdbyte  data, addr
-' t=56..71                        
+' t=44..59
+                        ' By now, CLK0 is high; Phi2 has started.
+                        ' Put the data on the data bus                        
                         mov     OUTA, data
                         or      DIRA, #hw#con_mask_DATA
-' t=64..79
+' t=52..67
                         jmp     #WaitForPhi1                        
-' t=68..83
+' t=56..71
 
 Write
-' t=48
-                        ' The 6502 is writing data. Phi2 has started by now
-                        ' and we should be past the write data setup time
-                        ' (tMDS < 40) so the data should be available on
-                        ' the data bus by now.
+' t=36                  
+                        ' The 6502 is writing data, but we have to wait
+                        ' until it sets up the data on the data bus which
+                        ' doesn't happen until a little after the clock
+                        ' goes high.
+                        ' Wait for it, in case the clock frequency is set
+                        ' to a low value for testing.
+                        waitpne zero, mask_CLK0
+' t=42
+                        ' Wait for the data setup time (tMDS < 40ns)
+                        ' Meanwhile, make sure we're not trying to write to ROM
+                        cmp     addr, pRomEndRamStart wc ' C=0 if in RAM                          
+' t=46
                         ' Get the data (the bits above the data bus don't
                         ' matter)
-                        mov     data, INA
-
+        if_nc           mov     data, INA
+' t=50
                         ' Write the data to the correct address
                         ' We already know that it's in range
-                        wrbyte  data, addr
-' t=60..75
+        if_nc           wrbyte  data, addr
+' t=58..73
                         jmp     #WaitForPhi1
-' t=64..79                        
-
-                        ' NOTE: In both cases (read as well as write),
+' t=62..77
+                        ' NOTE: In the case where the 6502 writes to RAM,
                         ' the worst-case scenario for the hub instruction
                         ' (RDBYTE/WRBYTE) makes the execution arrive a few
-                        ' Propeller clockcycles late to the beginning
-                        ' of the next 6502 clock cycle (t=81 or t=82).
-                        ' However, it can be proven this is not a problem
-                        ' because the bus states don't change significantly
-                        ' when we probe the address bus and data bus a few
-                        ' Propeller cycles late, and because the 6502 clock
-                        ' cycle is an even multiple of 16 Propeller cycles
-                        ' (which is the amount of time between hub access
-                        ' cycles, and which is what causes the lateness),
-                        ' the lateness won't escalate.
-                        ' I've proven this for the Propeddle project and
-                        ' for the Superboard III project, so I'll leave this
-                        ' as an "exercise for the reader" :-).
+                        ' Propeller clock cycles late to the beginning
+                        ' of the next 6502 clock cycle: WaitPXX instructions
+                        ' take at least 6 Propeller cycles and in the worst
+                        ' case scenario, the Wait instruction is started
+                        ' at t=77 i.e. it will finish at t=3 of the next
+                        ' 6502 cycle instead of t=0.
+                        '
+                        ' However, this is not a problem because the 6502
+                        ' bus states don't change significantly if we probe
+                        ' them a few Propeller cycles late.
+                        '
+                        ' Also, because the 6502 cycle (1MHz = 80 Propeller
+                        ' cycles) is an even multiple of 16 (80=16*5), the
+                        ' wrbyte instruction on the next write cycle will
+                        ' be started a little later, which makes the waiting
+                        ' time shorter. In other words: the problem will
+                        ' solve itself in the next cycle, instead of
+                        ' escalating.
 
 '============================================================================
 ' Constants
@@ -303,19 +315,16 @@ mask_CLK0               long    (|<hw#pin_CLK0)         ' Clock pin mask
 mask_RW                 long    (|<hw#pin_RW)           ' R/!W pin mask in INA
 mask_FFFE               long    $FFFE                   ' Low byte of BRK vector
 mask_FFFF               long    $FFFF                   ' Mask for address after shifting; high byte of BRK vector
-mask_10000              long    $10000                  ' Needed to calculate hub address
-
-ramsize                 long    RAM_SIZE                ' Size of RAM in bytes
-romstart                long    $1_0000 - (@RomEnd - @RomFile) ' Start address of ROM in 6502 space
-                        
 
 '============================================================================
 ' Data
 
 pointertable
 pRomFile                long    @RomFile
-pFFFC                   long    @RomEnd - 4
-pFFFD                   long    @RomEnd - 3 
+pRomEndRamStart         long    @RomEndRamStart
+pRamEnd                 long    @RamEnd
+pFFFC                   long    @RomEndRamStart - 4
+pFFFD                   long    @RomEndRamStart - 3 
 pointertable_len        long    (@pointertable_len - @pointertable) >> 2
 
 addr                    long    0
@@ -327,7 +336,7 @@ DAT
 
 RomFile
                         File    "65C02.rom.bin"         ' BASIC/Krusader/WOZ mon for 65C02
-RomEnd                        
+RomEndRamStart
                         ' The RAM must immediately follow the ROM
                         byte    $EA[RAM_SIZE]
 RamEnd                        

@@ -50,22 +50,16 @@ CON
   RAM_SIZE      = 16384         ' Change this to 0 if external RAM attached
   
 OBJ
-  hw:   "Hardware"              ' Constants for hardware
-  term: "SerKbd1TV"             ' Serial/Keyboard/TV terminal
-  mem:  "Memory"                ' ROM/RAM emulator
-  pia:  "A1PIA"                 ' PIA hardware emulator  
+  hw:           "Hardware"      ' Constants for hardware
+  clock:        "Clock"         ' Clock generator
+  term:         "SerKbd1TV"     ' Serial/Keyboard/TV terminal
+  mem:          "Memory"        ' ROM/RAM emulator
+  pia:          "A1PIA"         ' PIA hardware emulator  
 
 VAR
   byte  MyCogId                 ' Cog ID + 1
   
 PUB main | i
-
-  ' Initialize the clock and SDA pins as output, and set them both high for now,
-  ' so that the 6502 access cogs can ready themselves by waiting for CLK0 to go low.
-  outa[hw#pin_SDA]~~                                    '
-  dira[hw#pin_SDA]~~                                    ' The SDA pin must remain high so the EEPROM doesn't get activated.
-  outa[hw#pin_CLK0]~~                                   ' Override the clock with a high signal for now
-  dira[hw#pin_CLK0]~~                                   ' Set CLK0 pin to output for Phase 0 clock
 
   ' Init serial, keyboard and TV
   term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_KBCLK, hw#pin_TV, BAUDRATE)
@@ -78,17 +72,18 @@ PUB main | i
   ' Patch the ROM
   Patch($F009,$3C)                                      ' Krusader assumes 32K RAM, this changes a table location from 7C00 to 3C00
   Patch($FF2E,$08)                                      ' Let Woz monitor use backspace instead of _ for correction                        
-  
+
+  ' Initialize the clock before starting any cogs that wait for it
+  clock.Init(1_000_000)
+    
   ' Start the PIA emulator
   pia.Start($D010)
     
   ' Start the memory cog
   mem.Start(@RomFile, @RomEndRamStart, @RamEnd)
-  
-  ' Start the clock at 1MHz
-  ctra := %00100_000 << 23 + 1 << 9 + hw#pin_CLK0       ' Calculate frequency setting
-  frqa := $333_0000                                     ' Set FRQA so PHSA[31]
-  outa[hw#pin_CLK0]~                                    ' Remove override for the clock
+
+  ' Start the clock
+  clock.Activate
 
   ' The following infinite loop emulates the terminal part of the machine.
   ' If a key has come in from the serial port or keyboard, it's made available to the PIA emulator;

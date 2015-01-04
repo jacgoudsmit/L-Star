@@ -37,7 +37,7 @@ PUB Main | screenptr, i
   'kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
   screenptr := tv.Start(hw#pin_TV, font.GetPtrToFontTable)
 
-  video.StartEx(@screenptr, @screenptr, @screenptr + 1024, $D000, 0)
+  video.StartEx(screenptr, screenptr, screenptr + 1024, $D000, 0)
   basic.StartEx(@BasicRomStart, @BasicRomEnd, @BasicRomEnd, $A000, 0)
   mon_ram.Start(@MonRomStart, @MonRomEndRamStart, @RamEnd)
 

@@ -15,7 +15,7 @@ CON
   _clkmode      = xtal1 + pll16x
   _xinfreq      = 5_000_000
 
-  RAM_SIZE      = 16384         ' Number of RAM bytes to make available
+  RAM_SIZE      = 15*1024       ' Number of RAM bytes to make available
   
 OBJ
   hw:           "Hardware"      ' Hardware constants
@@ -25,7 +25,7 @@ OBJ
   video:        "Memory"        ' Video RAM
   'acia:         "OSIacia"       ' ACIA (UART) emulator
   font:         "OSIfont"       ' OSI 256 character font
-  'kb:           "OSIkeyboard"   ' OSI keyboard driver
+  kb:           "OSIkeyboard"   ' OSI keyboard driver
   tv:           "1pinTV256"     ' OSI 1-pin TV driver
 
 PUB Main | screenptr, i
@@ -34,7 +34,7 @@ PUB Main | screenptr, i
   clock.Init(1_000_000)
 
   'acia.Start
-  'kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
+  kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
   screenptr := tv.Start(hw#pin_TV, font.GetPtrToFontTable)
 
   video.StartEx(screenptr, screenptr, screenptr + 1024, $D000, 0)
@@ -46,6 +46,19 @@ PUB Main | screenptr, i
   ' Infinite loop to pump characters through the ACIA and keyboard
   repeat
     i := 0 ' todo 
+
+OBJ
+  ser: "FullDuplexSerial"
+PUB ttest | i,j,x[8]
+
+  ser.Start(hw#pin_RX, hw#pin_TX, 0, 115200)
+  kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
+
+  repeat
+    ser.tx(1)
+    repeat i from 7 to 0
+      ser.bin(byte[kb.getmatrix + i], 8) 
+      ser.tx(13)
 
 DAT
 

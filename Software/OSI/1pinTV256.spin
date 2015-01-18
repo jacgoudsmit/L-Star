@@ -1,4 +1,4 @@
-f'' +--------------------------------------------------------------------------+
+'' +--------------------------------------------------------------------------+
 '' | One Pin TV Text Driver                                             v1.2x |
 '' +--------------------------------------------------------------------------|
 '' |  Authors:  (c) 2009 Eric Ball                        (original 1-pinTV)  |
@@ -100,10 +100,6 @@ f'' +--------------------------------------------------------------------------+
 ' 1-pin composite video (TV) circuit...
 ' Acknowledgement: Phil Pilgrim for the circuit and Eric Ball for the original driver
 '
-'                              270R(*124R)                                  
-'   Prop tvPin Pxx (P14) -------??--------------?--?-----------------------+
-'                        --+          (*191R)nc ?  ? nc(*470pF)          +?•? TV  
-'                          -                    -  -                     -   
 '                  *see http://forums.parallax.com/forums/default.aspx?f=25&m=340731&g=342216
 '
 ' Note: * 1 pin works with any TV resistor (100R .. 1K1) without the RC network although 270R is preferred.
@@ -119,25 +115,6 @@ f'' +--------------------------------------------------------------------------+
 ' PUB main | screenptr
 '   screenptr := tv.start(tvPinc, font.GetPtrToFontTable)
 ' -------------------------------------------------------------------------------------------------
-{
- NTSC TV Timing  (80*25 with 8x8font)
- ==============
- ?frame
- ?line 1   ?2        ?3        ?4        ?5        ?6        ?7        ?8        ?9        ?10       ?11  /.../   ?41       ?42       ?43  /.../   ?241      ?242      ?243 /.../   ?262      ?next frame (second field)         
- +---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+----/.../---+---------+---------+----/.../---+---------+---------+----/.../---+---------+ H=63.555us per line
-
- ?lines x3 (equalising)        ?lines x3 (serration)         ?lines x3 (equalising)        ?lines x32 (blank)               ?lines x200 (active)             ?lines x21 (blank)               ? (add 1/2 line for interlace)  
-                                                                                                                               +----+    +-/.../-+    +----+                                                                     
- ++---++---++---++---++---++---+   ++   ++   ++   ++   ++   +++---++---++---++---++---++---++--------++---/.../---++--------++-+----+-++-+-/.../-+-++-+----+-++--------++---/.../---++--------                                   
- ++   ++   ++   ++   ++   ++   +---++---++---++---++---++---+++   ++   ++   ++   ++   ++   ++        ++           ++        ++        ++           ++        ++        ++           ++                                           
-                                                                                                                         
- +| p=2.3±0.1us (xequal)       +---| q=27.1us (xsynch)       +| p=2.3±0.1us (xequal)       +| d=4.7±0.1us (xsync)           +| d=4.7±0.1us (xsync)   
-  +---| =29.477us (xequalh)        +| r=4.7±0.1us (xsync)     +---| =29.477us (xequalh)     +---| q=27.1us (xsynch)          +-| bp=~8.9us (xbackp)    
- +----| H/2=31.777us           +----| H/2                    +----| H/2                         +----| H/2 (xhalf)             +----| 8*80pixels (xvsclch)
-                                                                                            +--------|     (xblank)                 +-| fp=~5.9us (xfrontp)   
-
-reference www.kolumbus.fi/pami1/video/pal_ntsc.html
-}
 
 CON
 

@@ -27,14 +27,17 @@ OBJ
   font:         "OSIfont"       ' OSI 256 character font
   kb:           "OSIkeyboard"   ' OSI keyboard driver
   tv:           "1pinTV256"     ' OSI 1-pin TV driver
+  ser:          "FullDuplexSerial" ' Serial port
 
 PUB Main | screenptr, i
 
+  'ttest
+  
   ' Initialize the clock before starting any cogs that wait for it
   clock.Init(1_000_000)
 
   'acia.Start
-  kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
+  kb.Startx(hw#pin_KBDATA, hw#pin_KBCLK, kb#mask_INIT_NUMLOCK, kb#mask_REPEAT_DELAY_250MS | kb#mask_REPEAT_RATE_30CPS, $FF00, $DF00)
   screenptr := tv.Start(hw#pin_TV, font.GetPtrToFontTable)
 
   video.StartEx(screenptr, screenptr, screenptr + 1024, $D000, 0)
@@ -47,12 +50,10 @@ PUB Main | screenptr, i
   repeat
     i := 0 ' todo 
 
-OBJ
-  ser: "FullDuplexSerial"
-PUB ttest | i,j,x[8]
+PUB ttest | i,x[8] 
 
   ser.Start(hw#pin_RX, hw#pin_TX, 0, 115200)
-  kb.Start(hw#pin_KBDATA, hw#pin_KBCLK)
+  kb.Startx(hw#pin_KBDATA, hw#pin_KBCLK, kb#mask_INIT_NUMLOCK, kb#mask_REPEAT_DELAY_250MS | kb#mask_REPEAT_RATE_30CPS, $FF00, $DF00)
 
   repeat
     ser.tx(1)

@@ -130,6 +130,30 @@ CON
   mask_REPEAT_RATE_2_1CPS  = %00_11110
   mask_REPEAT_RATE_2CPS    = %00_11111
 
+  ' Length of fields in instance array
+  len_states = 8
+  len_matrix = 2
+  len_keys   = 8
+  
+  ' Indexes in instance array. Directions are from Spin's point of view
+  #0
+  idx_tail                      ' key buffer tail       read/write; must be first item
+  idx_head                      ' key buffer head       read-only
+  idx_present                   ' keyboard present      read-only
+  idx_states[len_states]        ' key states (256 bits) read-only
+  idx_matrix[len_matrix]        ' key matrix (8 bytes)  read-only
+  idx_keys[len_keys]            ' key buffer (16 words) read-only
+  ' Last value declares size of table
+  idx_num
+
+  ' Indexes in instance array that are erased in PASM code on reset 
+  idx_resetstart = idx_head
+  idx_resetend = idx_num
+
+  ' Indexes in instance array to copy from cog to hub
+  idx_copystart = idx_head
+  idx_copyend = idx_num
+  
 OBJ
   hw:   "Hardware"              ' Constants for hardware
 
@@ -138,53 +162,52 @@ VAR
   long  kbcog
   long  accesscog
 
-  long  par_tail        'key buffer tail        read/write      (27 contiguous longs)
-  long  par_head        'key buffer head        read-only
-  long  par_present     'keyboard present       read-only
-  long  par_states[8]   'key states (256 bits)  read-only
-  long  par_matrix[8]   'key matrix (256 bits)  read-only
-  long  par_keys[8]     'key buffer (16 words)  read-only       (also used to pass initial parameters)
+  ' Instance array, see section above for index values
+  long  instance[idx_num]
 
-
-PUB start(dpin, cpin) : okay
+PUB start(par_dpin, par_cpin, par_addrmask, par_addrmatch) : okay
 
 '' Start keyboard driver - starts a cog
 '' returns false if no cog available
 ''
-''   dpin  = data signal on PS/2 jack
-''   cpin  = clock signal on PS/2 jack
+''   par_dpin  = data signal on PS/2 jack
+''   par_cpin  = clock signal on PS/2 jack
 ''
 ''     use 100-ohm resistors between pins and jack
 ''     use 10K-ohm resistors to pull jack-side signals to VDD
 ''     connect jack-power to 5V, jack-gnd to VSS
 ''
 '' all lock-keys will be enabled, NumLock will be initially 'on',
-'' and auto-repeat will be set to 15cps with a delay of .5s
+'' and auto-repeat will be set to 30cps with a delay of 250ms
 
-  okay := startx(dpin, cpin, mask_INIT_CAPSLOCK, mask_REPEAT_DELAY_250MS | mask_REPEAT_RATE_30CPS, $FF00, $DF00)
+  okay := startx(par_dpin, par_cpin, mask_INIT_NUMLOCK, mask_REPEAT_DELAY_250MS | mask_REPEAT_RATE_30CPS, par_addrmask, par_addrmatch)
 
 
-PRI startx(dpin, cpin, locks, auto, par_addrmask, par_addrmatch) : okay
+PUB startx(par_dpin, par_cpin, par_locks, par_auto, par_addrmask, par_addrmatch) : okay
 
 '' Like start, but allows you to specify lock settings and auto-repeat
 ''
-''   locks = lock setup
+''   par_locks = lock setup
 ''           bit 6 disallows shift-alphas (case set soley by CapsLock)
 ''           bits 5..3 disallow toggle of NumLock/CapsLock/ScrollLock state
 ''           bits 2..0 specify initial state of NumLock/CapsLock/ScrollLock
 ''           (eg. %0_001_100 = disallow ScrollLock, NumLock initially 'on')
 ''
-''   auto  = auto-repeat setup
+''   par_auto  = auto-repeat setup
 ''           bits 6..5 specify delay (0=.25s, 1=.5s, 2=.75s, 3=1s)
 ''           bits 4..0 specify repeat rate (0=30cps..31=2cps)
 ''           (eg %01_00000 = .5s delay, 30cps repeat)
 
   stop
-  longmove(@par_keys, @dpin, 4)
-  okay := kbcog := cognew(@KbCogEntry, @par_tail) + 1
+  ' Fill hub 
+  _dpin  := par_dpin
+  _cpin  := par_cpin
+  _locks := par_locks
+  _auto  := par_auto
+  okay := kbcog := cognew(@KbCogEntry, @instance) + 1
 
   if okay  
-    addr := @par_matrix
+    addr := @instance[idx_matrix]
     addrmask := par_addrmask
     addrmatch := par_addrmatch
     okay := accesscog := cognew(@AccessCogEntry, @@0) + 1
@@ -201,7 +224,7 @@ PUB stop
   if kbcog
     cogstop(kbcog~ - 1)
     
-  longfill(@par_tail, 0, 27)
+  longfill(@instance, 0, idx_num)
 
 
 PUB present : truefalse
@@ -209,7 +232,7 @@ PUB present : truefalse
 '' Check if keyboard present - valid ~2s after start
 '' returns t|f
 
-  truefalse := -par_present
+  truefalse := -instance[idx_present]
 
 
 PUB key : keycode
@@ -217,9 +240,9 @@ PUB key : keycode
 '' Get key (never waits)
 '' returns key (0 if buffer empty)
 
-  if par_tail <> par_head
-    keycode := par_keys.word[par_tail]
-    par_tail := ++par_tail & $F
+  if instance[idx_tail] <> instance[idx_head]
+    keycode := word[@instance[idx_keys]][instance[idx_tail]]
+    instance[idx_tail] := ++instance[idx_tail] & $F
 
 
 PUB getkey : keycode
@@ -235,7 +258,7 @@ PUB newkey : keycode
 '' Clear buffer and get new key (always waits for keypress)
 '' returns key
 
-  par_tail := par_head
+  instance[idx_tail] := instance[idx_head]
   keycode := getkey
 
 
@@ -244,14 +267,14 @@ PUB gotkey : truefalse
 '' Check if any key in buffer
 '' returns t|f
 
-  truefalse := par_tail <> par_head
+  truefalse := instance[idx_tail] <> instance[idx_head]
 
 
 PUB clearkeys
 
 '' Clear key buffer
 
-  par_tail := par_head
+  instance[idx_tail] := instance[idx_head]
 
 
 PUB keystate(k) : state
@@ -259,12 +282,12 @@ PUB keystate(k) : state
 '' Get the state of a particular key
 '' returns t|f
 
-  state := -(par_states[k >> 5] >> k & 1)
+  state := -(instance[idx_states+(k >> 5)] >> k & 1)
 
 
 PUB getmatrix
 
-  result := @par_matrix
+  result := @instance[idx_matrix]
   
 DAT
 
@@ -278,15 +301,6 @@ DAT
 ' Entry
 '
 KBCogEntry
-                        movd    :par,#_dpin             'load input parameters _dpin/_cpin/_locks/_auto
-                        mov     x,par
-                        add     x,#19*4
-                        mov     y,#4
-:par                    rdlong  0,x
-                        add     :par,dlsb
-                        add     x,#4
-                        djnz    y,#:par
-
                         mov     dmask,#1                'set pin masks
                         shl     dmask,_dpin
                         mov     cmask,#1
@@ -297,12 +311,13 @@ KBCogEntry
                         muxc    _d2,dlsb
                         muxc    _d3,#1
                         muxc    _d4,#1
+
                         test    _cpin,#$20      wc
                         muxc    _c1,dlsb
                         muxc    _c2,dlsb
                         muxc    _c3,#1
 
-                        mov     _head,#0                'reset output parameter _head
+                        mov     _inst+idx_head,#0       'reset output parameter _head
 '
 '
 ' Reset keyboard
@@ -310,9 +325,16 @@ KBCogEntry
 reset                   mov     dira,#0                 'reset directions
                         mov     dirb,#0
 
-                        movd    :par,#_present          'reset output parameters _present/_states[8]/_matrix[8]
-                        mov     x,#1+8+8
+                        movd    :par,#_inst+idx_resetstart 'reset instance
+                        mov     x,#idx_resetend-idx_resetstart
 :par                    mov     0,#0
+                        add     :par,dlsb
+                        djnz    x,#:par
+
+resetmatrix
+                        movd    :par,#_inst+idx_matrix  'reset matrix to all ones
+                        mov     x,#len_matrix
+:par                    mov     0,mask_FFFFFFFF
                         add     :par,dlsb
                         djnz    x,#:par
 
@@ -321,10 +343,10 @@ reset                   mov     dira,#0                 'reset directions
 '
 ' Update parameters
 '
-update                  movd    :par,#_head             'update output parameters _head/_present/_states[8]/_matrix[8]
+update                  movd    :par,#_inst+idx_copystart 'update hub instance from cog
                         mov     x,par
-                        add     x,#1*4
-                        mov     y,#1+1+8+8
+                        add     x,#idx_copystart*4
+                        mov     y,#idx_copyend-idx_copystart
 :par                    wrlong  0,x
                         add     :par,dlsb
                         add     x,#4
@@ -367,11 +389,11 @@ newcode                 mov     stat,#0                 'reset state
                         cmp     data,#0         wz      'if unknown, ignore
         if_z            jmp     #newcode
 
-                        mov     t,_states+6             'remember lock keys in _states
+                        mov     t,_inst+idx_states+6             'remember lock keys in _states
 
                         mov     x,data                  'set/clear key bit in _states
                         shr     x,#5
-                        add     x,#_states
+                        add     x,#_inst+idx_states
                         movd    :reg,x
                         mov     y,#1
                         shl     y,data
@@ -384,17 +406,17 @@ newcode                 mov     stat,#0                 'reset state
                         and     longdata,#$FF
                         mov     x,longdata
                         shr     x,#5
-                        add     x,#_matrix
+                        add     x,#_inst+idx_matrix
                         movd    :reg2,x
                         mov     y,#1
                         shl     y,longdata
                         test    stat,#2         wc
-:reg2                   muxnc   0,y                                                
+:reg2                   muxc    0,y                     'reset on make, set on break                                                
                         
         if_nc           cmpsub  data,#$F0       wc      'if released or shift/ctrl/alt/win, done
         if_c            jmp     #update
 
-                        mov     y,_states+7             'get shift/ctrl/alt/win bit pairs
+                        mov     y,_inst+idx_states+7    'get shift/ctrl/alt/win bit pairs
                         shr     y,#16
 
                         cmpsub  data,#$E0       wc      'translate keypad, considering numlock
@@ -429,7 +451,7 @@ newcode                 mov     stat,#0                 'reset state
         if_nz_and_c     call    #look
         if_nz_and_c     andn    y,#%11
 
-                        test    _locks,#%010    wc      'check shift-alpha, considering capslock
+                        test    _locks,#%010    wc   'check shift-alpha, considering capslock
                         muxnc   :shift,#$20
                         test    _locks,#$40     wc
         if_nz_and_nc    xor     :shift,#$20
@@ -450,15 +472,15 @@ newcode                 mov     stat,#0                 'reset state
                         rdlong  x,par                   'if room in buffer and key valid, enter
                         sub     x,#1
                         and     x,#$F
-                        cmp     x,_head         wz
+                        cmp     x,_inst+idx_head wz
         if_nz           test    data,#$FF       wz
         if_nz           mov     x,par
-        if_nz           add     x,#11*4
-        if_nz           add     x,_head
-        if_nz           add     x,_head
+        if_nz           add     x,#idx_keys*4
+        if_nz           add     x,_inst+idx_head
+        if_nz           add     x,_inst+idx_head
         if_nz           wrword  data,x
-        if_nz           add     _head,#1
-        if_nz           and     _head,#$F
+        if_nz           add     _inst+idx_head,#1
+        if_nz           and     _inst+idx_head,#$F
 
                         test    stat,#4         wc      'if not configure flag, done
         if_nc           jmp     #update                 'else configure to update leds
@@ -481,16 +503,16 @@ configure               mov     data,#$F3               'set keyboard auto-repea
                         and     data,#%111
                         call    #transmit
 
-                        mov     x,_locks                'insert locks into _states
+                        mov     x,_locks             'insert locks into _states
                         and     x,#%111
-                        shl     _states+7,#3
-                        or      _states+7,x
-                        ror     _states+7,#3
+                        shl     _inst+idx_states+7,#3
+                        or      _inst+idx_states+7,x
+                        ror     _inst+idx_states+7,#3
 
-                        mov     _present,#1             'set _present
+                        mov     _inst+idx_present,#1    'set _present
 
                         test    _locks, #$2     wc
-                        muxc    _matrix,#1              'set matrix bit for row 0 col 0 according to capslock
+                        muxc    _inst+idx_matrix,#1     'set matrix bit for row 0 col 0 according to capslock
 
                         jmp     #update                 'done
 '
@@ -788,6 +810,15 @@ keypad1offset           long    @keypad1-@table
 keypad2offset           long    @keypad2-@table
 shift1offset            long    @shift1-@table
 shift2offset            long    @shift2-@table
+
+mask_FFFFFFFF           long    $FFFFFFFF
+
+' Constants stored at init time
+_dpin                   long    0       'read-only at start
+_cpin                   long    0       'read-only at start
+_locks                  long    0       'read-only at start
+_auto                   long    0       'read-only at start
+        
 '
 '
 ' Uninitialized data
@@ -801,14 +832,8 @@ x                       res     1
 y                       res     1
 t                       res     1
 
-_head                   res     1       'write-only
-_present                res     1       'write-only
-_states                 res     8       'write-only
-_matrix                 res     8       'write-only
-_dpin                   res     1       'read-only at start
-_cpin                   res     1       'read-only at start
-_locks                  res     1       'read-only at start
-_auto                   res     1       'read-only at start
+' Instance data, copied from here to hub location set by PAR
+_inst                   res     idx_num
 
                         fit
 ''
@@ -961,26 +986,38 @@ StartAccessCog
                         ' possible value of a byte (the data that was written
                         ' by the 6502) to a row number. Basically this is a
                         ' table of base-2 log table for values between 1
-                        ' and 255. For index 0, we let the 6502 read 0.
-
-                        add     addr, #7                ' Start with last address in matrix              ' 
-                        
-:buildtable             mov     $FF, addr
+                        ' and 255.
+                        '
+                        ' Note: The indexes in the table are inversed (i.e.
+                        ' xor'ed with $FF.
+                        ' So entry %1111_1110 = &_matrix[0]    (1 entry)
+                        '          %1111_110* = &_matrix[1]    (2 entries)
+                        '          %1111_10** = &_matrix[2]    (4 entries)
+                        '          %1111_0*** = &_matrix[3]    (8 entries)
+                        '          %1110_**** = &_matrix[4]   (16 entries)
+                        '          %110*_**** = &_matrix[5]   (32 entries)
+                        '          %10**_**** = &_matrix[6]   (64 entries)
+                        '          %0***_**** = &_matrix[7]   (128 entries)
+                        ' When the 65C02 writes %1111_1111 (no columns activated),
+                        ' it always reads %1111_1111. This is accomplished by
+                        ' modifying the rdbyte instruction to have an if_never
+                        ' condition.
+                        '
+:buildtable             mov     $FE, addr               ' addr is set to @matrix                             
                         sub     :buildtable, d1
-                        cmp     target, powcount wz
-        if_z            shr     powcount, #1
-        if_z            sub     addr, #1
-                        djnz    target, #:buildtable                          
-
-                        ' Reading from address 0 always returns 0
-                        mov     0, #zero
+                        djnz    counter, #:buildtable
                         
+                        shl     oneshift, #1
+                        cmp     oneshift, #$100 wz
+        if_nz           add     addr, #1
+        if_nz           mov     counter, oneshift
+        if_nz           jmp     #:buildtable                          
+
                         ' MAIN LOOP
 WaitForPhi2
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0
 
-                        ' MAIN LOOP
 WaitForPhi1
                         ' Wait until clock goes low
                         waitpeq zero, mask_CLK0
@@ -996,8 +1033,9 @@ WaitForPhi1
 ' t=12
                         and     addr, addrmask
                         cmp     addr, addrmatch wz
+                        mov     databus, #$FF           ' Default databus write-back value
         if_nz           jmp     #WaitForPhi2
-' t=24        
+' t=28        
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0
 ' t=40                        
@@ -1005,14 +1043,15 @@ WaitForPhi1
 ' t=44
                         ' The 6502 is reading
                         ' Put the value from the table on the data bus
+                        ' If the 6502 wrote FF, the next instruction will have been
+                        ' changed to if_never, otherwise, if_always
 readins
-                        rdbyte  databus, 0              ' Source is replaced on write                                                                     
+        if_always       rdbyte  databus, 0              ' Source is replaced on write                                                                     
 ' t=52..67
-                        xor     databus, #$FF
                         mov     OUTA, databus
                         mov     DIRA, #hw#con_mask_DATA
                         jmp     #WaitForPhi1
-' t=64..79                        
+' t=60..75                        
 
 Write
 ' t=44
@@ -1020,24 +1059,26 @@ Write
                         ' The jump instruction that brought us here should have
                         ' taken us past the data setup time (tMDS < 40ns) too.                        
                         mov     databus, INA
-                        xor     databus, #$FF
                         and     databus, #hw#con_mask_DATA
-' t=56                        
+                        cmp     databus, #$FF wz        ' When writing FF, always read FF
+                        muxnz   readins, mux_never_always                        
+' t=60                        
                         ' Store the byte as the cog address for all subsequent reads
                         movs    readins, databus
                         jmp     #WaitForPhi1
-' t=64                                                        
+' t=68                                                        
 
 addr                    long    0                       ' Initialized to @matrix by Spin
 addrmask                long    0                       ' Initialized to address mask by Spin
 addrmatch               long    0                       ' Initialized to address to match by Spin
 
 databus                 long    0
-target                  long    255
-powcount                long    128
+counter                 long    1
+oneshift                long    1        
 
                         ' Constants
-zero                    long    0
+mux_never_always        long    %000000_0000_1111_000000000_000000000                        
+zero                    long    0                        
 d1                      long    |<9
 mask_CLK0               long    |< hw#pin_CLK0
 mask_RW                 long    |< hw#pin_RW

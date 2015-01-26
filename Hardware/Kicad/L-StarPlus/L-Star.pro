@@ -1,4 +1,4 @@
-update=25/01/2015 16:34:33
+update=26/01/2015 01:09:01
 last_client=kicad
 [cvpcb]
 version=1
@@ -64,7 +64,7 @@ LibName7=conn
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=
+PlotDirectoryName=Plot/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=

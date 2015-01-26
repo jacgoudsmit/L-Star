@@ -1,0 +1,374 @@
+Cmp-Mod V01 Created by Cvpcb (2014-10-27 BZR 5228)-product   date = 25/01/2015 01:38:01
+
+BeginCmp
+TimeStamp = /547A8E12;
+Reference = C1;
+ValeurCmp = 100n;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8DFA;
+Reference = C2;
+ValeurCmp = 100n;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E0C;
+Reference = C3;
+ValeurCmp = 100n;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A9E19;
+Reference = C4;
+ValeurCmp = 100n;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C41800;
+Reference = C5;
+ValeurCmp = 100n (OPTIONAL);
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8134;
+Reference = C6;
+ValeurCmp = 10u;
+IdModule  = Discret:C1V7;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A813A;
+Reference = C7;
+ValeurCmp = 22u;
+IdModule  = Discret:C1V7;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8140;
+Reference = C8;
+ValeurCmp = 10u;
+IdModule  = Discret:C1V7;
+EndCmp
+
+BeginCmp
+TimeStamp = /54CC9F9B;
+Reference = C9;
+ValeurCmp = 470p (OPT);
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8185;
+Reference = D1;
+ValeurCmp = POWER;
+IdModule  = 00Jac:00JG-LED5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E24;
+Reference = IC1;
+ValeurCmp = 24LC256;
+IdModule  = Sockets_DIP:DIP-8__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C32A2D;
+Reference = IC2;
+ValeurCmp = AS6C1008-55PCN (OPTIONAL);
+IdModule  = Sockets_DIP:DIP-32__600;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A9E1F;
+Reference = IC3;
+ValeurCmp = WDC 65C02;
+IdModule  = Sockets_DIP:DIP-40__600;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E18;
+Reference = IC4;
+ValeurCmp = P8X32A;
+IdModule  = Sockets_DIP:DIP-40__600;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8147;
+Reference = IC5;
+ValeurCmp = LM1086-5.0;
+IdModule  = Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A814D;
+Reference = IC6;
+ValeurCmp = LM1086-3.3;
+IdModule  = Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C3A675;
+Reference = JP1;
+ValeurCmp = P26-KBDATA;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C952B3;
+Reference = JP2;
+ValeurCmp = RDY;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C95276;
+Reference = JP3;
+ValeurCmp = ~IRQ;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C9523A;
+Reference = JP4;
+ValeurCmp = ~NMI;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C951F0;
+Reference = JP5;
+ValeurCmp = ~SO;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54CC5897;
+Reference = JP6;
+ValeurCmp = P27-KBCLK;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C359D5;
+Reference = JP7;
+ValeurCmp = P25-TVOUT;
+IdModule  = 00Jac:00JG-SHORT;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C5E529;
+Reference = JP8;
+ValeurCmp = P25;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x07;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C5EE81;
+Reference = JP9;
+ValeurCmp = P26;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x07;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C5EEEF;
+Reference = JP10;
+ValeurCmp = P27;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x07;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C6C53E;
+Reference = JP11;
+ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/~RAMEN~/+;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x07;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C60522;
+Reference = JP12;
+ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/~RAMEN;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x06;
+EndCmp
+
+BeginCmp
+TimeStamp = /534901DB;
+Reference = P1;
+ValeurCmp = PROP PLUG;
+IdModule  = Pin_Headers:Pin_Header_Angled_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A84EA;
+Reference = P2;
+ValeurCmp = PS/2 KBD;
+IdModule  = 00Jac:00JG-MD-60S;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8A32;
+Reference = P3;
+ValeurCmp = TV OUT;
+IdModule  = 00Jac:00JG-RCJ-01X;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8177;
+Reference = P4;
+ValeurCmp = POWER IN;
+IdModule  = 00Jac:00JG-BARREL_JACK_RAPC722X;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C4BE3D;
+Reference = P5;
+ValeurCmp = EXPANSION (OPT);
+IdModule  = Pin_Headers:Pin_Header_Straight_2x20;
+EndCmp
+
+BeginCmp
+TimeStamp = /54CD0AC3;
+Reference = P6;
+ValeurCmp = PROP PLUG;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /54CD4BD6;
+Reference = P7;
+ValeurCmp = RESET;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = /54CD3D2C;
+Reference = P8;
+ValeurCmp = RESET6502;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E91;
+Reference = R1;
+ValeurCmp = 10K;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E06;
+Reference = R2;
+ValeurCmp = 10K;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547B973E;
+Reference = R3;
+ValeurCmp = 3K3;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A84D6;
+Reference = R4;
+ValeurCmp = 10K;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A84D0;
+Reference = R5;
+ValeurCmp = 10K;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A84E2;
+Reference = R6;
+ValeurCmp = 100;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A84DC;
+Reference = R7;
+ValeurCmp = 100;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8A3F;
+Reference = R8;
+ValeurCmp = 270;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8191;
+Reference = R9;
+ValeurCmp = 82;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C8912E;
+Reference = R10;
+ValeurCmp = 3K3 OPT;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C89170;
+Reference = R11;
+ValeurCmp = 3K3 OPT;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C891A7;
+Reference = R12;
+ValeurCmp = 3K3 OPT;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C898C7;
+Reference = R13;
+ValeurCmp = 3K3 OPT;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C89925;
+Reference = R14;
+ValeurCmp = 3K3;
+IdModule  = Discret:R3;
+EndCmp
+
+BeginCmp
+TimeStamp = /534A34FA;
+Reference = SW1;
+ValeurCmp = RESET;
+IdModule  = 00Jac:00JG-PUSHBUTTON;
+EndCmp
+
+BeginCmp
+TimeStamp = /54764E12;
+Reference = SW2;
+ValeurCmp = RESET6502;
+IdModule  = 00Jac:00JG-PUSHBUTTON;
+EndCmp
+
+BeginCmp
+TimeStamp = /547A8E1E;
+Reference = X1;
+ValeurCmp = 5MHz;
+IdModule  = Crystals:Crystal_HC49-U_Vertical;
+EndCmp
+
+EndListe

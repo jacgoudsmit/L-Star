@@ -1,4 +1,4 @@
-update=26/01/2015 01:09:01
+update=26/01/2015 22:38:34
 last_client=kicad
 [cvpcb]
 version=1
@@ -48,8 +48,6 @@ LibName19=valves
 LibName20=propeddle-new
 LibName21=propeller
 LibName22=crystal
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=Lib
@@ -61,13 +59,15 @@ LibName4=power
 LibName5=propeller
 LibName6=crystal
 LibName7=conn
+[general]
+version=1
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
 PlotDirectoryName=Plot/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=PcbnewAdvanced
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 RptD_X=0

@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (2014-10-27 BZR 5228)-product   date = 25/01/2015 01:38:01
+Cmp-Mod V01 Created by Cvpcb (2014-10-27 BZR 5228)-product   date = 26/01/2015 21:46:09
 
 BeginCmp
 TimeStamp = /547A8E12;
@@ -38,21 +38,21 @@ EndCmp
 BeginCmp
 TimeStamp = /547A8134;
 Reference = C6;
-ValeurCmp = 10u;
+ValeurCmp = 47u;
 IdModule  = Discret:C1V7;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A813A;
 Reference = C7;
-ValeurCmp = 22u;
+ValeurCmp = 47u;
 IdModule  = Discret:C1V7;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A8140;
 Reference = C8;
-ValeurCmp = 10u;
+ValeurCmp = 47u;
 IdModule  = Discret:C1V7;
 EndCmp
 
@@ -110,55 +110,6 @@ TimeStamp = /547A814D;
 Reference = IC6;
 ValeurCmp = LM1086-3.3;
 IdModule  = Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C3A675;
-Reference = JP1;
-ValeurCmp = P26-KBDATA;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C952B3;
-Reference = JP2;
-ValeurCmp = RDY;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C95276;
-Reference = JP3;
-ValeurCmp = ~IRQ;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C9523A;
-Reference = JP4;
-ValeurCmp = ~NMI;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C951F0;
-Reference = JP5;
-ValeurCmp = ~SO;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54CC5897;
-Reference = JP6;
-ValeurCmp = P27-KBCLK;
-IdModule  = 00Jac:00JG-SHORT;
-EndCmp
-
-BeginCmp
-TimeStamp = /54C359D5;
-Reference = JP7;
-ValeurCmp = P25-TVOUT;
-IdModule  = 00Jac:00JG-SHORT;
 EndCmp
 
 BeginCmp
@@ -311,35 +262,35 @@ EndCmp
 BeginCmp
 TimeStamp = /547A8191;
 Reference = R9;
-ValeurCmp = 82;
+ValeurCmp = 100;
 IdModule  = Discret:R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C8912E;
 Reference = R10;
-ValeurCmp = 3K3 OPT;
+ValeurCmp = 3K3;
 IdModule  = Discret:R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C89170;
 Reference = R11;
-ValeurCmp = 3K3 OPT;
+ValeurCmp = 3K3;
 IdModule  = Discret:R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C891A7;
 Reference = R12;
-ValeurCmp = 3K3 OPT;
+ValeurCmp = 3K3;
 IdModule  = Discret:R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C898C7;
 Reference = R13;
-ValeurCmp = 3K3 OPT;
+ValeurCmp = 3K3;
 IdModule  = Discret:R3;
 EndCmp
 
@@ -362,6 +313,34 @@ TimeStamp = /54764E12;
 Reference = SW2;
 ValeurCmp = RESET6502;
 IdModule  = 00Jac:00JG-PUSHBUTTON;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C76D75;
+Reference = U1;
+ValeurCmp = OSHW Logo;
+IdModule  = 00Jac:OSHW-logo_silkscreen-front_7mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C76DBD;
+Reference = U2;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:MountHoleM3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C76E05;
+Reference = U3;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:MountHoleM3;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C76E4E;
+Reference = U4;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:MountHoleM3;
 EndCmp
 
 BeginCmp

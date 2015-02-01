@@ -1,8 +1,9 @@
-(module 00JG-BARREL_JACK_RAPC722X (layer F.Cu) (tedit 535165DB)
-  (fp_text reference P301 (at 0 -19.8) (layer F.SilkS)
+(module 00JG-BARREL_JACK_RAPC722X (layer F.Cu) (tedit 54CD9D20)
+  (descr rapc722x_cd.pdf)
+  (fp_text reference P? (at 0 -19.8) (layer F.SilkS) hide
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value "POWER IN" (at -5.715 -16.51) (layer F.SilkS)
+  (fp_text value VALUE? (at 0 -17.78) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_line (start -4.5 -2.5) (end 4.5 -2.5) (layer F.SilkS) (width 0.3048))

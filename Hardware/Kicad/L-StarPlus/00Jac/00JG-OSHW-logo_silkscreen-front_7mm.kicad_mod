@@ -1,5 +1,5 @@
-(module OSHW-logo_silkscreen-front_7mm (layer F.Cu) (tedit 5350C5AA)
-  (fp_text reference G*** (at 0 3.71094) (layer F.SilkS) hide
+(module 00JG-OSHW-logo_silkscreen-front_7mm (layer F.Cu) (tedit 5350C5AA)
+  (fp_text reference G? (at 0 3.71094) (layer F.SilkS) hide
     (effects (font (size 0.3175 0.3175) (thickness 0.0635)))
   )
   (fp_text value ~ (at 0 -3.71094) (layer F.SilkS) hide

@@ -1,9 +1,11 @@
-(module OSHW-logo_silkscreen-front_1mm (layer F.Cu) (tedit 0)
-  (fp_text reference G*** (at 0 0.52832) (layer F.SilkS) hide
-    (effects (font (size 0.04318 0.04318) (thickness 0.00762)))
+(module 00JG-OSHW-logo_silkscreen-front_1mm (layer F.Cu) (tedit 0)
+  (descr "OSHW Logo 1mm")
+  (tags "OSHW Logo")
+  (fp_text reference U? (at 0 0.52832) (layer F.SilkS) hide
+    (effects (font (size 0.127 0.127) (thickness 0.00762)))
   )
   (fp_text value OSHW-logo_silkscreen-front_1mm (at 0 -0.52832) (layer F.SilkS) hide
-    (effects (font (size 0.04318 0.04318) (thickness 0.00762)))
+    (effects (font (size 0.127 0.127) (thickness 0.00762)))
   )
   (fp_poly (pts (xy -0.30226 0.44704) (xy -0.29718 0.4445) (xy -0.28448 0.43688) (xy -0.26924 0.42672)
     (xy -0.24892 0.41402) (xy -0.2286 0.40132) (xy -0.21336 0.38862) (xy -0.20066 0.381)

@@ -1,10 +1,10 @@
-(module JG00-TO-220_Neutral123_Horizontal_LargePads-Heatsink (layer F.Cu) (tedit 54C47DB6)
+(module 00JG-TO-220_Neutral123_Horizontal_LargePads-Heatsink (layer F.Cu) (tedit 54C47DB6)
   (descr "TO-220, Neutral, Horizontal, Large Pads,")
   (tags "TO-220, Neutral, Horizontal, Large Pads,")
-  (fp_text reference IC6 (at 0.24892 -22.84984) (layer F.SilkS) hide
+  (fp_text reference IC? (at 0.24892 -22.84984) (layer F.SilkS) hide
     (effects (font (size 1 1) (thickness 0.15)))
   )
-  (fp_text value LM1086-3.3 (at 0 2.54) (layer F.SilkS)
+  (fp_text value ~ (at 0 2.54) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_line (start -2.54 -3.683) (end -2.54 -2.286) (layer F.SilkS) (width 0.15))

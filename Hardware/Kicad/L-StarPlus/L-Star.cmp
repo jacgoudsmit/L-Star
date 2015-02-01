@@ -1,38 +1,38 @@
-Cmp-Mod V01 Created by Cvpcb (2014-10-27 BZR 5228)-product   date = 26/01/2015 21:46:09
+Cmp-Mod V01 Created by Cvpcb (2014-10-27 BZR 5228)-product   date = 01/02/2015 00:08:45
 
 BeginCmp
 TimeStamp = /547A8E12;
 Reference = C1;
 ValeurCmp = 100n;
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A8DFA;
 Reference = C2;
 ValeurCmp = 100n;
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A8E0C;
 Reference = C3;
 ValeurCmp = 100n;
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A9E19;
 Reference = C4;
 ValeurCmp = 100n;
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C41800;
 Reference = C5;
 ValeurCmp = 100n (OPTIONAL);
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
@@ -60,7 +60,7 @@ BeginCmp
 TimeStamp = /54CC9F9B;
 Reference = C9;
 ValeurCmp = 470p (OPT);
-IdModule  = Discret:C1;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
 EndCmp
 
 BeginCmp
@@ -102,14 +102,14 @@ BeginCmp
 TimeStamp = /547A8147;
 Reference = IC5;
 ValeurCmp = LM1086-5.0;
-IdModule  = Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads;
+IdModule  = 00Jac:00JG-TO-220_Neutral123_Horizontal_LargePads-Heatsink;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A814D;
 Reference = IC6;
 ValeurCmp = LM1086-3.3;
-IdModule  = Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads;
+IdModule  = 00Jac:00JG-TO-220_Neutral123_Horizontal_LargePads-Heatsink;
 EndCmp
 
 BeginCmp
@@ -143,8 +143,8 @@ EndCmp
 BeginCmp
 TimeStamp = /54C60522;
 Reference = JP12;
-ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/~RAMEN;
-IdModule  = Pin_Headers:Pin_Header_Straight_1x06;
+ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/A16/GND;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x07;
 EndCmp
 
 BeginCmp
@@ -158,14 +158,14 @@ BeginCmp
 TimeStamp = /547A84EA;
 Reference = P2;
 ValeurCmp = PS/2 KBD;
-IdModule  = 00Jac:00JG-MD-60S;
+IdModule  = 00Jac:00JG-MiniDin6;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A8A32;
 Reference = P3;
 ValeurCmp = TV OUT;
-IdModule  = 00Jac:00JG-RCJ-01X;
+IdModule  = 00Jac:00JG-RCAsocket;
 EndCmp
 
 BeginCmp
@@ -180,13 +180,6 @@ TimeStamp = /54C4BE3D;
 Reference = P5;
 ValeurCmp = EXPANSION (OPT);
 IdModule  = Pin_Headers:Pin_Header_Straight_2x20;
-EndCmp
-
-BeginCmp
-TimeStamp = /54CD0AC3;
-Reference = P6;
-ValeurCmp = PROP PLUG;
-IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
 EndCmp
 
 BeginCmp
@@ -319,35 +312,35 @@ BeginCmp
 TimeStamp = /54C76D75;
 Reference = U1;
 ValeurCmp = OSHW Logo;
-IdModule  = 00Jac:OSHW-logo_silkscreen-front_7mm;
+IdModule  = 00Jac:00JG-OSHW-logo_silkscreen-front_7mm;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C76DBD;
 Reference = U2;
 ValeurCmp = Mount hole;
-IdModule  = 00Jac:MountHoleM3;
+IdModule  = 00Jac:00JG-MountHoleM3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C76E05;
 Reference = U3;
 ValeurCmp = Mount hole;
-IdModule  = 00Jac:MountHoleM3;
+IdModule  = 00Jac:00JG-MountHoleM3;
 EndCmp
 
 BeginCmp
 TimeStamp = /54C76E4E;
 Reference = U4;
 ValeurCmp = Mount hole;
-IdModule  = 00Jac:MountHoleM3;
+IdModule  = 00Jac:00JG-MountHoleM3;
 EndCmp
 
 BeginCmp
 TimeStamp = /547A8E1E;
 Reference = X1;
 ValeurCmp = 5MHz;
-IdModule  = Crystals:Crystal_HC49-U_Vertical;
+IdModule  = 00Jac:00JG-Crystal_HC49-U_Vertical;
 EndCmp
 
 EndListe

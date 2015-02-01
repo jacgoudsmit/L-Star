@@ -1,4 +1,4 @@
-(module Crystal_HC49-U_Vertical (layer F.Cu) (tedit 54C6FC44)
+(module 00JG-Crystal_HC49-U_Vertical (layer F.Cu) (tedit 54C6FC44)
   (descr "Crystal, Quarz, HC49/U, vertical, stehend,")
   (tags "Crystal, Quarz, HC49/U, vertical, stehend,")
   (fp_text reference X1 (at -7.493 0) (layer F.SilkS) hide

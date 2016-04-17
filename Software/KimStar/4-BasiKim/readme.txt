@@ -1,0 +1,21 @@
+BASIKIM
+(C) 2016 Jac Goudsmit
+MIT License
+
+This directory contains the source code to use a Propeller QuickStart as a 24KB RAM extension for the MicroKim (and presumably also for the KIM-1), with the Microsoft BASIC interpreter for the KIM-1 preloaded into that memory extension. You do NOT need the 32K RAM extension board from Briel Computers to use this.
+
+KIM-1 9-digit Basic (also known as KB9, there was also a KB6 which used less precision and therefore needed less memory) was one of the first versions of BASIC that Microsoft produced for the 6502 processor (see Michael Steil's research at pagetable.com). It was written for users who had a Teletype terminal connected to a KIM-1: it only understands UPPER CASE characters and there is no good line editor: for example if you mistype a character you can't use Backspace to erase it, you use '_' to discard the last character in memory or '@' to discard the entire current line. You will still see the line including your mistakes and the corrections, because on a Teletype with only a roll of paper as user output, that was what you saw.
+
+There are no "SAVE" and "LOAD" commands to save programs to cassette and load them back (let alone commands to save and load programs to/from floppy or hard disks): if you wanted to save your program, you typed LIST and before you hit return, you would turn on the paper tape punch. To load a program back, you would type NEW and hit enter, and then you would run that paper tape back through the reader so the interpreter would just process it as if you were typing it on the keyboard.
+
+KB9 was originally distributed on tape, and everytime you wanted to program your KIM-1 in BASIC, you had to load the BASIC interpreter into memory first. This took long and was sensitive to problems like tape dropouts. You could save the code to a paper tape too, of course. And memory was expensive! In 1977, 8KB of memory would probably cost about $150 or so. And that number is not even corrected for inflation!
+
+Fortunately nowadays (2016), things are a little easier. Instead of Teletypes, we use terminal emulator programs that can pluck a tiny 9K file off a multi-Terabyte disk in milliseconds (or even faster if you use an SSD and you don't have to wait for the correct piece of spinning rust to pass under the head of the mechanism). But downloading the BASIC interpreter in paper-tape format through the KIM-1 serial connection at 2400 bits per second still takes a long time. This variation of KimStar makes the hub memory of a Propeller available as RAM to the 6502 processor on the MicroKim and preloads that RAM with the MS Basic interpreter so you don't have to download it to the MicroKim via a terminal emulator program.
+
+After you compile the firmware (with BASIKIM.spin as top file) and download it to the Propeller, the Basic interpreter will be available immediately after the Propeller resets itself. Then all you need to do is reset the MicroKim, hit Enter on the MicroKim terminal to let it detect the speed of the connection, and enter 4065 <space> G to start the Basic Interpreter. Once the interpreter is running, you can load programs via the terminal and with 24KB of simulated expansion RAM, there should be enough space for StarTrek.bas from David Ahl's 101 BASIC Computer Games. 
+
+But on the other hand, you don't HAVE to use BASIC: it's preloaded into virtual RAM when the Propeller resets, but you can overwrite any of that with anything else useful that you can think of. If you're not interested in BASIC but you want to preload another program, it's easy to change the Propeller source code. Let me know in the comments on Hackaday.io what you did, I might be interested too!
+
+Please read the PDF file in this directory for many useful tips. Note that it's still possible to do any of the suggested patches, but some of them may have already been applied. I got the KB9.bin image file from Hans Otten's retro website (http://retro.hansotten.nl, bedankt Hans!), so I don't know exactly what its origin is. If you want to build your own Microsoft Basic, the source code is on Michael Steil's Github (https://github.com/mist64).
+
+Have fun!

@@ -6,19 +6,848 @@ LIBS:power
 LIBS:propeller
 LIBS:crystal
 LIBS:conn
+LIBS:1wire
+LIBS:3M
+LIBS:7sh
+LIBS:20f001n
+LIBS:29le010
+LIBS:40xx
+LIBS:65xxx
+LIBS:74ah
+LIBS:74hc(t)4046
+LIBS:74xx-eu
+LIBS:74xx-little-us
+LIBS:78xx_with_heatsink
+LIBS:648a40-01-tsop40--14mm
+LIBS:751xx
+LIBS:abi-lcd
+LIBS:ad
+LIBS:ad620
+LIBS:ad624
+LIBS:ad633
+LIBS:ad725
+LIBS:ad7709
+LIBS:ad7710
+LIBS:ad8018
+LIBS:ad9235
+LIBS:ad9834
+LIBS:ad9851
+LIBS:ad22151
+LIBS:ad74111_adg3304
+LIBS:adns-2610
+LIBS:ads11xx
+LIBS:aduc816
+LIBS:aduc841
+LIBS:adv7202
+LIBS:advsocket-computer
+LIBS:adxl
+LIBS:adxl103_203e
+LIBS:adxl311
+LIBS:adxl320
+LIBS:adxrs300
+LIBS:agilent-infrared
+LIBS:akm
+LIBS:allegro
+LIBS:alps_blue_rk-27_single
+LIBS:altera
+LIBS:altera-2
+LIBS:altera-cycloneii
+LIBS:altera-ep3c40f484
+LIBS:amber_bnc_iv
+LIBS:AMD_ELAN_SC_520
+LIBS:amd_taxi
+LIBS:amd-mach
+LIBS:am-hrrn-xxx
+LIBS:amphenol-simlock
+LIBS:anadigm-1
+LIBS:analog_device_adxl202e
+LIBS:analog_devices_gaui
+LIBS:analog-devices
+LIBS:analog-devices2
+LIBS:analog-devices-current-shunt-monitors
+LIBS:analog-devices-dds
+LIBS:ap_lna
+LIBS:ap_mixernew
+LIBS:ap_rc_0402
+LIBS:ap_saw
+LIBS:ap_transformer
+LIBS:ap_vco
+LIBS:asix
+LIBS:at89x52
+LIBS:at90can128
+LIBS:at91sam7sxxx-au
+LIBS:at91sam9261
+LIBS:atarilynx
+LIBS:atf1502als
+LIBS:atmega8
+LIBS:atmel
+LIBS:atmel_prototype_header
+LIBS:atmel-1
+LIBS:atmel89cxxxx
+LIBS:atmel-2005
+LIBS:attiny13
+LIBS:attiny24_44_84
+LIBS:aurel
+LIBS:avr
+LIBS:avr-1
+LIBS:avr-2
+LIBS:avr-3
+LIBS:avr-4
+LIBS:avr32
+LIBS:axis
+LIBS:basic_stamps
+LIBS:basicstamp2
+LIBS:basicx
+LIBS:basicx_chips
+LIBS:bluegiga
+LIBS:blueradio-br-sc30a
+LIBS:bourns
+LIBS:burr-brown
+LIBS:burr-brown-2
+LIBS:burr-brown-3
+LIBS:burr-brown-ads8341
+LIBS:butterfly9
+LIBS:bv_20
+LIBS:bx_24
+LIBS:californiamicro
+LIBS:calmicro
+LIBS:Capacitor-Wima-FKM2-100v
+LIBS:Capacitor-Wima-FKM2-250v
+LIBS:Capacitor-Wima-FKM2-400v
+LIBS:Capacitor-Wima-FKM3-160v
+LIBS:Capacitor-Wima-FKM3-250v
+LIBS:Capacitor-Wima-FKM3-400v
+LIBS:Capacitor-Wima-FKP1-400v
+LIBS:Capacitor-Wima-FKP1-630v
+LIBS:Capacitor-Wima-FKP1-1000v
+LIBS:Capacitor-Wima-FKP1-1250v
+LIBS:Capacitor-Wima-FKP1-1600v
+LIBS:Capacitor-Wima-FKP1-2000v
+LIBS:Capacitor-Wima-FKP1-4000v
+LIBS:Capacitor-Wima-FKP1-6000v
+LIBS:Capacitor-Wima-FKP2-63v
+LIBS:Capacitor-Wima-FKP2-100v
+LIBS:Capacitor-Wima-FKP2-250v
+LIBS:Capacitor-Wima-FKP2-400v
+LIBS:Capacitor-Wima-FKP2-630v
+LIBS:Capacitor-Wima-FKP2-800v
+LIBS:Capacitor-Wima-FKP2-1000v
+LIBS:Capacitor-Wima-FKP3-100v
+LIBS:Capacitor-Wima-FKP3-160v
+LIBS:Capacitor-Wima-FKP3-250v
+LIBS:Capacitor-Wima-FKP3-400v
+LIBS:Capacitor-Wima-FKP3-630v
+LIBS:Capacitor-Wima-FKP3-1000v
+LIBS:Capacitor-Wima-FKS2-100v
+LIBS:Capacitor-Wima-FKS2-250v
+LIBS:Capacitor-Wima-FKS2-400v
+LIBS:Capacitor-Wima-FKS3-100v
+LIBS:Capacitor-Wima-FKS3-160v
+LIBS:Capacitor-Wima-FKS3-250v
+LIBS:Capacitor-Wima-FKS3-400v
+LIBS:Capacitor-Wima-FKS3-630v
+LIBS:Capacitor-Wima-MKM2-100v
+LIBS:Capacitor-Wima-MKM2-250v
+LIBS:Capacitor-Wima-MKM4-250v
+LIBS:Capacitor-Wima-MKM4-400v
+LIBS:Capacitor-Wima-MKP2-100v
+LIBS:Capacitor-Wima-MKP2-250v
+LIBS:Capacitor-Wima-MKP2-400v
+LIBS:Capacitor-Wima-MKP2-630v
+LIBS:Capacitor-Wima-MKP4-250v
+LIBS:Capacitor-Wima-MKP4-400v
+LIBS:Capacitor-Wima-MKP4-630v
+LIBS:Capacitor-Wima-MKP4-1000v
+LIBS:Capacitor-Wima-MKP10-160v
+LIBS:Capacitor-Wima-MKP10-250v
+LIBS:Capacitor-Wima-MKP10-400v
+LIBS:Capacitor-Wima-MKP10-630v
+LIBS:Capacitor-Wima-MKP10-1000v
+LIBS:Capacitor-Wima-MKP10-1600v
+LIBS:Capacitor-Wima-MKP10-2000v
+LIBS:Capacitor-Wima-MKS02-50v
+LIBS:Capacitor-Wima-MKS02-63v
+LIBS:Capacitor-Wima-MKS02-100v
+LIBS:Capacitor-Wima-MKS2-16v
+LIBS:Capacitor-Wima-MKS2-50v
+LIBS:Capacitor-Wima-MKS2-63v
+LIBS:Capacitor-Wima-MKS2-100v
+LIBS:Capacitor-Wima-MKS2-250v
+LIBS:Capacitor-Wima-MKS2-400v
+LIBS:Capacitor-Wima-MKS4-50v
+LIBS:Capacitor-Wima-MKS4-63v
+LIBS:Capacitor-Wima-MKS4-100v
+LIBS:Capacitor-Wima-MKS4-250v
+LIBS:Capacitor-Wima-MKS4-400v
+LIBS:Capacitor-Wima-MKS4-630v
+LIBS:Capacitor-Wima-MKS4-1000v
+LIBS:Capacitor-Wima-MKS4-1500v
+LIBS:Capacitor-Wima-MKS4-2000v
+LIBS:Capacitor-Wima-MP3-X2-250v
+LIBS:Capacitor-Wima-MP3-X2-275v
+LIBS:Capacitor-Wima-MP3-Y2-250v
+LIBS:Capacitor-Wima-SMD1812-63v
+LIBS:Capacitor-Wima-SMD1812-100v
+LIBS:Capacitor-Wima-SMD1812-250v
+LIBS:Capacitor-Wima-SMD2020-63v
+LIBS:Capacitor-Wima-SMD2020-100v
+LIBS:Capacitor-Wima-SMD2020-250v
+LIBS:Capacitor-Wima-SMD2824-63v
+LIBS:Capacitor-Wima-SMD2824-100v
+LIBS:Capacitor-Wima-SMD2824-250v
+LIBS:Capacitor-Wima-SMD4036-40v
+LIBS:Capacitor-Wima-SMD4036-63v
+LIBS:Capacitor-Wima-SMD4036-100v
+LIBS:Capacitor-Wima-SMD4036-250v
+LIBS:Capacitor-Wima-SMD4036-400v
+LIBS:Capacitor-Wima-SMD4036-630v
+LIBS:Capacitor-Wima-SMD5045-40v
+LIBS:Capacitor-Wima-SMD5045-63v
+LIBS:Capacitor-Wima-SMD5045-100v
+LIBS:Capacitor-Wima-SMD5045-250v
+LIBS:Capacitor-Wima-SMD5045-400v
+LIBS:Capacitor-Wima-SMD5045-630v
+LIBS:Capacitor-Wima-SMD5045-1000v
+LIBS:Capacitor-Wima-SMD6560-40v
+LIBS:Capacitor-Wima-SMD6560-63v
+LIBS:Capacitor-Wima-SMD6560-100v
+LIBS:Capacitor-Wima-SMD6560-250v
+LIBS:Capacitor-Wima-SMD6560-400v
+LIBS:Capacitor-Wima-SMD6560-630v
+LIBS:Capacitor-Wima-SMD6560-1000v
+LIBS:Capacitor-Wima-SMD-MP3-Y2-250v
+LIBS:CapAudyn
+LIBS:Cap-Audyn-Sn
+LIBS:Cap-Dreh
+LIBS:Cap-Gold
+LIBS:Cap-M
+LIBS:cap-master
+LIBS:Cap-M-Supreme
+LIBS:Cap-M-ZN
+LIBS:cap-pan
+LIBS:cap-pan40
+LIBS:CapSiem
+LIBS:cap-vishay-153clv
+LIBS:c-control
+LIBS:chipcon
+LIBS:chipcon-ti
+LIBS:cirrus
+LIBS:cirrus-2
+LIBS:cirrus-3
+LIBS:cirrus-mpu
+LIBS:cirrus-v1.0.2
+LIBS:c-max
+LIBS:cml-micro
+LIBS:cny70
+LIBS:coldfire
+LIBS:comfile
+LIBS:computronics.com.au
+LIBS:con_conec
+LIBS:con_nokia
+LIBS:con-amp
+LIBS:con-amphenol
+LIBS:con-amp-micromatch
+LIBS:con-cpci
+LIBS:con-cuistack
+LIBS:con-cypressindustries
+LIBS:con-erni
+LIBS:con-faston
+LIBS:con-fujitsu-pcmcia
+LIBS:con-gr47_gsm_module
+LIBS:con-harting-ml
+LIBS:con-hdrs40
+LIBS:con-headers-jp
+LIBS:con-hirose
+LIBS:con-hirose-df12d(3.0)60dp0.5v80
+LIBS:con-jack
+LIBS:con-jst2
+LIBS:con-molex
+LIBS:con-molex-2
+LIBS:connect
+LIBS:con-neutrik_ag
+LIBS:conn-hirose
+LIBS:con-omnetics
+LIBS:con-pci_express(pci-e)
+LIBS:con-phoenix-250
+LIBS:con-phoenix-381_l
+LIBS:con-phoenix-500-mstba6
+LIBS:con-ptr500+
+LIBS:con-pulse
+LIBS:conrad
+LIBS:con-ria182
+LIBS:con-riacon
+LIBS:con-subd
+LIBS:controller-micro_atmel_jd
+LIBS:con-usb
+LIBS:con-usb-2
+LIBS:con-usb-3
+LIBS:converter
+LIBS:con-vg
+LIBS:con-wago
+LIBS:con-yamaichi
+LIBS:con-yamaichi-cf
+LIBS:con-yamaichi-cf-2
+LIBS:crystal-epson
+LIBS:cts
+LIBS:cy7c1009b
+LIBS:cyan
+LIBS:cygnal
+LIBS:cygnal_mini
+LIBS:cypress-fx2
+LIBS:cypressmicro
+LIBS:dallas
+LIBS:dallas-1
+LIBS:dallas600
+LIBS:dallas-rtc
+LIBS:dcsocket
+LIBS:dframes
+LIBS:dicons
+LIBS:digital-transistors
+LIBS:diode
+LIBS:diode-1
+LIBS:dip204b-4nlw
+LIBS:dips082
+LIBS:display_ea_dog-m
+LIBS:display-kingbright
+LIBS:display-lcd
+LIBS:display-lcd-lxd
+LIBS:displayled8x8
+LIBS:displaytech_(chr)
+LIBS:divers
+LIBS:dodolcd
+LIBS:dodomicro
+LIBS:dome-key
+LIBS:dpads
+LIBS:dports
+LIBS:ds(s)30655
+LIBS:ds1307_pcf8583
+LIBS:ds1813_revised
+LIBS:dsp_texas
+LIBS:dsp56f8323
+LIBS:dsp56f8346
+LIBS:dsymbols
+LIBS:ecl
+LIBS:edge-156
+LIBS:elm
+LIBS:Elma
+LIBS:ember
+LIBS:emerging
+LIBS:enfora_module
+LIBS:EP_molex_6410_7395
+LIBS:ep_molex_6410_7395-02
+LIBS:er400trs
+LIBS:etx-board
+LIBS:ev9200g
+LIBS:everlight
+LIBS:evision
+LIBS:fairchild-tinylogic
+LIBS:fetky
+LIBS:fichte_div
+LIBS:filter-coilcraft
+LIBS:fitre
+LIBS:flashmemory
+LIBS:freescale-accelerometer
+LIBS:freescale-mc68hc908jb
+LIBS:fsoncore
+LIBS:ft8u100ax
+LIBS:ft2232c
+LIBS:ftdi
+LIBS:ftdi2
+LIBS:ftdi3
+LIBS:ftdi4
+LIBS:ftdichip
+LIBS:ftdichip-1
+LIBS:ftdichip-2
+LIBS:ftdichip-3
+LIBS:fze1066
+LIBS:gameboy
+LIBS:gm862
+LIBS:gpsms1
+LIBS:hacesoft
+LIBS:HBridge
+LIBS:HD15_B
+LIBS:hdsp
+LIBS:heatsink-aavid
+LIBS:hirose
+LIBS:hirose2
+LIBS:hirose-fx2-100
+LIBS:hirose-fx2-100-2
+LIBS:holtek
+LIBS:honda2-0
+LIBS:HONEYWEL
+LIBS:HONY3000
+LIBS:HONY4000
+LIBS:hopf
+LIBS:i2c
+LIBS:i2c_95xx
+LIBS:ibe_lbr
+LIBS:ic-bbd
+LIBS:ics512
+LIBS:ieee488
+LIBS:inductor-coilcraft
+LIBS:inductor-nkl
+LIBS:inductors-jwmiller
+LIBS:inductor-toko
+LIBS:infineon
+LIBS:infineon_tle_power
+LIBS:infineon-tricore
+LIBS:intel-strongarm
+LIBS:interface
+LIBS:intersil
+LIBS:inventronik
+LIBS:io-warrior
+LIBS:ipc-7351-capacitor
+LIBS:ipc-7351-diode
+LIBS:ipc-7351-inductor
+LIBS:ipc-7351-resistor
+LIBS:ipc-7351-transistor
+LIBS:ir2112
+LIBS:irf
+LIBS:irf-2
+LIBS:is61c1024al
+LIBS:is471f
+LIBS:isabellen
+LIBS:isd
+LIBS:isd-new
+LIBS:isd-new-1
+LIBS:ite-it81xx
+LIBS:jensen
+LIBS:jfw-pwm1
+LIBS:jst_eph
+LIBS:jst-ph
+LIBS:jt9s-1p
+LIBS:jumper
+LIBS:KEY_B
+LIBS:keypad4x4_ece
+LIBS:keystone
+LIBS:kingbright
+LIBS:kingfont_sdcmf10915w010
+LIBS:kingfont_sdcmf10915w010_covek
+LIBS:Knitter-Switch
+LIBS:kzh20_lithium_batterie_holder
+LIBS:l293e
+LIBS:l4960
+LIBS:l5973d
+LIBS:l6219
+LIBS:laipac_technologie
+LIBS:lasser
+LIBS:lattice
+LIBS:lcd_2x16_led_backlight
+LIBS:lcd_128x64_led_backlight
+LIBS:lcd_modules_ece
+LIBS:lcd_n3200_lph7677
+LIBS:lcd_nokia_6100
+LIBS:lcd_parallel
+LIBS:led
+LIBS:led_rgb
+LIBS:lexx
+LIBS:lf2403
+LIBS:linear2
+LIBS:linear3
+LIBS:linear4
+LIBS:linear-technology
+LIBS:linear-technology-2
+LIBS:linear-technology-3
+LIBS:linkup-l1110
+LIBS:little-logic
+LIBS:llk5_library
+LIBS:lm393d
+LIBS:lm1881
+LIBS:lm2937
+LIBS:lmd1820x
+LIBS:lmh1251
+LIBS:lmopamp
+LIBS:logo_ru
+LIBS:lp2986im-33
+LIBS:lp2989-so8
+LIBS:lpc210x
+LIBS:lpc213x
+LIBS:lph-7366
+LIBS:ltc_swr
+LIBS:ltc6900
+LIBS:ltd5122
+LIBS:lucorca
+LIBS:lumiled
+LIBS:lumiled-2
+LIBS:luminary-micro
+LIBS:lundahl
+LIBS:lvds
+LIBS:lvds-2
+LIBS:matsusada
+LIBS:max187
+LIBS:max232ti
+LIBS:max232ti_n
+LIBS:max498
+LIBS:max696x
+LIBS:max882_883_884
+LIBS:max882-smd
+LIBS:max1480-90
+LIBS:max1678
+LIBS:max1811
+LIBS:max3235ecwp
+LIBS:maxim
+LIBS:maxim-2
+LIBS:maxim-3
+LIBS:maxim-4
+LIBS:maxim-5
+LIBS:maxim-6
+LIBS:maxim-6a
+LIBS:maxim-6b
+LIBS:maxim-7
+LIBS:maxim-7a
+LIBS:maxim-8
+LIBS:maxim-9
+LIBS:maxim-10
+LIBS:maxim1719-21
+LIBS:maxim-filter
+LIBS:mc9s12ne64-lqfp112
+LIBS:mc68ez328
+LIBS:mc78l08a
+LIBS:mc3479p
+LIBS:mc33201d
+LIBS:mc33202d
+LIBS:mc33269
+LIBS:mc33269dt
+LIBS:mc34063
+LIBS:mcp120-130
+LIBS:mcp3304
+LIBS:memory-bsi
+LIBS:memory-intel
+LIBS:memory-samsung
+LIBS:Mentor-FEL
+LIBS:micrel
+LIBS:micro-68x_db
+LIBS:microchip
+LIBS:microchip_can
+LIBS:microchip_enet
+LIBS:microchip_mcp2120
+LIBS:microchip_pic16f716
+LIBS:microchip_tc7660
+LIBS:microchip-2
+LIBS:microchip-3
+LIBS:microchip-4
+LIBS:microchip-5
+LIBS:microchip16c7xx
+LIBS:microchip-16f688
+LIBS:microchip-18f258
+LIBS:microchip-dspic
+LIBS:microchip-enc28j60
+LIBS:microchip-mcp125x-xxx
+LIBS:microchip-pic18fxx5x
+LIBS:microchip-pic24
+LIBS:micro-codemercenaries
+LIBS:micro-fujitsu
+LIBS:micro-philips
+LIBS:micro-pic18xxx
+LIBS:micro-rabbit
+LIBS:micro-silabs
+LIBS:mini_din
+LIBS:minicir
+LIBS:minicircuits
+LIBS:minickts
+LIBS:minipci
+LIBS:mitel
+LIBS:mitsubishi_mcu
+LIBS:mma7260_7261
+LIBS:motordrv
+LIBS:motorola_hc08
+LIBS:motorola-video
+LIBS:mp3h6115a
+LIBS:m-pad-2.1
+LIBS:mpc5200
+LIBS:mpc8250
+LIBS:mpx4100a
+LIBS:mpxh6400
+LIBS:msp430
+LIBS:msp430-1
+LIBS:mt9t001
+LIBS:mt88xx
+LIBS:muratanfe61
+LIBS:murata-resonators
+LIBS:nais_tq2sa_smd_relay
+LIBS:nasem_adcs
+LIBS:national
+LIBS:national_cp3000
+LIBS:national_gaui
+LIBS:national-2
+LIBS:ncp5009
+LIBS:nec-upd71055
+LIBS:ni_gpib
+LIBS:nichia
+LIBS:nitron
+LIBS:nixie_tube
+LIBS:nordic-semi
+LIBS:nrf24l01
+LIBS:nxp
+LIBS:oldchips
+LIBS:op-amp
+LIBS:opt301m
+LIBS:optocoupler
+LIBS:optocoupler-2
+LIBS:opto-resistor
+LIBS:osman-pic16f62x
+LIBS:padsim
+LIBS:parallax_propeller
+LIBS:pbno_m
+LIBS:pca82c250
+LIBS:pcf8575c
+LIBS:PGA2310
+LIBS:philips
+LIBS:philips_gaui
+LIBS:philips_lpc21xx
+LIBS:philips1
+LIBS:philips-2
+LIBS:philips-3
+LIBS:philips-4
+LIBS:philips-5
+LIBS:philips-6
+LIBS:phoenix_gicv-gf
+LIBS:phytec
+LIBS:pic16f6xx
+LIBS:pic16f6xx_14pin
+LIBS:pic16f6xx-1
+LIBS:pic16f87x
+LIBS:pic16f690
+LIBS:pic16f818
+LIBS:pic16f914
+LIBS:pic18f4x2
+LIBS:pic18f2320
+LIBS:pic18f4550
+LIBS:pic18f6680
+LIBS:pic18fxx20
+LIBS:pic18fxx20-2
+LIBS:pic18fxx20-fxx8
+LIBS:picaxe-2
+LIBS:picaxe-3
+LIBS:picogate
+LIBS:picolight-msa
+LIBS:pictiva
+LIBS:piher
+LIBS:pinhead
+LIBS:pinhead-1
+LIBS:pixaxe28x
+LIBS:planartransformer
+LIBS:platinen
+LIBS:pneumatic
+LIBS:polyswitch_smd
+LIBS:Pot
+LIBS:powerconnectorskt
+LIBS:Power-in
+LIBS:promiesd02
+LIBS:pswitch40
+LIBS:ptc-littlefuse
+LIBS:ptn78060wah
+LIBS:pulse-eng
+LIBS:ramtron
+LIBS:ramtron-1
+LIBS:ramtron-2
+LIBS:raritaeten
+LIBS:RC2000M
+LIBS:rcl
+LIBS:rcl-2
+LIBS:rcm2200
+LIBS:rcm3000
+LIBS:rcm3360
+LIBS:rcm3400_module
+LIBS:rc-master
+LIBS:rc-master-smd
+LIBS:rds-decoder
+LIBS:ref-packages
+LIBS:relay
+LIBS:relay_finder
+LIBS:relay-pickering
+LIBS:renesas
+LIBS:renesas_mcu
+LIBS:renesas_mcu20
+LIBS:renesas21
+LIBS:resistor-bourns
+LIBS:resistor-ruf
+LIBS:rfm-ash
+LIBS:rfm-ash-02
+LIBS:rf-micro-devices
+LIBS:rfpic
+LIBS:rjmg-6xxx-8x-01
+LIBS:rtl8019as
+LIBS:russian-nixies
+LIBS:satcard
+LIBS:sawtek
+LIBS:scenix4
+LIBS:sena_technology-bluetooth
+LIBS:sfh511x
+LIBS:sfh920x
+LIBS:sgs-thom
+LIBS:sharp
+LIBS:sharp-arm
+LIBS:sht10_11_15
+LIBS:sht11
+LIBS:si-50014
+LIBS:sid_max
+LIBS:Siemens-Rel
+LIBS:silabs
+LIBS:silabs-2
+LIBS:silabs-eth
+LIBS:simmstik
+LIBS:sir-tfdu4100_tfds4500_tfdt4500
+LIBS:sl6270
+LIBS:smartcard
+LIBS:smartwed
+LIBS:smd-special
+LIBS:smsc
+LIBS:sn65lvds
+LIBS:sn74v293
+LIBS:sn2032
+LIBS:special-diodes
+LIBS:st_psd8xxfx
+LIBS:st_psd813
+LIBS:st232_gaui
+LIBS:st2221x
+LIBS:st7540
+LIBS:standingfet
+LIBS:stepper
+LIBS:st-l6208
+LIBS:st-microelectronics
+LIBS:str711
+LIBS:st-tda7375
+LIBS:stuart
+LIBS:stv_conec_dlsnyyan23x
+LIBS:stv_mk3ds1
+LIBS:supply
+LIBS:supply0
+LIBS:supply1
+LIBS:switch-copal
+LIBS:switch-misc
+LIBS:switch-tact
+LIBS:sx2_epf10k10a_epc2_c6713
+LIBS:t6963
+LIBS:tc4sxx-eu
+LIBS:tc65_siemens
+LIBS:tca0372dw
+LIBS:tcm3105
+LIBS:tda1562q
+LIBS:tda7386
+LIBS:tda7496l
+LIBS:tda8560q
+LIBS:tda8708a
+LIBS:termosensor
+LIBS:tex
+LIBS:tex2
+LIBS:texas
+LIBS:texas-msp
+LIBS:that_2252_rms_detector
+LIBS:that2180_sip8
+LIBS:that-corp
+LIBS:ti_msc1210
+LIBS:ti_msp430
+LIBS:ti_scope
+LIBS:ti6713bpyp
+LIBS:tiger
+LIBS:ti-msp430f14x1
+LIBS:tip112
+LIBS:tlv320aic23b
+LIBS:tmc
+LIBS:tmp10x
+LIBS:tms470
+LIBS:tms2402
+LIBS:tms2406
+LIBS:tms2808
+LIBS:tms2810
+LIBS:top-switcher
+LIBS:toshiba
+LIBS:tpic
+LIBS:tps769xx
+LIBS:tps77633
+LIBS:tqm_hydra_xc_modul
+LIBS:traco
+LIBS:traco_tmr
+LIBS:tracop1
+LIBS:trafo-xicon
+LIBS:transformer-trigger
+LIBS:transil
+LIBS:transistor
+LIBS:transistor-arrays
+LIBS:transistor-fet
+LIBS:transistor-fet+irf7201
+LIBS:transistor-power
+LIBS:transistors_gaui
+LIBS:Transputers
+LIBS:triggered_devices
+LIBS:trinamic
+LIBS:ts72116tp-10
+LIBS:tsop
+LIBS:tubes
+LIBS:tusb3x10
+LIBS:tusb3x10-1
+LIBS:tusb6250
+LIBS:ua9638
+LIBS:ubicom
+LIBS:ubicom_v2
+LIBS:u-blox
+LIBS:ucb1400
+LIBS:uc-dimm
+LIBS:uicc_card_reader
+LIBS:uln-udn
+LIBS:ultrasonic_transducer
+LIBS:ultrasonic_transducer-1
+LIBS:unipac
+LIBS:valves2
+LIBS:varistor
+LIBS:vishay
+LIBS:vishay_tsal4400_bpw85c
+LIBS:vishay-1
+LIBS:v-reg
+LIBS:v-reg-2
+LIBS:v-reg-fairchild
+LIBS:v-reg-lowdrop
+LIBS:vs10xx
+LIBS:vs1001
+LIBS:waveform
+LIBS:weid762
+LIBS:western-digital-devices
+LIBS:wima_c
+LIBS:winbond-w9021x
+LIBS:wolfson
+LIBS:wolleatmel
+LIBS:wuerth_elektronik_v5
+LIBS:wuerth-elektronik_v4
+LIBS:xbee_r1
+LIBS:xc2v1000fg456
+LIBS:xc3s200-tq144
+LIBS:xdr-dram-toshiba
+LIBS:xenpak-msa
+LIBS:xicor-eepot
+LIBS:XILINX
+LIBS:xilinx_spartan2e
+LIBS:xilinx_spartan3
+LIBS:xilinx_spartan3_virtex4_and_5
+LIBS:Xilinx_VirtexII
+LIBS:Xilinx_VirtexII_Pro
+LIBS:xilinx_virtexii-xc2v80&flashprom
+LIBS:xilinx_xc9572xl-tq100
+LIBS:xilinx-xc3sxxxe_vq100
+LIBS:xport
+LIBS:x-port
+LIBS:xtx-board
+LIBS:z8encore8k_v10
+LIBS:zettl
+LIBS:Zilog-eZ80-v1_0
+LIBS:Zilog-Z8-Encore-v1_1
+LIBS:zilog-z8-encore-v1_2a
+LIBS:Zilog-ZNEO-v1_0
+LIBS:zivapc
+LIBS:zx4125p
 LIBS:L-Star-cache
 EELAYER 25 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
 Sheet 1 1
-Title "L-Star"
-Date "2016-02-14"
+Title "L-Star Simplified Software-Defined 6502 Computer Kit"
+Date "2016-04-29"
 Rev "2"
 Comp "(C) 2016 Jac Goudsmit"
-Comment1 "Simplified Software-Defined 6502 Computer"
+Comment1 "Open Source Hardware (MIT License)"
 Comment2 "https://github.com/JacGoudsmit/L-Star"
-Comment3 ""
+Comment3 "https://hackaday.io/project/3620"
 Comment4 ""
 $EndDescr
 $Comp
@@ -121,8 +950,6 @@ F 3 "~" H 6550 8700 60  0000 C CNN
 	1    6550 8700
 	1    0    0    -1  
 $EndComp
-Text GLabel 5000 8500 0    50   UnSpc ~ 0
-VSUPPLY
 $Comp
 L PWR_FLAG #FLG02
 U 1 1 547A8168
@@ -134,10 +961,6 @@ F 3 "" H 5200 8600 60  0000 C CNN
 	1    5200 8600
 	1    0    0    -1  
 $EndComp
-Text GLabel 6100 8600 1    50   Output ~ 0
-+5V
-Text GLabel 7850 9900 2    50   Output ~ 0
-GND
 $Comp
 L PWR_FLAG #FLG03
 U 1 1 547A8170
@@ -160,8 +983,6 @@ F 3 "" H 4650 8800 60  0000 C CNN
 	1    4650 8800
 	1    0    0    -1  
 $EndComp
-Text GLabel 7850 8700 2    50   Output ~ 0
-+3.3V
 $Comp
 L LED D1
 U 1 1 547A8185
@@ -300,7 +1121,7 @@ $Comp
 L R R8
 U 1 1 547A8A3F
 P 11700 6600
-F 0 "R8" V 11780 6600 40  0000 C CNN
+F 0 "R8" V 11600 6600 40  0000 C CNN
 F 1 "270" V 11707 6601 40  0000 C CNN
 F 2 "Discret:R3" V 11630 6600 30  0001 C CNN
 F 3 "~" H 11700 6600 30  0000 C CNN
@@ -400,7 +1221,7 @@ L 24LC IC1
 U 1 1 547A8E24
 P 2950 2650
 F 0 "IC1" H 2750 3000 60  0000 C CNN
-F 1 "24LC256" H 3150 2300 60  0000 C CNN
+F 1 "24LC512" H 3150 2300 60  0000 C CNN
 F 2 "Sockets_DIP:DIP-8__300" H 2950 2650 60  0001 C CNN
 F 3 "" H 2950 2650 60  0000 C CNN
 	1    2950 2650
@@ -689,8 +1510,6 @@ Entry Wire Line
 Entry Wire Line
 	7700 4700 7800 4800
 Entry Wire Line
-	7700 5300 7800 5400
-Entry Wire Line
 	7700 6100 7800 6200
 Text Label 2150 5600 0    50   ~ 0
 ~RES
@@ -783,7 +1602,7 @@ L AS6C1008 IC2
 U 1 1 54C32A2D
 P 9150 4950
 F 0 "IC2" H 8750 5875 50  0000 L BNN
-F 1 "AS6C1008-55PCN (OPTIONAL)" H 8650 3150 50  0000 L BNN
+F 1 "AS6C1008-55PCN" H 8400 3950 50  0000 L BNN
 F 2 "Sockets_DIP:DIP-32__600" H 9150 4950 50  0001 C CNN
 F 3 "" H 9150 4950 60  0000 C CNN
 	1    9150 4950
@@ -856,7 +1675,7 @@ Entry Wire Line
 Entry Wire Line
 	8200 5750 8300 5650
 Text Label 8300 5650 0    60   ~ 0
-A11
+A15
 Text Label 8300 5550 0    60   ~ 0
 A9
 Text Label 8300 5450 0    60   ~ 0
@@ -866,7 +1685,7 @@ A8
 Text Label 8300 5250 0    60   ~ 0
 A14
 Text Label 8300 5150 0    60   ~ 0
-A15
+A11
 Text Label 8300 5050 0    60   ~ 0
 A13
 Text Label 8300 4950 0    60   ~ 0
@@ -907,7 +1726,7 @@ L C C5
 U 1 1 54C41800
 P 10350 6150
 F 0 "C5" H 10350 6250 40  0000 L CNN
-F 1 "100n (OPTIONAL)" V 10450 6350 40  0000 L CNN
+F 1 "100n" V 10450 6350 40  0000 L CNN
 F 2 "00Jac:00JG-CapacitorMLCC" H 10388 6000 30  0001 C CNN
 F 3 "~" H 10350 6150 60  0000 C CNN
 	1    10350 6150
@@ -929,7 +1748,7 @@ L CONN_02X20 P5
 U 1 1 54C4BE3D
 P 14500 5400
 F 0 "P5" H 14500 6450 50  0000 C CNN
-F 1 "EXPANSION (OPT)" V 14500 5400 50  0000 C CNN
+F 1 "EXPANSION" V 14500 5400 50  0000 C CNN
 F 2 "Pin_Headers:Pin_Header_Straight_2x20" H 14500 4450 60  0001 C CNN
 F 3 "" H 14500 4450 60  0000 C CNN
 	1    14500 5400
@@ -1086,17 +1905,6 @@ F 3 "" H 7400 3700 30  0000 C CNN
 	1    7400 3700
 	1    0    0    -1  
 $EndComp
-$Comp
-L R R14
-U 1 1 54C89925
-P 7500 3700
-F 0 "R14" V 7450 3900 40  0000 C CNN
-F 1 "3K3" V 7507 3701 40  0000 C CNN
-F 2 "Discret:R3" V 7430 3700 30  0001 C CNN
-F 3 "" H 7500 3700 30  0000 C CNN
-	1    7500 3700
-	1    0    0    -1  
-$EndComp
 Entry Wire Line
 	13500 4850 13600 4750
 Entry Wire Line
@@ -1174,7 +1982,7 @@ L C C9
 U 1 1 54CC9F9B
 P 11250 6900
 F 0 "C9" H 11250 7000 40  0000 L CNN
-F 1 "470p (OPT)" H 11256 6815 40  0000 L CNN
+F 1 "470p" H 11256 6815 40  0000 L CNN
 F 2 "00Jac:00JG-CapacitorMLCC" H 11288 6750 30  0001 C CNN
 F 3 "~" H 11250 6900 60  0000 C CNN
 	1    11250 6900
@@ -1338,7 +2146,7 @@ $Comp
 L CONN_01X07 JP12
 U 1 1 54C60522
 P 13450 2450
-F 0 "JP12" H 13400 2800 50  0000 C CNN
+F 0 "JP12" H 13400 2850 50  0000 C CNN
 F 1 "RDY/~SO~/~SYNC~/~NMI~/~IRQ~/A16/GND" V 13550 2700 50  0000 C CNN
 F 2 "Pin_Headers:Pin_Header_Straight_1x07" H 13450 2450 60  0001 C CNN
 F 3 "" H 13450 2450 60  0000 C CNN
@@ -1372,7 +2180,7 @@ Entry Wire Line
 Text Label 14800 4750 0    60   ~ 0
 ~SYNC
 Text Notes 11600 1250 0    60   ~ 0
-For default configuration, place jumpers\non pins 1-2 on all jumpers\n(RAM chip disabled, Propeller connected\nto TVOUT, KBDATA, KBCLK).\nFor alternate configurations, place\njunmpers between jumper blocks\non pins 2-7.
+For default configuration, place jumpers on\npins 1-2 of all jumper blocks.\nThis disables the SRAM chip and connects the\nPropeller to P25=TVOUT, P26=KBDATA, P27=KBCLK.\nFor alternate configurations, place jumpers\nbetween jumper blocks on pins 2-7.
 $Comp
 L Dummy U1
 U 1 1 54C76D75
@@ -1453,11 +2261,6 @@ Wire Wire Line
 Connection ~ 5200 8700
 Wire Wire Line
 	4950 8700 5250 8700
-Wire Wire Line
-	5000 8500 5050 8500
-Wire Wire Line
-	5050 8500 5050 8700
-Connection ~ 5050 8700
 Wire Wire Line
 	4950 9900 7850 9900
 Wire Wire Line
@@ -1692,7 +2495,7 @@ Wire Wire Line
 Wire Wire Line
 	6550 4700 7700 4700
 Wire Wire Line
-	6550 5300 7700 5300
+	6550 5300 7650 5300
 Wire Wire Line
 	6550 6100 7700 6100
 Wire Wire Line
@@ -1813,10 +2616,10 @@ Wire Wire Line
 	9750 5650 10350 5650
 Connection ~ 10350 5650
 Wire Wire Line
-	9750 5250 10000 5250
+	9750 5250 9750 5250
 Wire Wire Line
-	10000 5250 10000 6450
-Connection ~ 10000 6450
+	9750 5250 9750 6450
+Connection ~ 9750 6450
 Wire Wire Line
 	8300 5750 8550 5750
 Wire Wire Line
@@ -1919,9 +2722,6 @@ Connection ~ 7100 4200
 Connection ~ 7200 4300
 Connection ~ 7300 4400
 Connection ~ 7400 4500
-Connection ~ 7500 5300
-Wire Wire Line
-	7500 3950 7500 5300
 Wire Wire Line
 	7100 3450 7100 3400
 Connection ~ 7100 3400
@@ -1934,9 +2734,6 @@ Connection ~ 7300 3400
 Wire Wire Line
 	7400 3450 7400 3400
 Connection ~ 7400 3400
-Wire Wire Line
-	7500 3450 7500 3400
-Connection ~ 7500 3400
 Wire Bus Line
 	13800 5650 13800 7350
 Wire Bus Line
@@ -2169,4 +2966,42 @@ Connection ~ 3950 4000
 Wire Wire Line
 	4150 4000 4150 4050
 Connection ~ 4150 4000
+$Comp
+L +5V #PWR022
+U 1 1 57255FFF
+P 6100 8600
+F 0 "#PWR022" H 6100 8690 20  0001 C CNN
+F 1 "+5V" H 6093 8729 30  0000 C CNN
+F 2 "" H 6100 8600 60  0000 C CNN
+F 3 "" H 6100 8600 60  0000 C CNN
+	1    6100 8600
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3,3V #PWR023
+U 1 1 572575FD
+P 7850 8700
+F 0 "#PWR023" H 7850 8660 30  0001 C CNN
+F 1 "+3,3V" H 7862 8838 30  0000 C CNN
+F 2 "" H 7850 8700 60  0000 C CNN
+F 3 "" H 7850 8700 60  0000 C CNN
+	1    7850 8700
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR024
+U 1 1 572576AA
+P 7850 9950
+F 0 "#PWR024" H 7850 9950 30  0001 C CNN
+F 1 "GND" H 7850 9880 30  0001 C CNN
+F 2 "" H 7850 9950 60  0000 C CNN
+F 3 "" H 7850 9950 60  0000 C CNN
+	1    7850 9950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7850 9900 7850 9950
+Connection ~ 7000 6200
+Connection ~ 1550 5850
+Connection ~ 7650 5300
 $EndSCHEMATC

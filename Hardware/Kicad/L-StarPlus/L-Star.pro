@@ -1,4 +1,4 @@
-update=14/02/2016 21:13:42
+update=29/04/2016 23:09:32
 last_client=kicad
 [cvpcb]
 version=1
@@ -50,19 +50,6 @@ LibName21=propeller
 LibName22=crystal
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=Plot/
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=PcbnewAdvanced
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-RptD_X=0
-RptD_Y=100
-RptLab=1
-LabSize=60
 [eeschema]
 version=1
 LibDir=Lib;C:/Users/Jac/Documents/Kicad/Lib
@@ -905,3 +892,14 @@ LibName835=C:/Users/Jac/Documents/Kicad/Lib/converted/zilog-z8-encore-v1_2a
 LibName836=C:/Users/Jac/Documents/Kicad/Lib/converted/Zilog-ZNEO-v1_0
 LibName837=C:/Users/Jac/Documents/Kicad/Lib/converted/zivapc
 LibName838=C:/Users/Jac/Documents/Kicad/Lib/converted/zx4125p
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=Plot/
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=PcbnewAdvanced
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
+ERC_TestSimilarLabels=1

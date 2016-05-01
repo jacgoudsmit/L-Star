@@ -842,7 +842,7 @@ $Descr B 17000 11000
 encoding utf-8
 Sheet 1 1
 Title "L-Star Simplified Software-Defined 6502 Computer Kit"
-Date "2016-04-29"
+Date "2016-04-30"
 Rev "2"
 Comp "(C) 2016 Jac Goudsmit"
 Comment1 "Open Source Hardware (MIT License)"

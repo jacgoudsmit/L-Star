@@ -1,10 +1,5 @@
-update=5/8/2016 12:28:13 AM
+update=5/8/2016 8:42:44 PM
 last_client=kicad
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
 [pcbnew]
 version=1
 LastNetListRead=L-Star.net
@@ -24,30 +19,6 @@ SolderMaskMinWidth=0.000000000000
 DrawSegmentWidth=0.200000000000
 BoardOutlineThickness=0.100000000000
 ModuleOutlineThickness=0.250000000000
-[pcbnew/libraries]
-LibDir=
-LibName1=jac
-LibName2=cui-md-xxs
-LibName3=oshw-logo
-LibName4=sockets
-LibName5=connect
-LibName6=discret
-LibName7=pin_array
-LibName8=divers
-LibName9=smd_capacitors
-LibName10=smd_resistors
-LibName11=smd_crystal&oscillator
-LibName12=smd_dil
-LibName13=smd_transistors
-LibName14=libcms
-LibName15=display
-LibName16=led
-LibName17=dip_sockets
-LibName18=pga_sockets
-LibName19=valves
-LibName20=propeddle-new
-LibName21=propeller
-LibName22=crystal
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -71,3 +42,6 @@ LibName5=crystal
 LibName6=conn
 [general]
 version=1
+[cvpcb]
+version=1
+NetIExt=net

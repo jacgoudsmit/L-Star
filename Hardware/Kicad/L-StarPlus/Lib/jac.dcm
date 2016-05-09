@@ -1,3 +1,8 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP SPST
+D Single-pole Single-throw switch
+K Switch
+$ENDCMP
+#
 #End Doc Library

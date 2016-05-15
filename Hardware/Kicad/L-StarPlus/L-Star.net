@@ -1,14 +1,14 @@
 (export (version D)
   (design
-    (source D:\Github\L-Star\Hardware\Kicad\L-StarPlus\L-Star.sch)
-    (date "5/14/2016 2:24:24 PM")
+    (source D:/Github/L-Star/Hardware/Kicad/L-StarPlus/L-Star.sch)
+    (date "5/15/2016 7:57:10 AM")
     (tool "Eeschema 4.0.2-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title "L-Star Simplified Software-Defined 6502 Computer Kit")
         (company "(C) 2016 Jac Goudsmit")
         (rev 2)
-        (date 2016-05-08)
+        (date 2016-05-15)
         (source L-Star.sch)
         (comment (number 1) (value "Open Source Hardware (MIT License)"))
         (comment (number 2) (value https://github.com/JacGoudsmit/L-Star))

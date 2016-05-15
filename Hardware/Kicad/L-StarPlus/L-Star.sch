@@ -12,7 +12,7 @@ $Descr B 17000 11000
 encoding utf-8
 Sheet 1 1
 Title "L-Star Simplified Software-Defined 6502 Computer Kit"
-Date "2016-05-08"
+Date "2016-05-15"
 Rev "2"
 Comp "(C) 2016 Jac Goudsmit"
 Comment1 "Open Source Hardware (MIT License)"
@@ -2055,8 +2055,8 @@ L SPST SW3
 U 1 1 5726DC1A
 P 4850 8700
 F 0 "SW3" H 4850 8950 50  0000 C CNN
-F 1 "PWR SWITCH" H 4850 8850 50  0000 C CNN
-F 2 "00Jac:00JG-SHORTED_Pin_Header_Straight_1x02" H 4850 8850 50  0001 C CNN
+F 1 "OFF - ON" H 4850 8850 50  0000 C CNN
+F 2 "00Jac:00JG-NKK_CS12ANW03" H 4850 8850 50  0001 C CNN
 F 3 "" H 4850 8700 60  0000 C CNN
 	1    4850 8700
 	1    0    0    -1  

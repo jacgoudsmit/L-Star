@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source D:\Github\L-Star\Hardware\Kicad\L-StarPlus\L-Star.sch)
-    (date "5/8/2016 10:27:01 PM")
+    (date "5/14/2016 2:24:24 PM")
     (tool "Eeschema 4.0.2-stable")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -316,8 +316,8 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 56C1F599))
     (comp (ref SW3)
-      (value "PWR SWITCH")
-      (footprint 00Jac:00JG-SHORTED_Pin_Header_Straight_1x02)
+      (value "OFF - ON")
+      (footprint 00Jac:00JG-NKK_CS12ANW03)
       (libsource (lib jac) (part SPST))
       (sheetpath (names /) (tstamps /))
       (tstamp 5726DC1A)))

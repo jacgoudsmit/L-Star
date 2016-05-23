@@ -29,18 +29,22 @@ CON
   _clkmode      = xtal1 + pll16x
   _xinfreq      = 5_000_000
 
+  RAMSIZE       = 8192          ' Amount of RAM emulated by Propeller                        
   BAUDRATE      = 115200        ' Baud rate on serial port
   
 OBJ
   hw:           "Hardware"      ' Constants for hardware
   clock1:       "Clock"         ' Clock generator
   term:         "SerKbd1TV"     ' Serial/Keyboard/TV terminal
-  ram:          "SRAMCtrl"      ' SRAM control
+  sram:         "SRAMCtrl"      ' SRAM control
   rom:          "Memory"        ' ROM emulation                        
   pia:          "A1PIA"         ' PIA hardware emulator  
 
 PUB main | i
 
+  ' Wait a second to give user a chance to connect serial terminal
+  waitcnt(clkfreq + cnt)
+  
   ' Init serial, keyboard and TV
   term.Start(hw#pin_RX, hw#pin_TX, -1 {hw#pin_KBDATA}, hw#pin_TV, BAUDRATE)
   term.str(string("L-STAR (C) 2014-2016 JAC GOUDSMIT",13))
@@ -54,13 +58,16 @@ PUB main | i
   ' Start the PIA emulator
   pia.Start($D010)
 
-  ' Start the SRAM cog
-  ram.Start($8000)
-  ram.Run
-  
   ' Start the memory cog
-  rom.Start(@RomFile, @RomEnd, @RomEnd)
+  rom.Start(@RomFile, @RomEnd, @RamEnd)
 
+  ' Start the SRAM cog
+  sram.Init(0)
+  sram.AddRam(RAMSIZE, 32768 - RAMSIZE)
+  sram.Start
+  
+  term.str(string("Activate!",13))
+  
   ' Start the clock
   clock1.Activate
 
@@ -87,6 +94,8 @@ DAT
 RomFile
                         File    "65C02.rom.bin"         ' BASIC/Krusader/WOZ mon for 65C02
 RomEnd
+                        byte    $A7[RAMSIZE]
+RamEnd
                                                 
 CON     
 ''***************************************************************************

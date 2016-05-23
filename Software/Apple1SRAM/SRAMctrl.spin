@@ -21,7 +21,7 @@ CON
   ' the lowest bits to match the command. See remarks elsewhere for more
   ' information.
   #0
-  cmd_NONE                      ' 0=No command
+  cmd_NONE                      ' No command, must be 0
   cmd_ADD_READ                  ' Add area to enable for reading
   cmd_ADD_WRITE                 ' Add area to enable for writing
   cmd_RUN                       ' Start controlling the SRAM chip
@@ -36,11 +36,10 @@ OBJ
 
 VAR
   long  Cmd                     ' Data to the cog, must follow Response
-  byte  MyCogId                 ' Cog ID + 1; 0=stopped
+  byte  MyCogId                 ' Cog ID + 1; 0=stopped  
   
-  
-PUB Start(RamLenParm) 
-'' Start a RAM cog memory cog to map hub memory into 65C02 address space
+PUB Init(RamLenParm) 
+'' Start an SRAM control cog
 ''
 '' Parameters:
 '' - RamLen: word
@@ -54,26 +53,27 @@ PUB Start(RamLenParm)
   ' Stop first, in case we're already started 
   Stop
 
-  Cmd := cmd_NONE
-  
-  result := cognew(@RamCog, @Cmd) => 0
+  Cmd := cmd_RUNNING
 
-  if result
-    repeat until Cmd <> 0 ' The cog responds with CogID + 1
-    MyCogId := Cmd
-    Cmd := 0
+  MyCogId := cognew(@SRAMCtrlCog, @Cmd) + 1
+
+  if (MyCogId)
+    repeat until Cmd == 0 ' The cog resets Cmd
+    
     AddRam(0, RamLenParm)    
 
 PUB Stop
 '' Stops the cog if it is running.
 
-  if MyCogId
-    cogstop(MyCogId~ - 1)
+  if MyCogId~~
+    cogstop(MyCogId~~ - 1)
     MyCogId := 0
+    Cmd := 0
 
 PUB AddRam(StartAddress, Length)
 '' Add a read-write area for which the RAM chip should be enabled.
-'' This only works if the cog has been started but is not in Run mode 
+'' This only works if the cog has been started but is not in Run mode.
+'' The area cannot wrap around the 64K border. 
 ''
 '' Parameters:
 '' - StartAddress: word
@@ -92,7 +92,8 @@ PUB AddRam(StartAddress, Length)
     
 PUB AddRom(StartAddress, Length)
 '' Add a read-only area for which the RAM chip should be enabled.
-'' This only works if the cog has been started but is not in Run mode
+'' This only works if the cog has been started but is not in Run mode.
+'' The area cannot wrap around the 64K border. 
 ''
 '' Parameters:
 '' - StartAddress: word
@@ -106,7 +107,7 @@ PUB AddRom(StartAddress, Length)
     repeat
     until Cmd == cmd_NONE
 
-PUB Run
+PUB Start
 '' Switch the RAM control cog to run mode. It will start controlling
 '' the SRAM chip based on the table in cog RAM.
 '' Afterwards, the table can no longer be altered.
@@ -115,73 +116,71 @@ PUB Run
     Cmd := cmd_RUN
 
     repeat
-    until Cmd == cmd_RUNNING
+    until Cmd <> cmd_RUN
 
 DAT
                         org     0
-RamCog
-                        ' Set the pin to output and disable the SRAM chip now.
-                        neg     OUTA, #1                ' Set all outputs to 1
-                        mov     DIRA, mask_RAMENB
+SRamCtrlCog
                                    
                         ' Relocate code to make space for the table                        
-:loop
-:relocstep              mov     RAMrelocated, RAMprereloc
-                        add     :relocstep, RAMoneone           
-                        djnz    RAMreloccounter, #:loop
+RelocLoop
+RelocStep               mov     RelocEnd, RelocEnd - (RelocDestination - RelocSource)
+                        sub     RelocStep, RelocOneOne           
+                        djnz    RelocCounter, #RelocLoop
 
-                        jmp     #RAMrelocated
+                        jmp     #RelocDestination
 
-mask_RAMENB             long    (|<hw#pin_RAMENB)
-RAMoneone               long    %1_000000001            ' One in source, one in destination        
-RAMreloccounter         long    @RAMrelocatedend - @RAMrelocated             
-RAMprereloc
+RelocOneOne             long    %1_000000001            ' One in source, one in destination        
+RelocCounter            long    RelocDestination - RelocSource             
+RelocSource
                         org     256
-RAMrelocated
+RelocDestination
 
 '============================================================================
-' Relocated code
+' Command interpreter
+
+                         ' Set the pin to output and disable the SRAM chip
+                        mov     OUTA, mask_RAMENB
+                        mov     DIRA, mask_RAMENB
 
                         ' Initialize the table with value $FFFFFFFF to
                         ' disable the RAM chip everywhere
-:loop                        
-:clearstep              neg     255, #1                 ' Store $FFFFFFFF at current location
-                        sub     :clearstep, D1
-                        djnz    counter, #:loop                        
+ClearLoop                        
+ClearStep               mov     0, FFFFFFFF
+                        add     ClearStep, D1
+                        djnz    counter, #ClearLoop                        
 
-                        ' Store CogId + 1 at Cmd
-                        cogid   data
-                        add     data, #1
-                        wrlong  data, PAR
-
-                        ' Wait until the Spin code clears the cog id
-WaitCogId                        
-                        rdlong  data, PAR       wz
-        if_nz           jmp     #WaitCogId                                                                        
+                        ' Reset the command to let Spin know we're ready
+                        wrlong  zero, PAR
 
                         ' Wait for a new command
 CmdLoop
-                        rdlong  data, PAR       wz
+                        rdlong  addr, PAR       wz
         if_z            jmp     #CmdLoop
 
-                        ' Save starting address                        
-                        mov     addr, data
-                        and     addr, mask_FFFF         ' addr is address in 6502 space
-                        shr     addr, #con_RESOLUTION_BITS ' addr is bit index in table
-
-                        ' Save length                                
-                        mov     counter, data
-                        shr     counter, #(16 + con_RESOLUTION_BITS) ' How many bits to change 
-
-                        ' Process command
+                        ' Extract the command
+                        mov     data, addr
                         and     data, #con_mask_CMD
+                        
+                        ' The Run command doesn't have parameters
+                        cmp     data, #cmd_RUN  wz
+        if_e            jmp     #Handle_Run
+
+                        ' Extract Length parameter from upper 16 bits
+                        mov     counter, addr           ' Save                         
+                        shr     counter, #(16 + con_RESOLUTION_BITS) wz ' Number of blocks to enable
+        if_z            jmp     #EndCmd                 ' Nothing to do
+
+                        ' Extract address parameter from lower 16 bits
+                        and     addr, mask_FFFF         ' addr is address in 6502 space
+                        shr     addr, #con_RESOLUTION_BITS ' addr is block number
+
+                        ' Process commands with parameters
                         cmp     data, #cmd_ADD_READ wz
         if_e            jmp     #Handle_AddRead
                         cmp     data, #cmd_ADD_WRITE wz
         if_e            jmp     #Handle_AddWrite
-                        cmp     data, #cmd_RUN  wz
-        if_e            jmp     #Handle_Run
-                        ' Fall through for unknown command
+                        ' Fall through for unknown commands
 
                         ' Clear command and wait for the next one                
 EndCmd                                                                                          
@@ -191,7 +190,7 @@ EndCmd
 '============================================================================
 ' Table setup commands
 
-                        ' Handle ADDREAD command
+                        ' Handle ADD_READ command
                         ' The index in the table is based on the R/!W bit
                         ' which is expected to be on a pin adjacent to A15.
                         ' In other words: the lower half of the table is
@@ -199,6 +198,9 @@ EndCmd
                         ' is for when it's reading.  
 Handle_AddRead
                         or      addr, mask_RW_SHIFTED
+                        ' Fall through to AddWrite handler
+
+                        ' Handle ADD_WRITE command
 Handle_AddWrite
 ModifyLoop
                         ' Calculate index and bit index
@@ -225,19 +227,19 @@ ModifyEntry
                         ' Done
                         jmp     #EndCmd                          
 
+'============================================================================
+' Run mode
+
 Handle_Run
                         ' Let Spin know we're running
                         mov     data, #cmd_RUNNING
                         wrlong  data, PAR
-WaitForPhi2
+
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0
                         ' Fall through to main loop
 
-'============================================================================
-' Main loop
-
-WaitForPhi1
+MainLoop
                         ' Wait until clock goes low
                         waitpeq zero, mask_CLK0
 ' t=0
@@ -248,7 +250,7 @@ WaitForPhi1
                         ' Get the address and R/!W bit
                         mov     addr, INA
                         shr     addr, #(hw#pin_A0 + con_RESOLUTION_BITS)
-                        and     addr, mask_RW_ADDR_SHIFTED
+                        and     addr, mask_RW_ADDR_SHIFTED ' addr is block number
 ' t=16
                         ' Split the address between long-index and bit-index
                         mov     bitindex, addr
@@ -276,15 +278,17 @@ LoadEntry
                         ' Reset the bit mask
                         mov     mask, #1            
 ' t=54        
-                        jmp     #WaitForPhi1
+                        jmp     #MainLoop
 ' t=58
 
 '============================================================================
 ' Constants
 
 zero                    long    0                       ' 0
-mask_FFFF               long    $FFFF                   ' $FFFF                   
+FFFFFFFF                long    $FFFFFFFF               ' $FFFFFFFF                                           
+mask_FFFF               long    $FFFF                   ' $FFFF
 d1                      long    (|<9)                   ' 1 in destination field
+mask_RAMENB             long    (|<hw#pin_RAMENB)       ' Output pin mask
 mask_CLK0               long    (|<hw#pin_CLK0)         ' Clock pin mask
 mask_RW_ADDR_SHIFTED    long    $1_FFFF >> con_RESOLUTION_BITS ' Mask for R/!W pin and address
 mask_RW_SHIFTED         long    $1_0000 >> con_RESOLUTION_BITS ' Bitmask for R/!W for table setup        
@@ -301,7 +305,7 @@ mask                    long    1
 '============================================================================
 ' End
 
-RamRelocatedEnd
+RelocEnd
                         fit
 
 CON     

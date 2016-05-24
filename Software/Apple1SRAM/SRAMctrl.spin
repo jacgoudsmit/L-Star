@@ -151,6 +151,7 @@ ClearStep               mov     0, FFFFFFFF
                         djnz    counter, #ClearLoop                        
 
                         ' Reset the command to let Spin know we're ready
+EndCmd                        
                         wrlong  zero, PAR
 
                         ' Wait for a new command
@@ -180,12 +181,9 @@ CmdLoop
         if_e            jmp     #Handle_AddRead
                         cmp     data, #cmd_ADD_WRITE wz
         if_e            jmp     #Handle_AddWrite
-                        ' Fall through for unknown commands
 
-                        ' Clear command and wait for the next one                
-EndCmd                                                                                          
-                        wrlong  zero, PAR
-                        jmp     #CmdLoop
+                        ' Don't do anything for unknown commands
+                        jmp     #EndCmd
 
 '============================================================================
 ' Table setup commands
@@ -273,7 +271,7 @@ LoadEntry
                         waitpne zero, mask_CLK0
 ' t=46
                         ' Enable the SRAM chip if necessary
-        if_z            and     OUTA, mask_RAMENB
+        if_z            andn    OUTA, mask_RAMENB
 
                         ' Reset the bit mask
                         mov     mask, #1            

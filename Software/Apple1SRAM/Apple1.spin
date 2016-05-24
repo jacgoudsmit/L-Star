@@ -66,8 +66,6 @@ PUB main | i
   sram.AddRam(RAMSIZE, 32768 - RAMSIZE)
   sram.Start
   
-  term.str(string("Activate!",13))
-  
   ' Start the clock
   clock1.Activate
 

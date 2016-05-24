@@ -29,7 +29,7 @@ CON
   _clkmode      = xtal1 + pll16x
   _xinfreq      = 5_000_000
 
-  RAMSIZE       = 8192          ' Amount of RAM emulated by Propeller                        
+  RAMSIZE       = $8000         ' Amount of RAM to map to the SRAM chip                        
   BAUDRATE      = 115200        ' Baud rate on serial port
   
 OBJ
@@ -43,7 +43,7 @@ OBJ
 PUB main | i
 
   ' Wait a second to give user a chance to connect serial terminal
-  waitcnt(clkfreq + cnt)
+  'waitcnt(clkfreq + cnt)
   
   ' Init serial, keyboard and TV
   term.Start(hw#pin_RX, hw#pin_TX, -1 {hw#pin_KBDATA}, hw#pin_TV, BAUDRATE)
@@ -59,11 +59,11 @@ PUB main | i
   pia.Start($D010)
 
   ' Start the memory cog
-  rom.Start(@RomFile, @RomEnd, @RamEnd)
+  ' Cant use the fake-reset functionality because it may interfere with the SRAM.
+  rom.StartEx(@RomFile, @RomEnd, @RomEnd, $1_0000 - (@RomEnd - @RomFile), 0)
 
   ' Start the SRAM cog
-  sram.Init(0)
-  sram.AddRam(RAMSIZE, 32768 - RAMSIZE)
+  sram.Init(RAMSIZE)
   sram.Start
   
   ' Start the clock
@@ -83,17 +83,11 @@ PUB main | i
         term.str(string(32,8))
       term.tx(i)
 
-PRI Patch(addrval, dataval)
-
-  byte[addrval + @RomEnd - $1_0000] := dataval 
-
 DAT
 
 RomFile
                         File    "65C02.rom.bin"         ' BASIC/Krusader/WOZ mon for 65C02
 RomEnd
-                        byte    $A7[RAMSIZE]
-RamEnd
                                                 
 CON     
 ''***************************************************************************

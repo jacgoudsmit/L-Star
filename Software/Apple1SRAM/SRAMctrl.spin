@@ -35,6 +35,13 @@ OBJ
   hw:   "Hardware"              ' Constants for hardware
 
 VAR
+  ' Cmd contains the following bit pattern:
+  ' LLLLLLLLLLLL****AAAAAAAAAAAA*RCC
+  ' Where: L=upper bits of length
+  '        *=ignored
+  '        A=upper bits of start address
+  '        R=is set when main loop running
+  '        C=command
   long  Cmd                     ' Data to the cog, must follow Response
   byte  MyCogId                 ' Cog ID + 1; 0=stopped  
   
@@ -81,7 +88,7 @@ PUB AddRam(StartAddress, Length)
 '' - Length: word
 ''   Address in 6502 address space. Must be a multiple of 16.   
 
-  if (MyCogId <> 0) and (Cmd == cmd_NONE)
+  if (MyCogId <> 0) and (Cmd == cmd_NONE) and (StartAddress + Length < $1_0000)
     Cmd := cmd_ADD_WRITE | (StartAddress & con_MASK_RESOLUTION) | ((Length & con_MASK_RESOLUTION) << 16)
 
     repeat
@@ -101,7 +108,7 @@ PUB AddRom(StartAddress, Length)
 '' - Length: word
 ''   Address in 6502 address space. Must be a multiple of 16.   
 
-  if (MyCogId <> 0) and (Cmd == cmd_NONE)  
+  if (MyCogId <> 0) and (Cmd == cmd_NONE) and (StartAddress + Length < $1_0000)
     Cmd := cmd_ADD_READ | (StartAddress & con_MASK_RESOLUTION) | ((Length & con_MASK_RESOLUTION) << 16)
 
     repeat
@@ -120,6 +127,18 @@ PUB Start
 
 DAT
                         org     0
+                        ' The code relocates itself to make space for a
+                        ' table that represents what the output should be
+                        ' for each block of 6502 memory space. Each bit
+                        ' represents a block of addresses. During the main
+                        ' loop, the Propeller probes the address bus and
+                        ' the R/~W pin of the 6502 to calculate an index
+                        ' into the table and a bit number within the long
+                        ' word stored there. The R/~W pin value is used as
+                        ' an and extra bit on top of the address bus, so
+                        ' the lower half of the table is for write access
+                        ' and the upper half of the table is for read
+                        ' access (from the viewpoint of the 6502).
 SRamCtrlCog
                                    
                         ' Relocate code to make space for the table                        
@@ -160,7 +179,7 @@ CmdLoop
         if_z            jmp     #CmdLoop
 
                         ' Extract the command
-                        mov     data, addr
+                        mov     data, addr              ' Make a copy
                         and     data, #con_mask_CMD
                         
                         ' The Run command doesn't have parameters
@@ -168,7 +187,7 @@ CmdLoop
         if_e            jmp     #Handle_Run
 
                         ' Extract Length parameter from upper 16 bits
-                        mov     counter, addr           ' Save                         
+                        mov     counter, addr           ' Make a copy                         
                         shr     counter, #(16 + con_RESOLUTION_BITS) wz ' Number of blocks to enable
         if_z            jmp     #EndCmd                 ' Nothing to do
 
@@ -177,19 +196,13 @@ CmdLoop
                         shr     addr, #con_RESOLUTION_BITS ' addr is block number
 
                         ' Process commands with parameters
-                        cmp     data, #cmd_ADD_READ wz
-        if_e            jmp     #Handle_AddRead
                         cmp     data, #cmd_ADD_WRITE wz
         if_e            jmp     #Handle_AddWrite
-
-                        ' Don't do anything for unknown commands
-                        jmp     #EndCmd
-
-'============================================================================
-' Table setup commands
+                        cmp     data, #cmd_ADD_READ wz
+        if_ne           jmp     #EndCmd                 ' Unknown command
 
                         ' Handle ADD_READ command
-                        ' The index in the table is based on the R/!W bit
+                        ' The index in the table is based on the R/~W bit
                         ' which is expected to be on a pin adjacent to A15.
                         ' In other words: the lower half of the table is
                         ' for when the 6502 is writing, and the upper half
@@ -220,6 +233,7 @@ ModifyEntry
                         mov     mask, #1
 
                         ' Next bit
+                        add     addr, #1
                         djnz    counter, #ModifyLoop
 
                         ' Done

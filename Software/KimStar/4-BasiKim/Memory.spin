@@ -49,7 +49,7 @@ PUB StartEx(RomStartParm, RomEndRamStartParm, RamEndParm, Offset6502Parm, ResetV
 
   pRomStart := RomStartParm
   pRomEndRamStart := RomEndRamStartParm
-  pRamEnd := RamEndParm
+  pRamEnd := RamEndParm - 1
   gOffset6502 := Offset6502Parm
   gResetVector := ResetVectorParm
   pCogId := @MyCogId
@@ -280,7 +280,7 @@ data                    long    0
 pCogId                  long    0                       ' Hub pointer where cog ID + 1 is stored
 pRomStart               long    0                       ' Hub pointer to start of ROM
 pRomEndRamStart         long    0                       ' Hub pointer to end of ROM, start of RAM
-pRamEnd                 long    0                       ' Hub pointer to end of RAM 
+pRamEnd                 long    0                       ' Hub pointer to last byte of RAM 
 gResetVector            long    0                       ' Reset vector used for fake reset; 0=skip
 gOffset6502             long    0                       ' 6502 address for start of ROM
 

@@ -1,4 +1,4 @@
-(module 00JG-BARREL_JACK_RAPC722X (layer F.Cu) (tedit 54CD9D20)
+(module 00JG-BARREL_JACK_RAPC722X (layer F.Cu) (tedit 5758D9E3)
   (descr rapc722x_cd.pdf)
   (fp_text reference P? (at 0 -19.8) (layer F.SilkS) hide
     (effects (font (size 1 1) (thickness 0.15)))
@@ -11,7 +11,7 @@
   (fp_line (start 4.5 -14.5) (end 4.5 0) (layer F.SilkS) (width 0.3048))
   (fp_line (start -4.5 -14.5) (end 4.5 -14.5) (layer F.SilkS) (width 0.3048))
   (fp_line (start -4.5 -14.5) (end -4.5 0) (layer F.SilkS) (width 0.3048))
-  (pad 1 thru_hole circle (at 0 -13.74) (size 5.5 5.5) (drill 3.56) (layers *.Cu *.SilkS *.Mask))
-  (pad 2 thru_hole circle (at 0 -7.49) (size 5.5 5.5) (drill 3.05) (layers *.Cu *.SilkS *.Mask))
-  (pad 3 thru_hole circle (at 4.8 -10.74) (size 5.3 5.3) (drill 3.05) (layers *.Cu *.SilkS *.Mask))
+  (pad 1 thru_hole circle (at 0 -13.74) (size 5.5 5.5) (drill 3.5) (layers *.Cu *.SilkS *.Mask))
+  (pad 2 thru_hole circle (at 0 -7.49) (size 5.5 5.5) (drill 3) (layers *.Cu *.SilkS *.Mask))
+  (pad 3 thru_hole circle (at 4.8 -10.74) (size 5.3 5.3) (drill 3) (layers *.Cu *.SilkS *.Mask))
 )

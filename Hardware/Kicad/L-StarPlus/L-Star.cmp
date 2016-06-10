@@ -1,0 +1,411 @@
+Cmp-Mod V01 Created by PcbNew   date = 6/9/2016 8:51:08 PM
+
+BeginCmp
+TimeStamp = 54CDD183
+Path = /547A814D
+Reference = IC6;
+ValeurCmp = LM1086-3.3;
+IdModule  = 00Jac:00JG-TO-220_Neutral123_Horizontal_LargePads-Heatsink;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C088C4
+Path = /54C32A2D
+Reference = IC2;
+ValeurCmp = AS6C1008-55PCN;
+IdModule  = 00JG-DIP-32__600;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C0988B
+Path = /54CD4BD6
+Reference = P4;
+ValeurCmp = RESET;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C09891
+Path = /54CD3D2C
+Reference = P5;
+ValeurCmp = RESET6502;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x02;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD1D1
+Path = /547A8A32
+Reference = P6;
+ValeurCmp = VIDEO OUT;
+IdModule  = 00Jac:00JG-RCAsocket;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD19D
+Path = /54C76D75
+Reference = U1;
+ValeurCmp = OSHW Logo;
+IdModule  = 00Jac:00JG-OSHW-logo_silkscreen-front_7mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD1AC
+Path = /547A8E1E
+Reference = X1;
+ValeurCmp = 5MHz;
+IdModule  = 00Jac:00JG-Crystal_HC49-U_Vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = 573794F4
+Path = /5726DC1A
+Reference = SW3;
+ValeurCmp = OFF - ON;
+IdModule  = 00Jac:00JG-NKK_CS12ANW03;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD1A0
+Path = /54C76DBD
+Reference = U2;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:00JG-MountHoleM3;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD1A8
+Path = /54C76E4E
+Reference = U4;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:00JG-MountHoleM3;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD1A4
+Path = /54C76E05
+Reference = U3;
+ValeurCmp = Mount hole;
+IdModule  = 00Jac:00JG-MountHoleM3;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C71A58
+Path = /547A8185
+Reference = D1;
+ValeurCmp = POWER;
+IdModule  = 00Jac:00JG-LED5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08769
+Path = /54764E12
+Reference = SW2;
+ValeurCmp = RESET6502;
+IdModule  = 00Jac:00JG-PUSHBUTTON;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08772
+Path = /534A34FA
+Reference = SW1;
+ValeurCmp = RESET;
+IdModule  = 00Jac:00JG-PUSHBUTTON;
+EndCmp
+
+BeginCmp
+TimeStamp = 575504D5
+Path = /54C5EEEF
+Reference = JP5;
+ValeurCmp = P27;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = 575504BF
+Path = /54C60522
+Reference = JP4;
+ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/~RES~/~RAM~/+3.3;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = 575504A9
+Path = /54C5EE81
+Reference = JP3;
+ValeurCmp = P26;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = 57550493
+Path = /54C6C53E
+Reference = JP2;
+ValeurCmp = RDY/~SO~/~SYNC~/~NMI~/~IRQ~/~RES~/A16/GND;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = 5755047D
+Path = /54C5E529
+Reference = JP1;
+ValeurCmp = P25;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_1x08;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C092AA
+Path = /547A8177
+Reference = P7;
+ValeurCmp = 7-15V 1-1.5A IN;
+IdModule  = 00Jac:00JG-BARREL_JACK_RAPC722X;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD15E
+Path = /547A8E12
+Reference = C1;
+ValeurCmp = 100n;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD163
+Path = /547A8DFA
+Reference = C2;
+ValeurCmp = 100n;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD168
+Path = /547A8E0C
+Reference = C3;
+ValeurCmp = 100n;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD16D
+Path = /547A9E19
+Reference = C4;
+ValeurCmp = 100n;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD172
+Path = /54C41800
+Reference = C5;
+ValeurCmp = 100n;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD177
+Path = /54CC9F9B
+Reference = C6;
+ValeurCmp = 470p;
+IdModule  = 00Jac:00JG-CapacitorMLCC;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C088D1
+Path = /547A8E24
+Reference = IC1;
+ValeurCmp = 24LC512;
+IdModule  = 00Jac:00JG-DIP-8__300;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300987
+Path = /56C142C2
+Reference = R9;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300982
+Path = /56C1F599
+Reference = R6;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 5730097D
+Path = /54C898C7
+Reference = R5;
+ValeurCmp = 3K3;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300978
+Path = /54C891A7
+Reference = R4;
+ValeurCmp = 3K3;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300973
+Path = /54C89170
+Reference = R3;
+ValeurCmp = 3K3;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 5730096E
+Path = /54C8912E
+Reference = R2;
+ValeurCmp = 3K3;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300969
+Path = /547A8191
+Reference = R15;
+ValeurCmp = 100;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300964
+Path = /547A8A3F
+Reference = R14;
+ValeurCmp = 270;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 5730095F
+Path = /547A84DC
+Reference = R13;
+ValeurCmp = 100;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 5730095A
+Path = /547A84E2
+Reference = R12;
+ValeurCmp = 100;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300955
+Path = /547A84D0
+Reference = R11;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300950
+Path = /547A84D6
+Reference = R10;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 5730094B
+Path = /547B973E
+Reference = R1;
+ValeurCmp = 3K3;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300946
+Path = /547A8E06
+Reference = R7;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 57300941
+Path = /547A8E91
+Reference = R8;
+ValeurCmp = 10K;
+IdModule  = 00Jac:00JG-R400;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08872
+Path = /547A8E18
+Reference = IC4;
+ValeurCmp = P8X32A;
+IdModule  = 00Jac:00JG-DIP-40__600;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C0889F
+Path = /547A9E1F
+Reference = IC3;
+ValeurCmp = W65C02S6TPG-14;
+IdModule  = 00Jac:00JG-DIP-40__600;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD18A
+Path = /547A84EA
+Reference = P3;
+ValeurCmp = PS/2 KBD;
+IdModule  = 00Jac:00JG-MiniDin6;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CDD17C
+Path = /547A8147
+Reference = IC5;
+ValeurCmp = LM1086-5.0;
+IdModule  = 00Jac:00JG-TO-220_Neutral123_Horizontal_LargePads-Heatsink;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08824
+Path = /54C4BE3D
+Reference = P2;
+ValeurCmp = EXPANSION;
+IdModule  = 00Jac:00JG-Pin_Header_Straight_2x20;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08780
+Path = /547A8140
+Reference = C9;
+ValeurCmp = 47u/16V;
+IdModule  = 00Jac:00JG-C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08787
+Path = /547A813A
+Reference = C8;
+ValeurCmp = 47u/16V;
+IdModule  = 00Jac:00JG-C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C0878E
+Path = /547A8134
+Reference = C7;
+ValeurCmp = 47u/16V;
+IdModule  = 00Jac:00JG-C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C08835
+Path = /534901DB
+Reference = P1;
+ValeurCmp = PROP PLUG;
+IdModule  = 00Jac:00JG-Pin_Header_Angled_1x04;
+EndCmp
+
+EndListe

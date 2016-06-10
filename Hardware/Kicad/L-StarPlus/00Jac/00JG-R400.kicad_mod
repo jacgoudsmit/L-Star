@@ -1,4 +1,4 @@
-(module 00JG-R400 (layer F.Cu) (tedit 57300435)
+(module 00JG-R400 (layer F.Cu) (tedit 5758F6D7)
   (descr "Resitance 3 pas")
   (tags R)
   (autoplace_cost180 10)
@@ -14,8 +14,8 @@
   (fp_line (start -3.81 -1.016) (end -3.81 1.016) (layer F.SilkS) (width 0.15))
   (fp_line (start -3.81 1.016) (end 3.81 1.016) (layer F.SilkS) (width 0.15))
   (fp_line (start 3.81 -1.016) (end 3.81 1.016) (layer F.SilkS) (width 0.15))
-  (pad 1 thru_hole circle (at -5.08 0) (size 1.397 1.397) (drill 0.8128) (layers *.Cu *.Mask F.SilkS))
-  (pad 2 thru_hole circle (at 5.08 0) (size 1.397 1.397) (drill 0.8128) (layers *.Cu *.Mask F.SilkS))
+  (pad 1 thru_hole oval (at -5.08 0) (size 2.032 1.524) (drill 0.8128) (layers *.Cu *.Mask F.SilkS))
+  (pad 2 thru_hole oval (at 5.08 0) (size 2.032 1.524) (drill 0.8128) (layers *.Cu *.Mask F.SilkS))
   (model Discret/R3.wrl
     (at (xyz 0 0 0))
     (scale (xyz 0.3 0.3 0.3))

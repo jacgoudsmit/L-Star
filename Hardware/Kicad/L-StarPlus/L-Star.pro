@@ -1,4 +1,4 @@
-update=5/8/2016 8:42:44 PM
+update=6/10/2016 11:02:13 PM
 last_client=kicad
 [pcbnew]
 version=1
@@ -40,8 +40,8 @@ LibName3=power
 LibName4=propeller
 LibName5=crystal
 LibName6=conn
-[general]
-version=1
 [cvpcb]
 version=1
 NetIExt=net
+[general]
+version=1

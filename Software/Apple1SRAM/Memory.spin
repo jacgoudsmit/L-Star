@@ -126,7 +126,7 @@ MemCog
                         ' make the code more difficult to read, and it's not
                         ' really necessary because there's plenty of space in
                         ' the cog to put the same code twice. Nevertheless,
-                        ' I apologize fot the copy-and-paste.   
+                        ' I apologize for the copy-and-paste.   
 FakeResetWaitForPhi2
                         ' Wait until clock goes high
                         waitpne zero, mask_CLK0                 

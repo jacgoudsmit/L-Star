@@ -12,13 +12,13 @@ $Descr B 17000 11000
 encoding utf-8
 Sheet 1 1
 Title "L-Star Simplified Software-Defined 6502 Computer Kit"
-Date "2016-08-28"
-Rev "4"
+Date "2016-10-07"
+Rev "5"
 Comp "(C) 2016 Jac Goudsmit"
 Comment1 "Open Source Hardware (MIT License)"
 Comment2 "https://github.com/JacGoudsmit/L-Star"
 Comment3 "https://hackaday.io/project/3620"
-Comment4 ""
+Comment4 "https://l-star.org"
 $EndDescr
 $Comp
 L CONN_4 P1
@@ -792,8 +792,6 @@ Text Label 8300 5650 0    60   ~ 0
 A15
 Text Label 8300 5550 0    60   ~ 0
 A9
-Text Label 8300 5450 0    60   ~ 0
-A11
 Text Label 8300 5350 0    60   ~ 0
 A8
 Text Label 8300 5250 0    60   ~ 0
@@ -1345,7 +1343,7 @@ L SPST SW3
 U 1 1 5726DC1A
 P 4850 8700
 F 0 "SW3" H 4850 8950 50  0000 C CNN
-F 1 "OFF - ON" H 4850 8850 50  0000 C CNN
+F 1 "<ON" H 4850 8850 50  0000 C CNN
 F 2 "00Jac:00JG-NKK_CS12ANW03" H 4850 8850 50  0001 C CNN
 F 3 "" H 4850 8700 60  0000 C CNN
 	1    4850 8700
@@ -2304,4 +2302,6 @@ $EndComp
 Connection ~ 15300 6450
 Wire Wire Line
 	12350 6800 12450 6800
+Text Label 8300 5450 0    60   ~ 0
+A11
 $EndSCHEMATC

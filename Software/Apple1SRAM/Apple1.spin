@@ -1,6 +1,6 @@
 ''***************************************************************************
 ''* L-STAR, Apple-1 replica with minimal hardware
-''* Copyright (C) 2014 Jac Goudsmit
+''* Copyright (C) 2014-2016 Jac Goudsmit
 ''*
 ''* Some of the code in this project was based on the following projects,
 ''* all under MIT license unless otherwise mentioned:
@@ -46,11 +46,14 @@ PUB main | i
   'waitcnt(clkfreq + cnt)
   
   ' Init serial, keyboard and TV
-  term.Start(hw#pin_RX, hw#pin_TX, -1 {hw#pin_KBDATA}, hw#pin_TV, BAUDRATE)
-  term.str(string("L-STAR (C) 2014-2016 JAC GOUDSMIT",13))
-  term.str(string("SIM.ROM BYTES: "))
+  '
+  ' TIP: If you don't use a PS/2 keyboard (only serial port),
+  '      change the third parameter to -1 
+  term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_TV, BAUDRATE)
+  term.str(string("L-STAR (C) 2014-2016 Jac Goudsmit", 13))
+  term.str(string("Simulated ROM bytes: "))
   term.dec(@RomEnd-@RomFile)
-  term.str(string(13,13))
+  term.tx(13)
 
   ' Initialize the clock before starting any cogs that wait for it
   clock1.Init(1_000_000)
@@ -66,6 +69,8 @@ PUB main | i
   sram.Init(RAMSIZE)
   sram.Start
   
+  term.str(string("Reset the 6502 to start.", 13, 13))
+
   ' Start the clock
   clock1.Activate
 

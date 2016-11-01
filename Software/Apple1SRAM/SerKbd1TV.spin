@@ -24,8 +24,9 @@ PUB Start(rxpin, txpin, kbdatapin, tvpin, baudrate) | t
   if (kbdatapin => 0)
     str(string("Hit SPACE on the PS/2 keyboard..."))
     t := kb.calckbdtime(kbdatapin)
-    kb.start(kbdatapin, t & $FFFF, t >> 16)
-    havekb := 1 
+    kb.start(kbdatapin, t & $FFFF, t >> 16, 6) ' 6=Numlock on, Capslock on, Scrollock off
+    havekb := 1
+    tx(13)
 
 PUB str(s)
 

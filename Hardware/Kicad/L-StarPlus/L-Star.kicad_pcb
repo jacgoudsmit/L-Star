@@ -15,8 +15,8 @@
   (page USLetter)
   (title_block
     (title "L-Star Simplified Software-Defined 6502 Computer")
-    (date 2016-10-07)
-    (rev 5)
+    (date 2016-12-11)
+    (rev 5B)
     (company "(C) 2016 Jac Goudsmit")
     (comment 1 "Open Source Hardware (MIT License)")
     (comment 2 https://github.com/JacGoudsmit/L-Star)
@@ -25,7 +25,7 @@
   )
 
   (layers
-    (0 F.Cu signal hide)
+    (0 F.Cu signal)
     (31 B.Cu signal)
     (32 B.Adhes user)
     (33 F.Adhes user)
@@ -2225,7 +2225,7 @@
     (arrow2a (pts (xy 190.5 146.685) (xy 191.086421 145.558496)))
     (arrow2b (pts (xy 190.5 146.685) (xy 189.913579 145.558496)))
   )
-  (gr_text "L-STAR PLUS rev 5\n(C) 2016 Jac Goudsmit\nhttps://github.com/JacGoudsmit/L-Star" (at 132.715 132.08 90) (layer F.SilkS)
+  (gr_text "L-STAR PLUS rev 5\n(C) 2016 Jac Goudsmit\nhttps://www.L-Star.org" (at 132.715 132.08 90) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.254)) (justify left))
   )
 

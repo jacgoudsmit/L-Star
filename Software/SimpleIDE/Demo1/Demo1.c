@@ -219,7 +219,7 @@ int main()
     case 'c':
     case 'C':
       // Toggle the clock
-      OUTA ^= BP(pin_CLK0);
+      toggle(pin_CLK0);
       break;
       
     default:

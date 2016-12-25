@@ -1,4 +1,4 @@
-Demo1.c
+demo1.c
 >compiler=C
 >memtype=cmm main ram compact
 >optimize=-Os
@@ -6,4 +6,4 @@ Demo1.c
 >-fno-exceptions
 >defs::-std=c99
 >-lm
->BOARD::ACTIVITYBOARD
+>BOARD::GENERIC

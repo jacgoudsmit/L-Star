@@ -8,7 +8,7 @@ No SRAM is needed.
 
 Usage:
 
-1. In SimpleIDE, load the Demo1.side project.
+1. In SimpleIDE, load the Demo2.side project.
 2. Connect the Prop Plug to the L-Star and to the PC. In SimpleIDE, the
    COM port should be detected automatically (if not, refer to the 
    SimpleIDE documentation).

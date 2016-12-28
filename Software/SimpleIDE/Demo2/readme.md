@@ -1,5 +1,4 @@
 This project demonstrates how the Propeller bitbangs the 6502.
-
 No screen or keyboard are needed.
 Jumpers settings are irrelevant.
 No SRAM is needed.

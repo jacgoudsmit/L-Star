@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Demo/Tutorial project 1 for L-Star project
+// Demo/Tutorial project 2 for L-Star project
 // Copyright (C) 2016 Jac Goudsmit
 //
 // TERMS OF USE: MIT License. See bottom of file.                                                            
@@ -53,6 +53,10 @@
 #define get_ADDR(x) BD(x, 16, pin_A0)
 
 
+#define ROMSIZE (0x10)
+#define RAMSIZE (0x300)
+
+
 /////////////////////////////////////////////////////////////////////////////
 // TYPES
 /////////////////////////////////////////////////////////////////////////////
@@ -92,7 +96,7 @@ typedef enum
   // Read/Not Write
   pin_RW,
   
-  // I/O pins
+  // Uncommitted I/O pins
   pin_P25,
   pin_P26,
   pin_P27,
@@ -115,6 +119,22 @@ typedef enum
 
 // Pointer to use for terminal calls.
 terminal *term;
+
+// ROM and RAM
+uint8_t ROMRAM[ROMSIZE + RAMSIZE] = {
+  // $FFF0
+  0xEE, 0x00, 0x02,   // inc $200
+  0x4C, 0xF0, 0xFF,   // jmp $FFF0
+  
+  0x00, 0x00, 0x00, 0x00, // filler bytes
+  
+  // $FFFA
+  0xF0, 0xFF,         // NMI vector
+  0xF0, 0xFF,         // Reset vector
+  0xF0, 0xFF          // BRK / IRQ vector
+  
+  // Rest of the array is filled with 0x00 by the compiler
+};
 
   
 /////////////////////////////////////////////////////////////////////////////
@@ -146,6 +166,50 @@ void print_ina(void)
 
 
 //---------------------------------------------------------------------------
+// Memory cog
+void memorycog()
+{
+  for(;;)
+  {
+    // Wait until the clock goes low
+    waitpeq(0, BP(pin_CLK0));
+    
+    // If we put anything on the data bus in the previous cycle, take it off.
+    set_DATA(DIRA, 0);
+    
+    // Get the address and check if it's in range
+    unsigned addr = get_ADDR(INA);
+    
+    // Calculate offset in array
+    addr = (addr + ROMSIZE) & 0xFFFF;
+    
+    // Wait until the clock goes high
+    waitpne(0, BP(pin_CLK0));
+
+    // Check if the address is in range    
+    if (addr < sizeof(ROMRAM))
+    {
+      // Check for read or write mode
+      if (BD(INA, 1, pin_RW))
+      {
+        // The 65C02 is reading, put data from the array on the data bus
+        OUTA = (unsigned)ROMRAM[addr];
+        set_DATA(DIRA, 0xFF);
+      }
+      else
+      {
+        // The 6502 is writing. Make sure we don't overwrite the ROM
+        if (addr >= ROMSIZE)
+        {
+          ROMRAM[addr] = (uint8_t)INA;
+        }
+      }
+    }                        
+  }    
+}
+
+  
+//---------------------------------------------------------------------------
 // Main function
 int main()
 {
@@ -165,6 +229,9 @@ int main()
   OUTA |= (BP(pin_SDA) | BP(pin_CLK0));
   DIRA |= (BP(pin_SDA) | BP(pin_CLK0));
   
+  // Start the memory cog
+  cog_run(memorycog, 0);
+
   // Initialization done
   dprint(term, "Hello L-Star!\n");
 

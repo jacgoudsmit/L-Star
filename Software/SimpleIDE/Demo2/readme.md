@@ -1,9 +1,13 @@
 This project demonstrates how the Propeller bitbangs the 6502.
+In addition to the previous project, this also demonstrates how to
+run a cog that emulates ROM and RAM.
+
 No screen or keyboard are needed.
 Jumpers settings are irrelevant.
 No SRAM is needed.
 
 Usage:
+
 1. In SimpleIDE, load the Demo1.side project.
 2. Connect the Prop Plug to the L-Star and to the PC. In SimpleIDE, the
    COM port should be detected automatically (if not, refer to the 
@@ -20,8 +24,13 @@ Usage:
    65C02 is in a blocked state. Resetting the 65C02 will fix this;
    see below.
 7. When the clock is high and the 6502 is in write mode, the data bus
-   value is valid. It's executing random code because nothing else puts
-   any signals on the databus in this project.
+   value is put on the bus by the 65C02. In read mode, the 65C02 reads
+   the value from the data bus when the clock goes from high to low.
+   In this demo, a separate cog of the Propeller is used to represent
+   an array of bytes in the Propeller's hub to the 65C02 as ROM and RAM.
+   The ROM is mapped in the $FFF0-$FFFF area of 65C02 address space, the
+   RAM is mapped to $0000-$02FF. The program in the ROM does nothing
+   other than repeatedly increment the byte at location $200.
 8. Push and hold the Reset6502 button and generate 2 clock cycles (hit
    the C button on your keyboard 4 times to make the clock go
    Low-High-Low-High). Then release the Reset6502 button again.

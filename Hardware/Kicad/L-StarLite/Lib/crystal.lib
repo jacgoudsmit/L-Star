@@ -1,0 +1,1135 @@
+EESchema-LIBRARY Version 2.3  29/04/2008-12:22:09
+# Converted with eagle2kicad.ulp Version 0.9
+# Device count = 33
+#
+# Dev Name: 86SMX
+# Package Name: 86SMX
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF 86SMX Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q1
+F0 "Q" -100 90 50 H V L B
+F1 "86SMX" -100 -150 50 H V L B
+F2 "crystal-86SMX" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 4 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: 90SMX
+# Package Name: 9XSMX
+# Dev Tech: ''
+# Dev Prefix: 
+# Gate count = 1
+#
+DEF 90SMX ?? 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q1
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -200 0 100 R 40 40 1 1 P 
+X 2 4 200 0 100 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: 91SMX
+# Package Name: 9XSMX
+# Dev Tech: ''
+# Dev Prefix: 
+# Gate count = 1
+#
+DEF 91SMX ?? 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q2
+DRAW
+P 2 1 0 0 0 200 0 50
+P 2 1 0 0 0 50 0 -100
+P 2 1 0 0 100 200 100 50
+P 2 1 0 0 100 50 100 -100
+P 2 1 0 0 -100 100 -100 50
+P 2 1 0 0 -100 50 -100 0
+P 2 1 0 0 200 100 200 50
+P 2 1 0 0 200 50 200 0
+P 2 1 0 0 -100 50 0 50
+P 2 1 0 0 100 50 200 50
+P 2 1 0 0 25 175 25 -75
+P 2 1 0 0 25 -75 75 -75
+P 2 1 0 0 75 -75 75 175
+P 2 1 0 0 75 175 25 175
+X 1@1 1 -300 100 200 R 40 40 1 1 P 
+X 1@2 4 -300 0 200 R 40 40 1 1 P 
+X 2@1 2 400 100 200 L 40 40 1 1 P 
+X 2@2 3 400 0 200 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYSTAL_RES-1100S
+# Package Name: 1100S
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF CRYSTAL_RES-1100S QG 0 40 Y Y 1 L N
+# Gate Name: A
+# Symbol Name: QG2
+F0 "QG" -300 325 50 H V L B
+F1 "CRYSTAL_RES-1100S" -300 -400 50 H V L B
+F2 "crystal-1100S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 200
+P 2 1 0 0 300 200 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -50 200 100 100
+P 2 1 0 0 100 100 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 300 200 100 200
+P 2 1 0 0 100 200 100 100
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 200 60 0 1 0 VDD
+T 0 -185 -200 60 0 1 0 VSS
+T 0 190 -200 60 0 1 0 OUT
+T 0 190 250 60 0 1 0 CON
+X CON 1 500 200 200 L 40 40 1 1 I 
+X OUT 3 500 0 200 L 40 40 1 1 O 
+X VDD 4 -500 200 200 R 40 40 1 1 W 
+X VSS 2 -500 -200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYSTAL_RES-SG51
+# Package Name: SG51
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF CRYSTAL_RES-SG51 QG 0 40 Y Y 1 L N
+# Gate Name: A
+# Symbol Name: QG2
+F0 "QG" -300 325 50 H V L B
+F1 "CRYSTAL_RES-SG51" -300 -400 50 H V L B
+F2 "crystal-SG51" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 200
+P 2 1 0 0 300 200 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -50 200 100 100
+P 2 1 0 0 100 100 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 300 200 100 200
+P 2 1 0 0 100 200 100 100
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 200 60 0 1 0 VDD
+T 0 -185 -200 60 0 1 0 VSS
+T 0 190 -200 60 0 1 0 OUT
+T 0 190 250 60 0 1 0 CON
+X CON 1 500 200 200 L 40 40 1 1 I 
+X OUT 8 500 0 200 L 40 40 1 1 O 
+X VDD 14 -500 200 200 R 40 40 1 1 W 
+X VSS 7 -500 -200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTAL68SMX
+# Package Name: 86SMX
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTAL68SMX Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTAL68SMX" 100 -100 50 H V L B
+F2 "crystal-86SMX" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 4 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC13U-H
+# Package Name: HC13U-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC13U-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC13U-H" 100 -100 50 H V L B
+F2 "crystal-HC13U-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC18U-H
+# Package Name: HC18U-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC18U-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC18U-H" 100 -100 50 H V L B
+F2 "crystal-HC18U-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC18U-V
+# Package Name: HC18U-V
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC18U-V Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC18U-V" 100 -100 50 H V L B
+F2 "crystal-HC18U-V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC33U-H
+# Package Name: HC33U-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC33U-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC33U-H" 100 -100 50 H V L B
+F2 "crystal-HC33U-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC33U-V
+# Package Name: HC33U-V
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC33U-V Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC33U-V" 100 -100 50 H V L B
+F2 "crystal-HC33U-V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49GW
+# Package Name: HC49GW
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49GW Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49GW" 100 -100 50 H V L B
+F2 "crystal-HC49GW" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49S
+# Package Name: HC49/S
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49S Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49S" 100 -100 50 H V L B
+F2 "crystal-HC49/S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49TL-H
+# Package Name: HC49TL-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49TL-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49TL-H" 100 -100 50 H V L B
+F2 "crystal-HC49TL-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49U-H
+# Package Name: HC49U-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49U-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49U-H" 100 -100 50 H V L B
+F2 "crystal-HC49U-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49U-LM
+# Package Name: HC49U-LM
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49U-LM Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49U-LM" 100 -100 50 H V L B
+F2 "crystal-HC49U-LM" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49U-V
+# Package Name: HC49U-V
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49U-V Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49U-V" 100 -100 50 H V L B
+F2 "crystal-HC49U-V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49U70
+# Package Name: HC49U70
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49U70 Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49U70" 100 -100 50 H V L B
+F2 "crystal-HC49U70" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALHC49UP
+# Package Name: HC49UP
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALHC49UP Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALHC49UP" 100 -100 50 H V L B
+F2 "crystal-HC49UP" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALMM20SS
+# Package Name: MM20SS
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALMM20SS Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALMM20SS" 100 -100 50 H V L B
+F2 "crystal-MM20SS" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 4 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALMM39SL
+# Package Name: MM39SL
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALMM39SL Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALMM39SL" 100 -100 50 H V L B
+F2 "crystal-MM39SL" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 4 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALSM49
+# Package Name: SM49
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALSM49 Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALSM49" 100 -100 50 H V L B
+F2 "crystal-SM49" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALTC26H
+# Package Name: TC26H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALTC26H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALTC26H" 100 -100 50 H V L B
+F2 "crystal-TC26H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALTC26V
+# Package Name: TC26V
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALTC26V Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALTC26V" 100 -100 50 H V L B
+F2 "crystal-TC26V" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: CRYTALTC38H
+# Package Name: TC38H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF CRYTALTC38H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: Q
+F0 "Q" 100 40 50 H V L B
+F1 "CRYTALTC38H" 100 -100 50 H V L B
+F2 "crystal-TC38H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: HC49GW
+# Package Name: HC49GW
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF HC49GW Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QM
+F0 "Q" 100 40 50 H V L B
+F1 "HC49GW" 100 -100 50 H V L B
+F2 "crystal-HC49GW" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+P 2 1 0 0 -70 75 -70 100
+P 2 1 0 0 -70 100 70 100
+P 2 1 0 0 70 100 70 75
+P 2 1 0 0 70 -75 70 -100
+P 2 1 0 0 -70 -100 70 -100
+P 2 1 0 0 -70 -100 -70 -75
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+T 1 28 127 34 0 1 0 3
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+X 3 3 0 200 100 D 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: HC49TL-H
+# Package Name: HC49TL-H
+# Dev Tech: ''
+# Dev Prefix: Q
+# Gate count = 1
+#
+DEF HC49TL-H Q 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QM
+F0 "Q" 100 40 50 H V L B
+F1 "HC49TL-H" 100 -100 50 H V L B
+F2 "crystal-HC49TL-H" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 40 0 100 0
+P 2 1 0 0 -100 0 -40 0
+P 2 1 0 0 -15 60 -15 -60
+P 2 1 0 0 -15 -60 15 -60
+P 2 1 0 0 15 -60 15 60
+P 2 1 0 0 15 60 -15 60
+P 2 1 0 0 40 70 40 -70
+P 2 1 0 0 -40 70 -40 -70
+P 2 1 0 0 -70 75 -70 100
+P 2 1 0 0 -70 100 70 100
+P 2 1 0 0 70 100 70 75
+P 2 1 0 0 70 -75 70 -100
+P 2 1 0 0 -70 -100 70 -100
+P 2 1 0 0 -70 -100 -70 -75
+T 0 -68 -28 34 0 1 0 1
+T 0 77 -28 34 0 1 0 2
+T 1 28 127 34 0 1 0 3
+X 1 1 -100 0 0 R 40 40 1 1 P 
+X 2 2 100 0 0 L 40 40 1 1 P 
+X 3 3 0 200 100 D 40 40 1 1 P 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: QG5460
+# Package Name: DIL08S
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF QG5460 QG 0 40 Y Y 1 L N
+# Gate Name: 1
+# Symbol Name: QG
+F0 "QG" -300 325 50 H V L B
+F1 "QG5460" -300 -400 50 H V L B
+F2 "crystal-DIL08S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -50 200 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 190 -170 60 0 1 0 OUT
+X GND 4 -500 -200 200 R 40 40 1 1 W 
+X OUT 5 500 0 200 L 40 40 1 1 O 
+X VCC 8 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: QG5860
+# Package Name: DIL14S
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF QG5860 QG 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QG
+F0 "QG" -300 325 50 H V L B
+F1 "QG5860" -300 -400 50 H V L B
+F2 "crystal-DIL14S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -50 200 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 190 -170 60 0 1 0 OUT
+X GND 7 -500 -200 200 R 40 40 1 1 W 
+X OUT 8 500 0 200 L 40 40 1 1 O 
+X VCC 14 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SG51
+# Package Name: SG51
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF SG51 QG 0 40 Y Y 1 L N
+# Gate Name: 1
+# Symbol Name: QG1
+F0 "QG" -300 325 50 H V L B
+F1 "SG51" -300 -400 50 H V L B
+F2 "crystal-SG51" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 200
+P 2 1 0 0 300 200 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -50 200 100 100
+P 2 1 0 0 100 100 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 300 200 100 200
+P 2 1 0 0 100 200 100 100
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 235 -100 60 0 1 0 FO
+T 0 235 250 60 0 1 0 OE
+X FO 8 500 0 200 L 40 40 1 1 O 
+X GND 7 -500 -200 200 R 40 40 1 1 W 
+X OE 1 500 200 200 L 40 40 1 1 I 
+X VCC 14 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: SG531
+# Package Name: DIL08-4
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF SG531 QG 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QG
+F0 "QG" -300 325 50 H V L B
+F1 "SG531" -300 -400 50 H V L B
+F2 "crystal-DIL08-4" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -50 200 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 -200 40 -100 40
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 190 -170 60 0 1 0 OUT
+X GND 2 -500 -200 200 R 40 40 1 1 W 
+X OUT 3 500 0 200 L 40 40 1 1 O 
+X VCC 4 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: XO-8
+# Package Name: DIL08S
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF XO-8 QG 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QG3
+F0 "QG" -300 325 50 H V L B
+F1 "XO-8" -300 -400 50 H V L B
+F2 "crystal-DIL08S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 200
+P 2 1 0 0 300 200 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -50 200 100 100
+P 2 1 0 0 100 100 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 300 200 100 200
+P 2 1 0 0 100 200 100 100
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -200 40 -100 40
+T 0 190 -200 60 0 1 0 OUT
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 150 250 60 0 1 0 NC/TS
+X GND 4 -500 -200 200 R 40 40 1 1 W 
+X OUT 5 500 0 200 L 40 40 1 1 O 
+X TS 1 500 200 200 L 40 40 1 1 P 
+X VCC 8 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#
+# Dev Name: XO-14
+# Package Name: DIL14S
+# Dev Tech: ''
+# Dev Prefix: QG
+# Gate count = 1
+#
+DEF XO-14 QG 0 40 Y Y 1 L N
+# Gate Name: G$1
+# Symbol Name: QG3
+F0 "QG" -300 325 50 H V L B
+F1 "XO-14" -300 -400 50 H V L B
+F2 "crystal-DIL14S" 0 150 50 H I C C
+DRAW
+P 2 1 0 0 -300 300 -300 -300
+P 2 1 0 0 300 -300 -300 -300
+P 2 1 0 0 300 -300 300 0
+P 2 1 0 0 300 0 300 200
+P 2 1 0 0 300 200 300 300
+P 2 1 0 0 -300 300 300 300
+P 2 1 0 0 -50 200 100 100
+P 2 1 0 0 100 100 250 0
+P 2 1 0 0 250 0 -50 -200
+P 2 1 0 0 -50 -200 -50 -125
+P 2 1 0 0 -50 -125 -50 125
+P 2 1 0 0 -50 125 -50 200
+P 2 1 0 0 -150 125 -50 125
+P 2 1 0 0 -150 -125 -50 -125
+P 2 1 0 0 250 0 300 0
+P 2 1 0 0 300 200 100 200
+P 2 1 0 0 100 200 100 100
+P 2 1 0 0 -190 -15 -190 15
+P 2 1 0 0 -190 15 -110 15
+P 2 1 0 0 -110 15 -110 -15
+P 2 1 0 0 -190 -15 -110 -15
+P 2 1 0 0 -200 -40 -150 -40
+P 2 1 0 0 -150 -40 -100 -40
+P 2 1 0 0 -150 40 -150 125
+P 2 1 0 0 -150 -125 -150 -40
+P 2 1 0 0 -200 40 -100 40
+T 0 190 -200 60 0 1 0 OUT
+T 0 -185 -200 60 0 1 0 GND
+T 0 -185 200 60 0 1 0 VCC
+T 0 150 250 60 0 1 0 NC/TS
+X GND 7 -500 -200 200 R 40 40 1 1 W 
+X OUT 8 500 0 200 L 40 40 1 1 O 
+X TS 1 500 200 200 L 40 40 1 1 P 
+X VCC 14 -500 200 200 R 40 40 1 1 W 
+ENDDRAW
+ENDDEF
+
+#End Library

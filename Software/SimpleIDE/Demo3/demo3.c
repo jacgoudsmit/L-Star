@@ -14,6 +14,9 @@
 #include "fdserial.h"
 #include "simpletools.h"
 
+extern uint8_t binary_romram_dat_start[];
+extern uint8_t binary_romram_dat_end[];
+
 
 /////////////////////////////////////////////////////////////////////////////
 // MACROS
@@ -57,8 +60,7 @@
 #define get_RW(x) BD(x, 1, pin_RW)
 
 
-#define ROMSIZE (0x10)
-#define RAMSIZE (0x300)
+#define ROMSIZE (8192)
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -116,6 +118,29 @@ typedef enum
 } pin;
 
 
+// Initialization data for memory cog
+typedef struct
+{
+  uint8_t          *romstart;           // Location of first ROM byte
+  uint8_t          *romend_ramstart;    // Location of first RAM byte
+  uint8_t          *ramend;             // Location of first byte after RAM
+  
+  uint16_t          base6502;           // Base address in 6502 space
+  
+} memory_init_t;
+
+
+// Data interchange between PIA cog and other cogs
+typedef struct
+{
+  uint16_t          base6502;           // Base address in 6502 space
+                                        //   (low 2 bits must be 0)
+  volatile char     display;            // Output from PIA, msb=1 when new
+  volatile char     keyboard;           // Input to PIA, msb=1 when new
+  
+} pia_io_t;
+
+  
 /////////////////////////////////////////////////////////////////////////////
 // DATA
 /////////////////////////////////////////////////////////////////////////////
@@ -124,23 +149,7 @@ typedef enum
 // Pointer to use for terminal calls.
 terminal *term;
 
-// ROM and RAM
-uint8_t ROMRAM[ROMSIZE + RAMSIZE] = {
-  // $FFF0
-  0xEE, 0x00, 0x02,   // inc $200
-  0x4C, 0xF0, 0xFF,   // jmp $FFF0
-  
-  0x00, 0x00, 0x00, 0x00, // filler bytes
-  
-  // $FFFA
-  0xF0, 0xFF,         // NMI vector
-  0xF0, 0xFF,         // Reset vector
-  0xF0, 0xFF          // BRK / IRQ vector
-  
-  // Rest of the array is filled with 0x00 by the compiler
-};
 
-  
 /////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS
 /////////////////////////////////////////////////////////////////////////////
@@ -170,9 +179,24 @@ void print_ina(void)
 
 
 //---------------------------------------------------------------------------
-// Memory cog
-void memorycog()
+// Patch mapped memory
+void memorypatch(memory_init_t *pinit, uint16_t addr, uint8_t data)
 {
+  pinit->romstart[(addr - pinit->base6502) & 0xFFFF] = data;
+}
+
+  
+//---------------------------------------------------------------------------
+// Memory cog
+void memorycog(void *arg)
+{
+  memory_init_t *p = (memory_init_t *)arg;
+
+  uint8_t *hubmem = p->romstart;
+  uint16_t romsize = p->romend_ramstart - p->romstart;
+  uint16_t ramsize = p->ramend - p->romend_ramstart;
+  uint16_t base6502 = p->base6502;
+  
   for(;;)
   {
     // Wait until the clock goes low
@@ -185,34 +209,128 @@ void memorycog()
     unsigned addr = get_ADDR(INA);
     
     // Calculate offset in array
-    addr = (addr + ROMSIZE) & 0xFFFF;
+    addr = (addr - base6502) & 0xFFFF;
     
     // Wait until the clock goes high
     waitpne(0, BP(pin_CLK0));
 
     // Check if the address is in range    
-    if (addr < sizeof(ROMRAM))
+    if (addr < romsize + ramsize)
     {
       // Check for read or write mode
       if (get_RW(INA))
       {
         // The 65C02 is reading, put data from the array on the data bus
-        OUTA = (unsigned)ROMRAM[addr];
+        OUTA = (unsigned)hubmem[addr];
         set_DATA(DIRA, 0xFF);
       }
       else
       {
         // The 6502 is writing. Make sure we don't overwrite the ROM
-        if (addr >= ROMSIZE)
+        if (addr >= romsize)
         {
-          ROMRAM[addr] = (uint8_t)INA;
+          hubmem[addr] = (uint8_t)INA;
         }
       }
     }                        
   }    
 }
 
+
+//---------------------------------------------------------------------------
+// Apple 1 PIA emulator
+void a1piacog(void *arg)
+{
+  pia_io_t *p = (pia_io_t*)arg;
   
+  // Keep the base address in a local variable.
+  // Make sure the lowest 2 bits are zero.
+  unsigned base6502 = ((unsigned)(p->base6502)) & 0xFFFC;
+  
+  for(;;)
+  {
+    // Wait until the clock goes low
+    waitpeq(0, BP(pin_CLK0));
+    
+    // If we put anything on the data bus in the previous cycle, take it off.
+    set_DATA(DIRA, 0);
+    
+    // Get the address
+    unsigned addr = get_ADDR(INA);
+    
+    // Check if the address is in range
+    // We do this by XOR-ing the actual address with the base address
+    // If in range, this results in a value of 0 to 3.
+    switch(addr ^ base6502)
+    {
+    case 0:
+      // Read key code (write operations ignored)
+      if (get_RW(INA))
+      {
+        unsigned u = p->keyboard;
+
+        // The msb of the key code is always 1
+        OUTA = u | 0x80;
+        set_DATA(DIRA, 0xFF);
+        
+        // Reset the key flag
+        p->keyboard = u & 0x7F;
+      }            
+      
+      // Wait for the clock to go high, if it hasn't done so yet
+      waitpne(0, BP(pin_CLK0));
+      break;
+      
+    case 1:
+      // Read the key flag (write operations ignored)
+      if (get_RW(INA))
+      {
+        // Put a byte on the data bus
+        // Bit 7 is the only significant one and
+        // indicates whether a new key is available
+        OUTA = p->keyboard;
+        set_DATA(DIRA, 0xFF);
+      }        
+
+      // Wait for the clock to go high, if it hasn't done so yet
+      waitpne(0, BP(pin_CLK0));
+      break;
+      
+    case 2:
+      // Read or write the display register
+      if (get_RW(INA))
+      {
+        // Reading back the last byte that was sent to the
+        // display.
+        OUTA = p->display;
+        set_DATA(DIRA, 0xFF);
+      }
+      else
+      {
+        // The 65C02 is writing a byte to the display
+        // Wait until the clock is high first, so we
+        // can be sure the 65C02 is putting something on the data bus
+        waitpne(0, BP(pin_CLK0));
+
+        // Store the outgoing display byte.
+        // Bit 7 should always be 1 to indicate something new was
+        // stored.
+        p->display = get_DATA(INA) | 0x80;
+      }                
+      break;
+      
+    case 3:
+      // Register 3 is the control and status register.
+      // We can ignore that and fall through to the default case.
+      
+    default:
+      // Wait until the clock goes high
+      waitpne(0, BP(pin_CLK0));
+    }      
+  }    
+}
+
+
 //---------------------------------------------------------------------------
 // Main function
 int main()
@@ -234,29 +352,46 @@ int main()
   DIRA |= (BP(pin_SDA) | BP(pin_CLK0));
   
   // Start the memory cog
-  cog_run(memorycog, 0);
+  uint8_t memorystack[sizeof(_thread_state_t) + 12];
+  memory_init_t meminit = { binary_romram_dat_start, binary_romram_dat_start + ROMSIZE, binary_romram_dat_end, 0x10000 - ROMSIZE };
+  int i1 = cogstart(memorycog, &meminit, memorystack, sizeof(memorystack));
 
+  // Start the Apple 1 PIA cog
+  uint8_t piastack[sizeof(_thread_state_t) + 12];
+  pia_io_t piadata = { 0xD010, '\0', '\0' };
+  int i2 = cogstart(a1piacog, &piadata, piastack, sizeof(piastack));
+
+  // Patch the Krusader ROM
+  // Without this, it thinks the system has 32K.
+  // The patch moves the symbol table to $1400 (end of RAM is $1800)
+  memorypatch(&meminit, 0xF009, 0x14);
+  
   // Initialization done
-  dprint(term, "Hello L-Star!\n");
+  dprint(term, "Hello L-Star!%d %d\n", i1, i2);
 
   for(;;)
   {
-    int c = fdserial_rxTime(term, 500);
-    
-    switch (c)
+    if ((piadata.keyboard & 0x80) == 0)
     {
-    case 'c':
-    case 'C':
-      // Toggle the clock
-      toggle(pin_CLK0);
-      break;
+      int c = fdserial_rxCheck(term);
       
-    default:
-      continue;
+      if (c != -1)
+      {
+        piadata.keyboard = (unsigned)(c | 0x80);
+      }
     }
     
-    // Print the state of the pins
-    print_ina();
+    if ((piadata.display & 0x80) != 0)
+    {
+      writeChar(term, piadata.display & 0x7F);
+      piadata.display &= 0x7F;
+    }
+
+    // Toggle the clock
+    toggle(pin_CLK0);
+    
+    // Dump the bus
+    //print_ina();
   }  
 }
 

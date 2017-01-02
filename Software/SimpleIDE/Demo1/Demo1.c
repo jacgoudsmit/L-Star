@@ -52,6 +52,10 @@
 // Example: dprint(term, "%X", get_ADDR(INA))
 #define get_ADDR(x) BD(x, 16, pin_A0)
 
+// Get the R/!W pin
+// Example: dprint(term, "%c", get_RW(INA) ? 'R' : 'W');
+#define get_RW(x) BD(x, 1, pin_RW)
+
 
 /////////////////////////////////////////////////////////////////////////////
 // TYPES

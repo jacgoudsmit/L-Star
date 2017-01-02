@@ -1,0 +1,10 @@
+demo3.c
+romram.spin
+>compiler=C
+>memtype=lmm main ram
+>optimize=-Os
+>-m32bit-doubles
+>-fno-exceptions
+>defs::-std=c99
+>-lm
+>BOARD::GENERIC

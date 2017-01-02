@@ -1,10 +1,14 @@
 /////////////////////////////////////////////////////////////////////////////
-// Demo/Tutorial project 2 for L-Star project
+// Demo/Tutorial project 3 for L-Star project
 // Copyright (C) 2016 Jac Goudsmit
 //
 // TERMS OF USE: MIT License. See bottom of file.                                                            
 /////////////////////////////////////////////////////////////////////////////
 
+/*
+ * This project emulates an Apple 1 (really a Briel Computers Replica 1)
+ * via the serial port.
+ */
 
 /////////////////////////////////////////////////////////////////////////////
 // INCLUDES
@@ -13,9 +17,6 @@
 
 #include "fdserial.h"
 #include "simpletools.h"
-
-extern uint8_t binary_romram_dat_start[];
-extern uint8_t binary_romram_dat_end[];
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,9 @@ extern uint8_t binary_romram_dat_end[];
 #define get_RW(x) BD(x, 1, pin_RW)
 
 
+// Size of the ROM in bytes. Unfortunately it's not possible to determine
+// this automatically; this number needs to be the same as the ROM image
+// that's loaded through the Spin module.
 #define ROMSIZE (8192)
 
 
@@ -148,6 +152,12 @@ typedef struct
 
 // Pointer to use for terminal calls.
 terminal *term;
+
+// External references to the Spin module where the binary ROM image is
+// loaded and RAM space is reserved.
+extern uint8_t binary_romram_dat_start[];
+extern uint8_t binary_romram_dat_end[];
+
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -352,14 +362,14 @@ int main()
   DIRA |= (BP(pin_SDA) | BP(pin_CLK0));
   
   // Start the memory cog
-  uint8_t memorystack[sizeof(_thread_state_t) + 12];
+  uint8_t memorystack[sizeof(_thread_state_t) + 12]; // At least 12 extra bytes needed or cogstart fails
   memory_init_t meminit = { binary_romram_dat_start, binary_romram_dat_start + ROMSIZE, binary_romram_dat_end, 0x10000 - ROMSIZE };
-  int i1 = cogstart(memorycog, &meminit, memorystack, sizeof(memorystack));
+  (void)cogstart(memorycog, &meminit, memorystack, sizeof(memorystack));
 
   // Start the Apple 1 PIA cog
-  uint8_t piastack[sizeof(_thread_state_t) + 12];
+  uint8_t piastack[sizeof(_thread_state_t) + 12]; // At least 12 extra bytes needed or cogstart fails
   pia_io_t piadata = { 0xD010, '\0', '\0' };
-  int i2 = cogstart(a1piacog, &piadata, piastack, sizeof(piastack));
+  (void)cogstart(a1piacog, &piadata, piastack, sizeof(piastack));
 
   // Patch the Krusader ROM
   // Without this, it thinks the system has 32K.
@@ -367,7 +377,7 @@ int main()
   memorypatch(&meminit, 0xF009, 0x14);
   
   // Initialization done
-  dprint(term, "Hello L-Star!%d %d\n", i1, i2);
+  dprint(term, "Hello L-Star!\n");
 
   for(;;)
   {

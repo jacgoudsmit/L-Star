@@ -1,6 +1,6 @@
 ''***************************************************************************
 ''* L-STAR, Apple-1 replica with minimal hardware
-''* Copyright (C) 2014 Jac Goudsmit
+''* Copyright (C) 2014-2018 Jac Goudsmit
 ''*
 ''* Some of the code in this project was based on the following projects,
 ''* all under MIT license unless otherwise mentioned:
@@ -51,7 +51,7 @@ CON
   
 OBJ
   hw:           "Hardware"      ' Constants for hardware
-  clock:        "Clock"         ' Clock generator
+  clock:        "Clockgen"      ' Clock generator
   term:         "SerKbd1TV"     ' Serial/Keyboard/TV terminal
   mem:          "Memory"        ' ROM/RAM emulator
   pia:          "A1PIA"         ' PIA hardware emulator  
@@ -63,7 +63,7 @@ PUB main | i
 
   ' Init serial, keyboard and TV
   term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_KBCLK, hw#pin_TV, BAUDRATE)
-  term.str(string("L-STAR (C) 2014 JAC GOUDSMIT",13,13,"HUB RAM BYTES: "))
+  term.str(string("L-STAR (C) 2014-2018 JAC GOUDSMIT",13,13,"HUB RAM BYTES: "))
   term.dec(RAM_SIZE)
   term.str(string(13,"SIM.ROM BYTES: "))
   term.dec(@RomEndRamStart-@RomFile)
@@ -71,6 +71,7 @@ PUB main | i
 
   ' Patch the ROM
   Patch($F009,$3C)                                      ' Krusader assumes 32K RAM, this changes a table location from 7C00 to 3C00
+  Patch($FF05,$13)                                      ' Redirect STY $D012 to $D013 to prevent degree-symbol on terminal
   Patch($FF2E,$08)                                      ' Let Woz monitor use backspace instead of _ for correction                        
 
   ' Initialize the clock before starting any cogs that wait for it

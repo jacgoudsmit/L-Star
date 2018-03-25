@@ -1,6 +1,6 @@
 ''***************************************************************************
 ''* L-STAR, Apple-1 replica with minimal hardware
-''* Copyright (C) 2014-2016 Jac Goudsmit
+''* Copyright (C) 2014-2018 Jac Goudsmit
 ''*
 ''* Some of the code in this project was based on the following projects,
 ''* all under MIT license unless otherwise mentioned:
@@ -50,7 +50,7 @@ PUB main | i
   ' TIP: If you don't use a PS/2 keyboard (only serial port),
   '      change the third parameter to -1 
   term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_TV, BAUDRATE)
-  term.str(string("L-STAR (C) 2014-2016 Jac Goudsmit", 13))
+  term.str(string("L-STAR (C) 2014-2018 Jac Goudsmit", 13))
   term.str(string("Simulated ROM bytes: "))
   term.dec(@RomEnd-@RomFile)
   term.tx(13)

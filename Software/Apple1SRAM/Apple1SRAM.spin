@@ -34,7 +34,7 @@ CON
   
 OBJ
   hw:           "Hardware"      ' Constants for hardware
-  clock1:       "Clock"         ' Clock generator
+  clock1:       "Clockgen"      ' Clock generator
   term:         "SerKbd1TV"     ' Serial/Keyboard/TV terminal
   sram:         "SRAMCtrl"      ' SRAM control
   rom:          "Memory"        ' ROM emulation                        

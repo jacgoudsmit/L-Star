@@ -55,6 +55,10 @@ PUB main | i
   term.dec(@RomEnd-@RomFile)
   term.tx(13)
 
+  ' Patch the ROM
+  Patch($FF05,$13)                                      ' Redirect STY $D012 to $D013 to prevent degree-symbol on terminal
+  Patch($FF2E,$08)                                      ' Let Woz monitor use backspace instead of _ for correction                        
+
   ' Initialize the clock before starting any cogs that wait for it
   clock1.Init(1_000_000)
     
@@ -87,6 +91,10 @@ PUB main | i
       if (i < 32) or (i > 126)
         term.str(string(32,8))
       term.tx(i)
+
+PRI Patch(addrval, dataval)
+
+  byte[addrval + @RomEnd - $1_0000] := dataval 
 
 DAT
 

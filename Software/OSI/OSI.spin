@@ -19,7 +19,7 @@ CON
   
 OBJ
   hw:           "Hardware"      ' Hardware constants
-  clock:        "Clock"         ' Clock generator
+  clock:        "Clockgen"      ' Clock generator
   mon_ram:      "Memory"        ' Monitor ROM and base RAM emulation
   basic:        "Memory"        ' BASIC ROM
   video:        "Memory"        ' Video RAM

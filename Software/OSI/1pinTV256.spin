@@ -124,12 +124,12 @@ CON
 ''   Just set the following parameters and the rest will be calculated automatically.
 ''
 PAL                     =       0                       ' 0 = NTSC, 1 = PAL (PAL not fully tested))
-oscreencols             =       25                      ' number of visible columns (MAX=64 @80MHz) (at most omemcols)
+oscreencols             =       32                      ' number of visible columns (MAX=64 @80MHz) (at most omemcols)
 omemcols                =       32                      ' number of columns in memory (MAXIMUM =80?); must be multiple of 4
-oscreenrows             =       25                      ' number of visible rows (MAXIMUM NTSC=28, PAL=32)
+oscreenrows             =       28                      ' number of visible rows (MAXIMUM NTSC=28, PAL=32)
 omemrows                =       32                      ' number of rows in memory 
-oleftmargin             =       4                       ' number of hidden columns on left
-otopmargin              =       4                       ' number of hidden rows on top
+oleftmargin             =       0                       ' number of hidden columns on left
+otopmargin              =       0                       ' number of hidden rows on top
                          
 '--------------------------------------------------------------------------------------------------
 

@@ -29,30 +29,19 @@
 ''
 '' The !NMI, !IRQ, !SO and RDY pins are pulled high. The Reset pin is pulled
 '' high but has a pushbutton switch to ground.
-''
-'' A PS/2 keyboard can be connected to the usual pins P26-P27, in the same
-'' way as on the Propeller Demo board. There aren't enough pins for a full
-'' TV output, but we can use the 1-pin TV driver from the Parallax Forums
-'' to generate a monochrome video signal. The clock signal for the 65C02 is
-'' generated on the same pin as the SCL clock signal to the EEPROM; this
-'' won't harm the EEPROM as long as we keep SDA high.
-''
-'' The code that runs on the Propeller emulates ROM and RAM in the hub. But
-'' because there's not enough space in the hub, the amount of ROM and RAM
-'' that are available are limited. It's possible to connect an SRAM chip
-'' (e.g. a 62256) to the bus, and turn the RAM emulation off, to overcome
-'' this problem.  
+
 CON
   _clkmode      = xtal1 + pll16x
   _xinfreq      = 5_000_000
 
   BAUDRATE      = 115200        ' Baud rate on serial port
-  RAM_SIZE      = 16384         ' Change this to 0 if external RAM attached
-  
+  BADGEBAUDRATE = 19200         ' Baud rate on badge serial port                        
+  RAM_SIZE      = 20*1024       ' Change this to 0 if external RAM attached
+
 OBJ
   hw:           "Hardware"      ' Constants for hardware
   clock:        "Clockgen"      ' Clock generator
-  term:         "SerKbd1TV"     ' Serial/Keyboard/TV terminal
+  term:         "SuperConBadge" ' Prop Plug and SuperCon Badge
   mem:          "Memory"        ' ROM/RAM emulator
   pia:          "A1PIA"         ' PIA hardware emulator  
 
@@ -62,7 +51,7 @@ VAR
 PUB main | i
 
   ' Init serial, keyboard and TV
-  term.Start(hw#pin_RX, hw#pin_TX, hw#pin_KBDATA, hw#pin_KBCLK, hw#pin_TV, BAUDRATE)
+  term.Start(BAUDRATE, BADGEBAUDRATE)
   term.str(string("L-STAR (C) 2014-2018 JAC GOUDSMIT",13,13,"HUB RAM BYTES: "))
   term.dec(RAM_SIZE)
   term.str(string(13,"SIM.ROM BYTES: "))
@@ -70,7 +59,7 @@ PUB main | i
   term.str(string(13,13))
 
   ' Patch the ROM
-  Patch($F009,$3C)                                      ' Krusader assumes 32K RAM, this changes a table location from 7C00 to 3C00
+  Patch($F009,$4C) 'TODO: Calculate                     ' Krusader assumes 32K RAM, this changes a table location
   Patch($FF05,$13)                                      ' Redirect STY $D012 to $D013 to prevent degree-symbol on terminal
   Patch($FF2E,$08)                                      ' Let Woz monitor use backspace instead of _ for correction                        
 
@@ -89,6 +78,10 @@ PUB main | i
   ' The following infinite loop emulates the terminal part of the machine.
   ' If a key has come in from the serial port or keyboard, it's made available to the PIA emulator;
   ' If the 6502 has written a character to the PIA, send it to the screen and the serial port.
+  ' NOTE: The Prop Plug is configured for 115200. When sending a long file to the Apple 1
+  ' emulator (e.g. a basic listing or a hex file), it can easily get overwhelmed. You will
+  ' probably want to us a slower speed or add character delays and line delays to prevent this.
+  ' One day I hope to find some time to implement flow control in the PIA emulator module.
   repeat
     i := term.rxcheck
     if i <> -1
@@ -107,7 +100,48 @@ PRI Patch(addrval, dataval)
 DAT
 
 RomFile
+                        ' Uncomment the ROM image that you want to load.
+                        ' You can only use a single ROM image at a time!
+
+                        ' This ROM image came from the website of Ken Wessen who wrote
+                        ' Krusader, an interactive editor and assembler that you can use
+                        ' to write 6502 assembly programs.
+                        ' See http://school.anhb.uwa.edu.au/personalpages/kwessen/apple1/Krusader.htm
+                        ' To run Krusader from Woz Mon, enter F000R 
+                        ' The image also contains the BASIC interpreter written by Steve Wozniak,
+                        ' which is simple but has a few quirks. For example it doesn't support
+                        ' arrays or floating point, and it gives an error when you
+                        ' enter a line into the BASIC program that has a syntax error
+                        ' but also when execution falls out of a program without
+                        ' encountering an END instruction.
+                        ' To start the BASIC interpreter, enter E000R
+                        ' NOTE: Because the Woz basic interpreter tries its best to make the
+                        ' listing of a program look as readable as possible, you can't record
+                        ' a listing on your terminal emulator and then play it back to load it
+                        ' again. To save a BASIC program you have to drop to Woz Mon and dump
+                        ' the RAM that's in use by the BASIC program.                                                                            
                         File    "65C02.rom.bin"         ' BASIC/Krusader/WOZ mon for 65C02
+
+                        ' This ROM was copied from another location that I don't remember.
+                        ' I think it was pointed out to me on either the Brielcomputers forum or
+                        ' the 6502.org forums.
+                        ' The image contains Woz mon of course, as well as Krusader (I'm not sure
+                        ' if this has the 65C02 version of Krusader or the 6502 version),
+                        ' but it also has a version of Microsoft Basic that was ported from
+                        ' the Apple 2 to the Apple 1.
+                        ' This will allow you to run many programs (e.g. from the "101 BASIC Games"
+                        ' book by David Ahl) that depend on features such as arrays and floating
+                        ' point variables. You also get the usual MS-BASIC features such as the
+                        ' ability to use the question mark instead of PRINT.
+                        ' Another feature is that a LIST from Microsoft BASIC is formatted the
+                        ' exact same way as how you would add program lines into a program.
+                        ' So all you need to do to save a program is enable logging in your
+                        ' terminal program and enter LIST. At the end of the list, turn logging off
+                        ' and remove the LIST command and the OK prompt from the output file,
+                        ' that's it. Next time you want to load the program, just type NEW to
+                        ' make sure there's nothing already in memory, then replay the file
+                        ' from the terminal program.
+                        'File    "AppleSoftBasic.rom.bin"' AppleSoft/Microsoft BASIC/Krusader/WOZ mon
 RomEndRamStart
                         ' The RAM must immediately follow the ROM
                         byte    $EA[RAM_SIZE]

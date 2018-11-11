@@ -1,6 +1,6 @@
 ''***************************************************************************
 ''* Hardware constants
-''* Copyright (C) 2014 Jac Goudsmit
+''* Copyright (C) 2018 Jac Goudsmit
 ''*
 ''* TERMS OF USE: MIT License. See bottom of file.                                                            
 ''***************************************************************************
@@ -44,14 +44,14 @@ CON
   pin_A15                       '/
   ' P24 
   pin_RW                        ' [In] R/!W from 6502
-  pin_TV                        ' [Out] Video out (monochrome TV)
-  pin_KBDATA                    ' [In] Keyboard data
-  pin_KBCLK                     ' [In] Keyboard clock
+  pin_25                        ' Not in use
+  pin_TXBADGE                   ' [Out] Serial port Tx out to SuperCon badge
+  pin_RXBADGE                   ' [In]  Serial port Rx in from SuperCon badge
   ' P28
   pin_CLK0                      ' [Out] CLK0 to 6502 (shared with SCL on EEPROM)
   pin_SDA                       ' [Out] SDA on EEPROM
   pin_TX                        ' [Out] Serial port Tx out from Propeller
-  pin_RX                        ' [Out] Serial port Rx in to Propeller
+  pin_RX                        ' [In]  Serial port Rx in to Propeller
 
 
   '==========================================================================

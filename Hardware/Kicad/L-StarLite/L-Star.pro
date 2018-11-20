@@ -1,4 +1,4 @@
-update=5/7/2016 10:06:31 PM
+update=2018-11-19 22:33:35
 last_client=kicad
 [cvpcb]
 version=1
@@ -50,24 +50,16 @@ LibName21=propeller
 LibName22=crystal
 [general]
 version=1
+[eeschema]
+version=1
+LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
 PlotDirectoryName=Plot/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=PcbnewAdvanced
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
+NetFmtName=Pcbnew
+SpiceAjustPassiveValues=0
 LabSize=60
 ERC_TestSimilarLabels=1
-[eeschema]
-version=1
-LibDir=Lib;C:/Users/Jac/Documents/Kicad/Lib
-[eeschema/libraries]
-LibName1=jac
-LibName2=ttl_ieee
-LibName3=power
-LibName4=propeller
-LibName5=crystal
-LibName6=conn

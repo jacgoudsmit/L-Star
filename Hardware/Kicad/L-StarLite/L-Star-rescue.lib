@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# L-Star-rescue_24LC-jac
+# 24LC-jac
 #
-DEF L-Star-rescue_24LC-jac IC 0 30 Y Y 1 F N
+DEF 24LC-jac IC 0 30 Y Y 1 F N
 F0 "IC" -200 350 60 H V C CNN
-F1 "L-Star-rescue_24LC-jac" 200 -350 60 H V C CNN
+F1 "24LC-jac" 200 -350 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -21,11 +21,11 @@ X WP 7 550 100 300 L 60 60 1 1 I
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_65(C)02-jac
+# 65(C)02-jac
 #
-DEF L-Star-rescue_65(C)02-jac IC 0 1 Y Y 1 F N
+DEF 65(C)02-jac IC 0 1 Y Y 1 F N
 F0 "IC" -300 1350 60 H V C CNN
-F1 "L-Star-rescue_65(C)02-jac" 200 -1350 60 H V C CNN
+F1 "65(C)02-jac" 200 -1350 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -75,11 +75,11 @@ X A0 9 -600 300 200 R 40 40 1 1 O
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_BARREL_JACK-L-Star-rescue
+# BARREL_JACK-L-Star-rescue
 #
-DEF L-Star-rescue_BARREL_JACK-L-Star-rescue CON 0 40 Y Y 1 F N
+DEF BARREL_JACK-L-Star-rescue CON 0 40 Y Y 1 F N
 F0 "CON" 0 250 50 H V C CNN
-F1 "L-Star-rescue_BARREL_JACK-L-Star-rescue" 0 -200 50 H V C CNN
+F1 "BARREL_JACK-L-Star-rescue" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 DRAW
@@ -96,11 +96,11 @@ X ~ 3 300 0 200 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_C-jac
+# C-jac
 #
-DEF L-Star-rescue_C-jac C 0 10 N Y 1 F N
+DEF C-jac C 0 10 N Y 1 F N
 F0 "C" 0 100 40 H V L CNN
-F1 "L-Star-rescue_C-jac" 6 -85 40 H V L CNN
+F1 "C-jac" 6 -85 40 H V L CNN
 F2 "" 38 -150 30 H V C CNN
 F3 "" 0 0 60 H V C CNN
 $FPLIST
@@ -116,11 +116,11 @@ X ~ 2 0 -200 170 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_CONN_2-jac
+# CONN_2-jac
 #
-DEF L-Star-rescue_CONN_2-jac P 0 40 Y N 1 F N
+DEF CONN_2-jac P 0 40 Y N 1 F N
 F0 "P" -50 0 40 V V C CNN
-F1 "L-Star-rescue_CONN_2-jac" 50 0 40 V V C CNN
+F1 "CONN_2-jac" 50 0 40 V V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -130,11 +130,11 @@ X PM 2 -350 -100 250 R 60 60 1 1 P I
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_CONN_4-jac
+# CONN_4-jac
 #
-DEF L-Star-rescue_CONN_4-jac P 0 40 Y N 1 F N
+DEF CONN_4-jac P 0 40 Y N 1 F N
 F0 "P" -50 0 50 V V C CNN
-F1 "L-Star-rescue_CONN_4-jac" 50 0 50 V V C CNN
+F1 "CONN_4-jac" 50 0 50 V V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -146,11 +146,11 @@ X P4 4 -350 -150 250 R 50 50 1 1 P I
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_CONN_6-jac
+# CONN_6-jac
 #
-DEF L-Star-rescue_CONN_6-jac P 0 30 Y N 1 F N
+DEF CONN_6-jac P 0 30 Y N 1 F N
 F0 "P" -50 0 60 V V C CNN
-F1 "L-Star-rescue_CONN_6-jac" 50 0 60 V V C CNN
+F1 "CONN_6-jac" 50 0 60 V V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -164,11 +164,11 @@ X 6 6 -350 -250 250 R 60 60 1 1 P I
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_CP1-jac
+# CP1-jac
 #
-DEF L-Star-rescue_CP1-jac C 0 10 N N 1 F N
+DEF CP1-jac C 0 10 N N 1 F N
 F0 "C" 50 100 50 H V L CNN
-F1 "L-Star-rescue_CP1-jac" 50 -100 50 H V L CNN
+F1 "CP1-jac" 50 -100 50 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 $FPLIST
@@ -184,11 +184,11 @@ X ~ 2 0 -200 180 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_Dummy-jac
+# Dummy-jac
 #
-DEF L-Star-rescue_Dummy-jac U 0 40 Y Y 1 F N
+DEF Dummy-jac U 0 40 Y Y 1 F N
 F0 "U" -50 0 60 H V R CNN
-F1 "L-Star-rescue_Dummy-jac" 50 0 60 H V L CNN
+F1 "Dummy-jac" 50 0 60 H V L CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -196,11 +196,11 @@ S -50 50 50 -50 0 1 0 N
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_GND-jac
+# GND-jac
 #
-DEF ~L-Star-rescue_GND-jac #PWR 0 0 Y Y 1 F P
+DEF ~GND-jac #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 0 30 H I C CNN
-F1 "L-Star-rescue_GND-jac" 0 -70 30 H I C CNN
+F1 "GND-jac" 0 -70 30 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -209,11 +209,11 @@ X GND 1 0 0 0 U 30 30 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_LED-jac
+# LED-jac
 #
-DEF L-Star-rescue_LED-jac D 0 0 N N 1 F N
+DEF LED-jac D 0 0 N N 1 F N
 F0 "D" -200 50 60 H V C CNN
-F1 "L-Star-rescue_LED-jac" 200 -50 60 H V C CNN
+F1 "LED-jac" 200 -50 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -226,11 +226,11 @@ X ~ K 300 0 200 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_LM1086-jac
+# LM1086-jac
 #
-DEF L-Star-rescue_LM1086-jac IC 0 40 Y Y 1 F N
+DEF LM1086-jac IC 0 40 Y Y 1 F N
 F0 "IC" 0 200 60 H V C CNN
-F1 "L-Star-rescue_LM1086-jac" 200 -200 60 H V C CNN
+F1 "LM1086-jac" 200 -200 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -241,11 +241,11 @@ X VIN 3 -400 0 200 R 40 40 1 1 W
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_P8X32A-DIP-jac
+# P8X32A-DIP-jac
 #
-DEF L-Star-rescue_P8X32A-DIP-jac IC 0 40 Y Y 1 F N
+DEF P8X32A-DIP-jac IC 0 40 Y Y 1 F N
 F0 "IC" -300 1100 50 H V L BNN
-F1 "L-Star-rescue_P8X32A-DIP-jac" 100 -1150 50 H V L BNN
+F1 "P8X32A-DIP-jac" 100 -1150 50 H V L BNN
 F2 "DIP-40_600" 0 0 50 H I C CNN
 F3 "" 150 -250 60 H V C CNN
 DRAW
@@ -296,11 +296,11 @@ X P7 8 -500 250 200 R 40 40 1 1 B
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_PWR_FLAG-jac
+# PWR_FLAG-jac
 #
-DEF L-Star-rescue_PWR_FLAG-jac #FLG 0 0 N N 1 F P
+DEF PWR_FLAG-jac #FLG 0 0 N N 1 F P
 F0 "#FLG" 0 95 30 H I C CNN
-F1 "L-Star-rescue_PWR_FLAG-jac" 0 180 30 H V C CNN
+F1 "PWR_FLAG-jac" 0 180 30 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -309,11 +309,11 @@ X pwr 1 0 0 0 U 20 20 0 0 w
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_R-jac
+# R-jac
 #
-DEF L-Star-rescue_R-jac R 0 0 N Y 1 F N
+DEF R-jac R 0 0 N Y 1 F N
 F0 "R" 80 0 40 V V C CNN
-F1 "L-Star-rescue_R-jac" 7 1 40 V V C CNN
+F1 "R-jac" 7 1 40 V V C CNN
 F2 "" -70 0 30 V V C CNN
 F3 "" 0 0 30 H V C CNN
 $FPLIST
@@ -330,11 +330,11 @@ X ~ 2 0 -250 100 U 60 60 1 1 P
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_SW_PUSH-jac
+# SW_PUSH-jac
 #
-DEF L-Star-rescue_SW_PUSH-jac SW 0 40 N N 1 F N
+DEF SW_PUSH-jac SW 0 40 N N 1 F N
 F0 "SW" 150 110 50 H V C CNN
-F1 "L-Star-rescue_SW_PUSH-jac" 0 -80 50 H V C CNN
+F1 "SW_PUSH-jac" 0 -80 50 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -345,11 +345,11 @@ X 2 2 300 0 200 L 60 60 0 1 P I
 ENDDRAW
 ENDDEF
 #
-# L-Star-rescue_XTAL-jac
+# XTAL-jac
 #
-DEF L-Star-rescue_XTAL-jac X 0 40 N N 1 F N
+DEF XTAL-jac X 0 40 N N 1 F N
 F0 "X" 0 150 60 H V C CNN
-F1 "L-Star-rescue_XTAL-jac" 0 -150 60 H V C CNN
+F1 "XTAL-jac" 0 -150 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -358,37 +358,6 @@ P 2 0 1 20 50 50 50 -50 N
 P 6 0 1 12 -50 100 0 100 0 0 0 -100 -50 -100 -50 100 N
 X 1 1 -250 0 150 R 40 40 1 1 P
 X 2 2 200 0 150 L 40 40 1 1 P
-ENDDRAW
-ENDDEF
-#
-# power_+3.3V
-#
-DEF power_+3.3V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+3.3V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-ALIAS +3.3V
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +3V3 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# power_+5V
-#
-DEF power_+5V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +5V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
